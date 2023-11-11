@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <!--<package name="com.yang.lottery.infrastructure.po.Activity"/>-->
+        <!--该包下的类标记查询或插入时表格属性在类中的属性-->
+        <!--在mapper中只需写该路径下的类名-->
+        <package name="com.yang.lottery.infrastructure.po"/>
+    </typeAliases>
+</configuration>
