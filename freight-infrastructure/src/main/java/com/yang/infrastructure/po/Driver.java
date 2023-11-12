@@ -1,52 +1,52 @@
-package com.yang.infrastruture.po;
+package com.yang.infrastructure.po;
 
 import java.util.Arrays;
 import java.util.Date;
 
 /**
- * @description: 老板信息
+ * @description: 司机信息
  * @author：杨超
  * @date: 2023/11/11
  * @Copyright：
  */
-public class Boss {
-
+public class Driver {
     /**
      * 自增id
      */
     private Long id;
 
     /**
-     * 老板id
+     * 司机id
      */
-    private Long bossId;
+    private Long driverId;
 
     /**
-     * 老板姓名
+     * 司机姓名
      */
-    private String bossName;
+    private String driverName;
 
     /**
-     * 手机号
+     * 司机电话号码
      */
     private String phone;
 
     /**
-     * 经过hash变换的密码
+     * hash变换后的密码
      */
     private byte[] hashedPassword;
+
     /**
      * 加密盐
      */
     private byte[] salt;
 
     /**
-     * 注册时间
+     * 注册日期
      */
     private Date registerDate;
 
     /**
-     * 更新时间
+     * 更新日期
      */
     private Date updateDate;
 
@@ -58,20 +58,20 @@ public class Boss {
         this.id = id;
     }
 
-    public Long getBossId() {
-        return bossId;
+    public Long getDriverId() {
+        return driverId;
     }
 
-    public void setBossId(Long bossId) {
-        this.bossId = bossId;
+    public void setDriverId(Long driverId) {
+        this.driverId = driverId;
     }
 
-    public String getBossName() {
-        return bossName;
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setBossName(String bossName) {
-        this.bossName = bossName;
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
     }
 
     public String getPhone() {
@@ -116,10 +116,10 @@ public class Boss {
 
     @Override
     public String toString() {
-        return "Boss{" +
+        return "Driver{" +
                 "id=" + id +
-                ", bossId=" + bossId +
-                ", bossName='" + bossName + '\'' +
+                ", driverId=" + driverId +
+                ", driverName='" + driverName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", hashedPassword=" + Arrays.toString(hashedPassword) +
                 ", salt=" + Arrays.toString(salt) +

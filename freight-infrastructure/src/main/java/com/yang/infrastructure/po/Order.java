@@ -1,4 +1,4 @@
-package com.yang.infrastruture.po;
+package com.yang.infrastructure.po;
 
 import java.util.Date;
 
