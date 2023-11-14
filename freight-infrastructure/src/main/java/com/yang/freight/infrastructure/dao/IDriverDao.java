@@ -1,4 +1,4 @@
-package com.yang.infrastructure.dao;
+package com.yang.freight.infrastructure.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Copyright：
  */
 @Mapper
-public interface IBossDao {
+public interface IDriverDao {
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yang.infrastructure.dao.IAuthenticationDao">
-    <resultMap id="AuthenticationMap" type="com.yang.infrastructure.po.Authentication">
+<mapper namespace="com.yang.freight.infrastructure.dao.IAuthenticationDao">
+    <resultMap id="AuthenticationMap" type="com.yang.freight.infrastructure.po.Authentication">
         <id column="id" property="id"/>
         <result column="authentication_id" property="authenticationId"/>
         <result column="driver_id" property="driverId"/>
@@ -13,7 +13,7 @@
         <result column="driver_license_valid_to" property="driverLicenseValidTo"/>
         <result column="qualification_certificate" property="qualificationCertificate"/>
     </resultMap>
-    <insert id="insert" parameterType="com.yang.infrastructure.po.Authentication">
+    <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Authentication">
         INSERT INTO authentication
         (authentication_id,driver_id,authentication_status,id_card_number,
         id_card_valid_from,id_card_valid_to,driver_license,driver_license_valid_to,qualification_certificate)
@@ -21,7 +21,12 @@
         (#{authenticationId},#{driverId},#{authenticationStatus},#{idCardNumber},#{idCardValidFrom},#{idCardValidTo},
          #{driverLicense},#{driverLicenseValidTo},#{qualificationCertificate})
     </insert>
-    <select id="queryById" resultType="com.yang.infrastructure.po.Authentication" resultMap="AuthenticationMap">
+    <update id="updateStatus">
+            UPDATE authentication
+            SET authentication_status = #{status}
+            WHERE driver_id = #{driverId}
+    </update>
+    <select id="queryById" resultType="com.yang.freight.infrastructure.po.Authentication" resultMap="AuthenticationMap">
         SELECT authentication_id,driver_id,authentication_status,id_card_number,
                id_card_valid_from,id_card_valid_to,driver_license,driver_license_valid_to,qualification_certificate
         FROM authentication

@@ -1,5 +1,6 @@
-package com.yang.infrastructure.dao;
+package com.yang.freight.infrastructure.dao;
 
+import com.yang.freight.infrastructure.po.Cargo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,5 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ICargoDao {
+
+    void insert(Cargo cargo);
 
 }

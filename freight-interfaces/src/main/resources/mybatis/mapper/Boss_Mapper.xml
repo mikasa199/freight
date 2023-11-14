@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yang.infrastructure.dao.IBossDao">
+<mapper namespace="com.yang.freight.infrastructure.dao.IBossDao">
+    <resultMap id="BossMap" type="com.yang.freight.infrastructure.po.Boss">
+        <id column="id" property="id"/>
+        <result column="boss_id" property="bossId"/>
+        <result column="boss_name" property="bossName"/>
+        <result column="phone" property="phone"/>
+        <result column="hashed_password" property="hashedPassword"/>
+        <result column="salt" property="salt"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Boss">
+        INSERT INTO boss(BOSS_ID, BOSS_NAME, PHONE, HASHED_PASSWORD, SALT, REGISTER_DATE, UPDATE_DATE)
+        VALUES(#{bossId},#{bossName},#{phone},#{hashedPassword},#{salt},now(),now())
+    </insert>
+    <update id="updateBoos" parameterType="com.yang.freight.infrastructure.po.Boss">
+        UPDATE boss
+        SET boss_name = #{bossName}, phone = #{phone}, hashed_password = #{hashedPassword},salt = #{salt},update_date = now()
+        WHERE boss_id = #{bossId}
+    </update>
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM boss
+        WHERE boss_id = #{bossId}
+    </delete>
+    <select id="queryById" resultType="com.yang.freight.infrastructure.po.Boss" resultMap="BossMap">
+        SELECT boss_name,phone,hashed_password,salt,register_date,update_date
+        FROM boss
+        WHERE boss_id = #{bossId}
+    </select>
 </mapper>
