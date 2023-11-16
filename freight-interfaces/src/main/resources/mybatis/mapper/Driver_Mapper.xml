@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yang.infrastructure.dao.IDriverDao">
+<mapper namespace="com.yang.freight.infrastructure.dao.IDriverDao">
+    <resultMap id="DriverMap" type="com.yang.freight.infrastructure.po.Driver">
+        <id column="id" property="id"/>
+        <result column="driver_id" property="driverId"/>
+        <result column="driver_name" property="driverName"/>
+        <result column="phone" property="phone"/>
+        <result column="hashed_password" property="hashedPassword"/>
+        <result column="salt" property="salt"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Driver">
+        INSERT INTO driver(driver_id, driver_name, phone, hashed_password, salt, register_date, update_date)
+        VALUES(#{driverId},#{driverName},#{phone},#{hashedPassword},#{salt},now(),now())
+    </insert>
 </mapper>

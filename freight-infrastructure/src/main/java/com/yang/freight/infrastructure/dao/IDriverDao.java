@@ -1,5 +1,6 @@
 package com.yang.freight.infrastructure.dao;
 
+import com.yang.freight.infrastructure.po.Driver;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,4 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface IDriverDao {
+    void insert(Driver driver);
 }

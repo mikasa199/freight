@@ -1,5 +1,6 @@
 package com.yang.freight.infrastructure.dao;
 
+import com.yang.freight.infrastructure.po.Order;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IOrderDao {
 
-
+    void insert(Order order);
 }
