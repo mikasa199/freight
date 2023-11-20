@@ -1,5 +1,6 @@
 package com.yang.freight.test.dao;
 
+import com.yang.freight.domain.driver.model.req.AuthenticationStatusUpdateReq;
 import com.yang.freight.infrastructure.dao.IAuthenticationDao;
 import com.yang.freight.infrastructure.po.Authentication;
 import org.junit.Test;
@@ -48,5 +49,32 @@ public class AuthenticationDaoTest {
         authentication.setQualificationCertificate("司机资格证书");
 
         authenticationDao.insert(authentication);
+    }
+
+    @Test
+    public void queryByIdTest() {
+        Authentication authentication = authenticationDao.queryById(100001L);
+        if (authentication != null) {
+            logger.info("authentication:{}",authentication.toString());
+        }else {
+            logger.info("查询失败");
+        }
+
+    }
+
+    @Test
+    public void updateStatus() {
+
+        queryByIdTest();
+
+
+        AuthenticationStatusUpdateReq req = new AuthenticationStatusUpdateReq();
+        req.setDriverId(100001L);
+        req.setBeforeStatus(0);
+        req.setAfterStatus(1);
+        int i = authenticationDao.updateStatus(req);
+        logger.info("i:{}",i);
+
+        queryByIdTest();
     }
 }

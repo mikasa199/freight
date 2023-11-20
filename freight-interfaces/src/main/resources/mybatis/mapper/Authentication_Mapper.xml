@@ -21,10 +21,10 @@
         (#{authenticationId},#{driverId},#{authenticationStatus},#{idCardNumber},#{idCardValidFrom},#{idCardValidTo},
          #{driverLicense},#{driverLicenseValidTo},#{qualificationCertificate})
     </insert>
-    <update id="updateStatus">
+    <update id="updateStatus" parameterType="com.yang.freight.domain.driver.model.req.AuthenticationStatusUpdateReq">
             UPDATE authentication
-            SET authentication_status = #{status}
-            WHERE driver_id = #{driverId}
+            SET authentication_status = #{afterStatus}
+            WHERE driver_id = #{driverId} AND authentication_status = #{beforeStatus}
     </update>
     <select id="queryById" resultType="com.yang.freight.infrastructure.po.Authentication" resultMap="AuthenticationMap">
         SELECT authentication_id,driver_id,authentication_status,id_card_number,
