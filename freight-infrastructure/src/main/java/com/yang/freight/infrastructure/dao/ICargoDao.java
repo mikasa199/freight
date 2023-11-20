@@ -1,5 +1,6 @@
 package com.yang.freight.infrastructure.dao;
 
+import com.yang.freight.domain.driver.model.req.SubCargoReq;
 import com.yang.freight.infrastructure.po.Cargo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,11 +20,10 @@ public interface ICargoDao {
     void insert(Cargo cargo);
 
     /**
-     * 根据货物id，扣减货物库存（重量）
-     * @param cargoId
-     * @param subStock
+     * 根据货物id 扣减对应的重量
+     * @param req
      * @return
      */
-    int subStock(long cargoId,int subStock);
+    int subStock(SubCargoReq req);
 
 }

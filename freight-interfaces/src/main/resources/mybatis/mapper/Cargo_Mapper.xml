@@ -20,8 +20,10 @@
         INSERT INTO cargo(CARGO_ID, BOSS_ID, CARGO_NAME, CARGO_WEIGHT, BEGIN_LOCATION, END_LOCATION, VALUE, BEGIN_TIME, END_TIME, STOCK, INFO)
         VALUES (#{cargoId},#{bossId},#{cargoName},#{cargoWeight},#{beginLocation},#{endLocation},#{value},#{beginTime},#{endTime},#{stock},#{info})
     </insert>
-    <update id="subStock">
-
+    <update id="subStock" parameterType="com.yang.freight.domain.driver.model.req.SubCargoReq">
+        UPDATE cargo
+        SET stock = stock - #{subStock}
+        WHERE cargo_id = #{cargoId} AND stock >= #{subStock}
     </update>
 
 

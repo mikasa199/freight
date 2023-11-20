@@ -18,4 +18,9 @@
         INSERT INTO `order`(order_id, cargo_id, boss_id, driver_id, cargo_weight, value, state, info, created_time, updated_time)
         VALUES (#{orderId},#{cargoId},#{bossId},#{driverId},#{cargoWeight},#{value},#{state},#{info},now(),now());
     </insert>
+    <update id="updateState" parameterType="com.yang.freight.domain.order.model.req.StateTransferReq">
+        UPDATE `order`
+        SET state = #{afterState}
+        WHERE order_id = #{orderId} AND state = #{afterState}
+    </update>
 </mapper>
