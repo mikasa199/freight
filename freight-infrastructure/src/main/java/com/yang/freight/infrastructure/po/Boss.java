@@ -1,4 +1,4 @@
-package com.yang.infrastruture.po;
+package com.yang.freight.infrastructure.po;
 
 import java.util.Arrays;
 import java.util.Date;

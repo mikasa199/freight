@@ -28,7 +28,10 @@
 
 <img src="https://raw.githubusercontent.com/yangchao19/PicGo/master/typora/202311101324736.png" alt="image-20231110132411686" style="zoom: 67%;" /><img src="https://raw.githubusercontent.com/yangchao19/PicGo/master/typora/202311101324938.png" alt="image-20231110132428895" style="zoom:50%;" />
 
+# 界面介绍
 
+## 登录界面
+1. 可使用密码登录和验证码登录两种方案
 
 
 
