@@ -11,6 +11,14 @@ public class HashedPassword {
     private byte[] hashedPassword;
     private byte[] salt;
 
+    public HashedPassword() {
+    }
+
+    public HashedPassword(byte[] hashedPassword, byte[] salt) {
+        this.hashedPassword = hashedPassword;
+        this.salt = salt;
+    }
+
     public byte[] getHashedPassword() {
         return hashedPassword;
     }

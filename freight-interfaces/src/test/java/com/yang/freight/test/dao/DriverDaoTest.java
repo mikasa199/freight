@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -67,7 +68,9 @@ public class DriverDaoTest {
         HashedPassword hashedPassword = encryption.encryptPassword("7654321");
         req.setHashedPassword(hashedPassword.getHashedPassword());
         req.setSalt(hashedPassword.getSalt());
-        int i = driverDao.updateHashedPasswordInt(req);
+        Driver driver1 = new Driver();
+        BeanUtils.copyProperties(req,driver1);
+        int i = driverDao.updateHashedPasswordInt(driver1);
         if (i == 1) {
             logger.info("更新成功");
         } else {

@@ -12,7 +12,15 @@ public interface IDriverRepository {
     /**
      * 新增司机
      * @param driverVO
+     * @return
      */
-    public void addDriver(DriverVO driverVO);
+    public Boolean addDriver(DriverVO driverVO);
+
+    /**
+     * 根据电话号码查询司机
+     * @param phone
+     * @return
+     */
+    public DriverVO queryByPhone(String phone);
 
 }

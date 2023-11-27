@@ -25,4 +25,9 @@
         FROM driver
         WHERE driver_id = #{driverId}
     </select>
+    <select id="queryByPhone" parameterType="String" resultType="com.yang.freight.infrastructure.po.Driver" resultMap="DriverMap">
+        SELECT driver_name, phone
+        FROM driver
+        WHERE phone = #{phone}
+    </select>
 </mapper>

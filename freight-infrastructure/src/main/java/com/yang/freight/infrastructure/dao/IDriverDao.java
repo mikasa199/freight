@@ -16,14 +16,14 @@ public interface IDriverDao {
      * 新增司机信息
      * @param driver
      */
-    void insert(Driver driver);
+    int insert(Driver driver);
 
     /**
      * 更新密码
-     * @param req
+     * @param driver
      * @return
      */
-    int updateHashedPasswordInt(DriverUpdatePasswordReq req);
+    int updateHashedPasswordInt(Driver driver);
 
     /**
      * 根据id查询对应的司机
@@ -31,4 +31,6 @@ public interface IDriverDao {
      * @return
      */
     Driver queryById(long driverId);
+
+    Driver queryByPhone(String phone);
 }

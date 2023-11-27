@@ -10,7 +10,16 @@ public class InitDriverReq {
 
 
     private String phone;
+    private String driverName;
     private String password;
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
 
     public String getPhone() {
         return phone;

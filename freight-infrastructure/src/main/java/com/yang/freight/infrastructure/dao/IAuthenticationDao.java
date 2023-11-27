@@ -29,7 +29,7 @@ public interface IAuthenticationDao {
      * 更新对应司机id的信息审核状态
      * @return
      */
-    int updateStatus(AuthenticationStatusUpdateReq req);
+    int updateStatus(Authentication authentication);
 
 
 }

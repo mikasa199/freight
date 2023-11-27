@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -72,7 +73,9 @@ public class AuthenticationDaoTest {
         req.setDriverId(100001L);
         req.setBeforeStatus(0);
         req.setAfterStatus(1);
-        int i = authenticationDao.updateStatus(req);
+        Authentication authentication = new Authentication();
+        BeanUtils.copyProperties(req,authentication);
+        int i = authenticationDao.updateStatus(authentication);
         logger.info("i:{}",i);
 
         queryByIdTest();

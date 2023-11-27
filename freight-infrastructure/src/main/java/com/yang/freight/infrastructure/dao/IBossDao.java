@@ -29,10 +29,10 @@ public interface IBossDao {
 
     /**
      * 更新密码
-     * @param req
+     * @param boss
      * @return
      */
-    int updatePassword(BossUpdatePasswordReq req);
+    int updatePassword(Boss boss);
 
     /**
      * 根据boosId删除信息
