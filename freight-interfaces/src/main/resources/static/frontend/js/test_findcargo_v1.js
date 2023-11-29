@@ -56,19 +56,20 @@ function AddCargoInfo() {
 }
 
 // 加载页面就进行上传
-AddCargoInfo()
+// AddCargoInfo()
 
 
 // 从服务器读取数据加载货物信息进行页面渲染
 function GetCargoInfo() {
     axios({
-        url: '192.168.10.101:',
-        data: {
-            
-        }
+        url: 'http://192.168.10.101:9999/driver/cargo/list',
+         params: {
+             page: 1,
+             pageSize:10,
+         }
     }).then(result => {
         console.log(result);
-        const CargoInfoList = result.data
+        const CargoInfoList = result.data.data.records
         console.log(CargoInfoList);
 
         // 渲染数据
@@ -81,13 +82,13 @@ function GetCargoInfo() {
                             <span>
                                 <i class="iconfont icon-xiangshang"></i>
                                 <div class="text_start">
-                                    ${beginLocation}
+                                    ${items.beginLocation}
                                 </div>
                             </span>
                             <span>
                                 <i class="iconfont icon-xiangxia"></i>
                                 <div class="text_end">
-                                ${endLocation}
+                                ${items.endLocation}
                                 </div>
 
                             </span>
@@ -96,11 +97,11 @@ function GetCargoInfo() {
                         <div class="goods">
                             <div class="date">
                                 <i class="iconfont icon-shijian"></i>
-                                <span>发货: ${beginTime}</span>
+                                <span>发货: 2023-11-06 16:00:48</span>
                             </div>
                             <div class="goods-kind">
                                 <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">${cargoName}${value}元/吨</div>
+                                <div class="goods-info">${items.cargoName}${items.value}元/吨</div>
                             </div>
                         </div>
                         <!-- 距离信息 -->
@@ -117,6 +118,9 @@ function GetCargoInfo() {
         }).join('')
 
         console.log(htmlStr);
-        document.querySelector('.content-container').innerHTML = htmlStr
+        document.querySelector('.content-container ul').innerHTML = htmlStr
     })
 }
+
+
+GetCargoInfo() 
