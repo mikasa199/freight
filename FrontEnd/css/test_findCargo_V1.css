@@ -1,0 +1,395 @@
+@import "//at.alicdn.com/t/c/font_4342566_26gga0fncd3.css";
+
+/* 通用样式开始 */
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    color:#666;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.container{
+    background-color: lightgray;
+    height: 2000vh;
+}
+
+/* 修改container的最大宽度为1280 根据设计稿的要求 */
+@media screen and (min-width:768px){
+    .container,
+    .top-container,
+    .bottom-nav-container{
+        width: 720px;
+        margin: 0 auto;
+    }
+
+    
+}
+
+
+/* @media screen and (max-width:540px){
+    .container,
+    .top-container,
+    .bottom-nav-container{
+        width: 540px;
+        margin: 0 auto;
+    }
+
+} */
+
+
+/* 通用样式结束 */
+
+
+/* 顶部标题栏开始 */
+.top-container{
+    background-color: #3262f4;
+    height: 22vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* 确保它位于其他内容之上 */
+    
+}
+
+
+/* 搜索栏开始 */
+
+.top-container .search-items{
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 6vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.top-container .search-items .text{
+    flex: 2;
+    flex-basis: 70%;
+    position: relative;
+    
+ 
+}
+
+.top-container .search-items .text .search-logo{
+    position: absolute;
+    left: 5%;
+    bottom: 2.5vh;
+    font-size: 1.3em;
+    
+}
+
+.top-container .search-items .text input{
+    width: 90%;
+    border-radius: 4px;
+    height: 7vh;
+    padding-left: 15%;
+    box-sizing: border-box;
+}
+
+
+/* 扫一扫组件开始 */
+
+
+.top-container .search-items .scan{
+    flex: 1;
+    position: relative;
+    flex-direction: column;
+    height: 7vh;
+    color: #fff;
+}
+
+.top-container .search-items .scan .scan-logo{
+    position: absolute;
+    left: 6%;
+    top: 0;
+    font-size: 4em;
+}
+
+.top-container .search-items .scan{
+    font-size: 0.5em;
+    padding-top: 5vh;
+    box-sizing: border-box;
+
+}
+
+
+/* 扫一扫组件结束 */
+
+
+/* 搜索栏结束 */
+
+
+/* 导航标题栏开始 */
+.nav-items {
+    /* background-color: pink; */
+    width: 90%;
+    height: 5vh;
+    margin: 0 auto;
+    margin-top: 3vh;
+    display: flex;
+    justify-content: space-around;
+    line-height: 5vh;
+}
+
+.nav-items .nav-title{
+    font-weight: bold;
+    color: #c3c2c2;
+}
+
+
+
+.nav-items .nav-title.active{
+    color: #f7fcff;
+}
+
+
+/* 导航标题栏结束 */
+
+/* 列表栏开始 */
+
+
+
+.list-items{
+    width: 100%;
+    background-color: #fff;
+    height: 4vh;
+    display: flex;
+    justify-content: flex-start;
+    line-height: 4vh;
+}
+
+.list-items .list-title,
+.list-items .select-title{
+    flex: 1;
+    display: flex;
+    text-align: center;
+    
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+}
+
+.list-items .list-title .text,
+.list-items .select-title .text{
+    margin-right: 5%;
+}
+
+
+/* 列表栏结束 */
+
+/* 条件弹出开始 */
+
+
+.condition-list{
+    /* 控制条列列表显示 */
+    display: none;
+}
+
+
+.condition-list li{
+    color: #696868;
+    padding: 1.5vh;
+    border-bottom: 1px solid #9b9b9b;
+    font-size: 0.8em;
+    padding-left: 7%;
+}
+
+.condition-list li.active{
+    color: #3262f4;
+}
+
+
+
+/* 条件弹出结束 */
+
+
+/* 顶部标题栏结束 */
+
+
+/* 在 .top-container 下方的第一个元素上添加顶部边距 */
+.content-container{
+    margin-top: 25vh; 
+}
+
+
+
+/* 内容栏开始 */
+.content-container .information-container{
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 1vh;
+    height: 20vh;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* 地址信息 */
+
+.information-container .address{
+    color: black;
+    font-weight: bold;
+    
+}
+
+
+
+.information-container .address span{
+    display: block;
+    margin-left: 10%;
+    box-sizing: border-box;
+    
+}
+
+.information-container .address span .icon-xiangshang{
+    color: green;
+    margin-right: 3%;
+}
+
+.information-container .address span .icon-xiangxia{
+    color: red;
+    margin-right: 3%;
+}
+
+
+
+.information-container .address span:nth-child(1){
+    padding-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+/* 商品信息 */
+.information-container .goods{
+    
+    background-color: #d5edf5;
+    height: 8vh;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 1.5vh;
+    
+}
+
+.information-container .goods .date{
+    padding-left: 10%;
+    padding-top: 0.5vh;
+    color: #696868;
+    font-weight: bold;
+   
+}
+
+.information-container .goods .goods-kind{
+    padding-left: 10%;
+    padding-top: 2vh;
+    color: #696868;
+    font-weight: bold;
+}
+
+
+
+.information-container .goods .goods-kind .goods-info{
+    display: inline;
+    border: 1.5px solid #3262f4;
+    border-radius: 5px;
+    padding: 3px;
+    box-sizing: border-box;
+    color: #3262f4;
+
+}
+
+/* 距离信息 */
+
+.information-container .distance{
+    
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1vh;
+    height: 3vh;
+    line-height: 3vh;
+}
+
+.information-container .distance .iconfont{
+    font-size: 1em;
+    font-weight: bold;
+}
+.information-container .distance .time-info{
+    height: 3vh;
+    line-height: 3vh;
+    display: inline;
+    font-size: 1em;
+    
+}
+
+/* 二维码 */
+.information-container .info-logo{
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    font-size: 2.5em;
+    color: #3262f4;
+}
+
+
+/* 内容栏结束 */
+
+
+
+/* 底部导航栏开始 */
+
+
+.bottom-nav-container{
+    display: flex;
+    background-color: #fff;
+    height: 10vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+   
+    
+    
+}
+
+.bottom-nav-container .nav-items{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #9b9b9b;
+    text-align: center;
+}
+
+.bottom-nav-container .nav-items.active{
+    color: #3262f4;
+}
+
+.bottom-nav-container .nav-items .logo{
+    flex: 1;
+    font-size:1.5em;
+    
+}
+
+.bottom-nav-container .nav-items .text{
+    flex: 1;
+    
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* 底部导航栏结束 */
