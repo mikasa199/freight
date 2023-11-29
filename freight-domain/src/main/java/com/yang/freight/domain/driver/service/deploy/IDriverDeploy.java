@@ -1,13 +1,14 @@
 package com.yang.freight.domain.driver.service.deploy;
 
+import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.CargoInfoLimitPageReq;
 import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
+import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 
-import java.sql.Driver;
 import java.util.List;
 
 /**
@@ -52,6 +53,32 @@ public interface IDriverDeploy {
      */
     String sendMsg(String phone) throws Exception;
 
+    /**
+     * 检验并初始化
+     * @param phone
+     * @return
+     */
     DriverVO checkAndInit(String phone);
+
+    /**
+     * 根据货物名和页数、页面大小 获取货物数据
+     * @param page
+     * @param cargoName
+     * @return
+     */
+    Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName);
+
+    /**
+     * 货物数量统计
+     * @return
+     * @param cargoName
+     */
+    long cargoCount(String cargoName);
+
+    /**
+     * 提交扣减库存的订单
+     * @param req
+     */
+    void submitOrder(SubmitOrderReq req);
 
 }

@@ -25,6 +25,25 @@
         SET stock = stock - #{subStock}
         WHERE cargo_id = #{cargoId} AND stock >= #{subStock}
     </update>
+    <select id="queryList" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,value,begin_time,end_time,stock,info
+        FROM cargo
+        <where>
+            <if test="cargoName != null and cargoName != '' ">
+                cargo_name LIKE #{cargoName}
+            </if>
+        </where>
+        LIMIT #{page}, #{pageSize}
+    </select>
+    <select id="cargoCount" resultType="java.lang.Integer">
+        SELECT COUNT(cargo_id)
+        FROM cargo
+        <where>
+            <if test="cargoName != null and cargoName != '' ">
+                cargo_name LIKE #{cargoName}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

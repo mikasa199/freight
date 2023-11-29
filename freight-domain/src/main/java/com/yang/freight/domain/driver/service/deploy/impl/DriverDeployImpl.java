@@ -2,10 +2,12 @@ package com.yang.freight.domain.driver.service.deploy.impl;
 
 import com.yang.freight.common.Constants;
 import com.yang.freight.common.HashedPassword;
+import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.CargoInfoLimitPageReq;
 import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
+import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.repository.IDriverRepository;
@@ -118,5 +120,22 @@ public class DriverDeployImpl implements IDriverDeploy {
         driverVO1.setDriverId(idGeneratorMap.get(Constants.Ids.SnowFlake).nextId());
         Boolean aBoolean = driverRepository.addDriver(driverVO1);
         return driverVO1;
+    }
+
+    @Override
+    public Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName) {
+        return driverRepository.queryCargoList(page,cargoName);
+    }
+
+    @Override
+    public long cargoCount(String cargoName) {
+        return driverRepository.cargoCount(cargoName);
+    }
+
+    @Override
+    public void submitOrder(SubmitOrderReq req) {
+        //1. 生成订单并设置订单状态
+
+        //2. 扣减库存
     }
 }

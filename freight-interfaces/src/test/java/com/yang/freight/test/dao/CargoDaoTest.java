@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @description:
@@ -66,5 +67,11 @@ public class CargoDaoTest {
         }else {
             logger.info("扣减库存失败");
         }
+    }
+
+    @Test
+    public void queryListTest() {
+        List<Cargo> cargoList = cargoDao.queryList(0, 1, "");
+        logger.info("list size:{}",cargoList.size());
     }
 }
