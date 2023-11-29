@@ -1,5 +1,6 @@
 package com.yang.freight.controller;
 
+import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
@@ -53,8 +54,15 @@ public class DriverController {
     }
 
 
+    /**
+     * 用户使用账户密码登录（手机号）
+     * @param req
+     * @return
+     */
     @PostMapping("/login")
     public Return<String> login(@RequestBody InitDriverReq req) {
+
+        logger.info("phone:{},password:{}",req.getPhone(),req.getPassword());
         // 1. 从数据库中获取对应手机号的账户密码
 
         // 2. 如果查询到密码，则和用户输入的密码进行比较
@@ -63,6 +71,12 @@ public class DriverController {
         return stringReturn;
     }
 
+    /**
+     * 发送验证码
+     * @param phone
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/sendMsg")
     public Return<String> sendMsg (@RequestParam String phone) throws Exception {
         logger.info("给用户phone：{} 发送验证码",phone);
@@ -86,6 +100,12 @@ public class DriverController {
         return Return.error("出错啦");
     }
 
+    /**
+     * 验证码登录
+     * @param map
+     * @param session
+     * @return
+     */
     @PostMapping("/login/code")
     public Return<DriverVO> loginByCode (@RequestBody Map map, HttpSession session) {
         String phone = map.get("phone").toString();
@@ -116,7 +136,16 @@ public class DriverController {
         return Return.error("验证码错误");
     }
 
-    public Return<List<CargoVO>> queryCargoPages() {
-        return null;
+    @GetMapping("cargo/list")
+    public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
+
+        logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
+        Page<CargoVO> cargoVOPage = new Page<>();
+        cargoVOPage.setCurrent(page);
+        cargoVOPage.setSize(pageSize);
+        long cargoCount = driverDeploy.cargoCount(cargoName);
+        cargoVOPage.setTotal(cargoCount);
+        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPages(cargoVOPage, cargoName);
+        return pageReturn;
     }
 }

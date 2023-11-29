@@ -85,4 +85,14 @@ public class DriverDaoTest {
 
         logger.info("result:{}",result);
     }
+
+    @Test
+    public void queryByPhoneTest() {
+        Driver driver = driverDao.queryByPhone("19857295829");
+        if (driver != null) {
+            logger.info(driver.toString());
+        }else {
+            logger.info("driver is null");
+        }
+    }
 }

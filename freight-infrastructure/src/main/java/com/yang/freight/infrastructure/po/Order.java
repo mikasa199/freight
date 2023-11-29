@@ -45,7 +45,7 @@ public class Order {
     private Long value;
 
     /**
-     * 订单状态 0:已接单 1:正在运输 2:运输结束 3:确认到货 4:已付款,
+     * 订单状态 0:已接单 1:正在运输 2:运输结束 3:确认到货 4:已付款 -1:订单货物库存还未扣减
      */
     private int state;
 
