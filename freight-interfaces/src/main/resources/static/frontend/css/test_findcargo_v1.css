@@ -193,7 +193,8 @@ a:hover{
 
 .condition-list{
     /* 控制条列列表显示 */
-    display: none;
+    display:none;
+    background-color: #fff;
 }
 
 
@@ -237,10 +238,11 @@ a:hover{
 
 /* 地址信息 */
 
-.information-container .address{
+.information-container .address .text_start,
+.information-container .address .text_end{
     color: black;
     font-weight: bold;
-    
+    display: inline;
 }
 
 
