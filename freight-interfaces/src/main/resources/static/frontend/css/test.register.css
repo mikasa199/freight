@@ -1,0 +1,228 @@
+
+/* 通用样式开始 */
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    color:#666;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.container{
+    background-color: #fff;
+    height: 100vh;
+}
+
+/* 修改container的最大宽度为1280 根据设计稿的要求 */
+@media screen and (min-width:768px){
+    .container,
+    .top-container,
+    .bottom-nav-container{
+        width: 720px;
+        margin: 0 auto;
+    }
+
+}
+
+
+
+
+/* 通用样式结束 */
+
+/* 顶部栏开始 */
+
+.top-container{
+    background-color: #3262f4;
+    height: 12vh;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 去除固定定位 */
+    line-height: 12vh;
+
+
+}
+
+.top-container .title{
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    
+}
+
+.top-container .logo{
+    position: absolute;
+    right: 5%;
+    top: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+
+
+/* 顶部栏结束 */
+
+
+/* logo栏开始 */
+
+.container .title-container{
+    height: 25vh;
+    margin-top: 2vh;
+    width: 100%;
+    position: relative;
+    
+}
+
+.container .title-container .logo{
+    margin: 0 auto;
+    width: 30%;
+    height: 18vh;
+    border-radius: 10%;
+    background: url(../img/app_logo.png) no-repeat center center/contain;
+}
+
+
+.container .title-container .login-text{
+    margin-top: 3vh;
+    
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+
+/* logo栏结束 */
+
+
+/* 用户输入栏开始 */
+
+.choice-container{
+    height: 15vh;
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 1vh;
+}
+.choice-container button{
+    flex: 1;
+    background-color: #3262f4;
+    border-radius: 10px;
+    font-size: 1.5em;
+    color: #fff;
+    opacity: .5;
+}
+
+.choice-container button.active{
+    opacity: 1;
+}
+
+.choice-container button:nth-child(1){
+    margin-right: 10%;
+}
+
+
+
+
+
+
+
+.container .user-input{
+    height: 20vh;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5vh;
+    position: relative;
+    
+}
+
+
+.container .user-input .user-phone,
+.container .user-input .verification-code,
+.container .user-input .user-password{
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    padding-left: 5%;
+    height: 4vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    font-size: 1em;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 3vh;
+    
+}
+
+
+.container .user-input .get-code{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3262f4;
+    color: #fff;
+    padding: 1%;
+    font-size: 0.8em;
+    border-radius: 5px;
+}
+
+.container .user-input .user-password{
+    margin-bottom: 2px;
+}
+
+
+.container .user-input .pwd-tips{
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    font-size: .5em;
+    line-height: 1.2;
+     
+}
+
+.container .user-input .pwd-tips .tips-icon{
+    color: red;
+}
+
+
+
+/* 用户输入栏结束 */
+
+
+/* 用户确认栏开始 */
+
+
+
+
+.confirm-container{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5vh;
+    height: 10vh;
+}
+
+.confirm-container button{
+    background-color: #3262f4;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: 6vh;
+    border-radius: 10px;
+    color: #fff;
+}
+
+
+
+/* 用户确认栏结束 */

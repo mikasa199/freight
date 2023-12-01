@@ -1,4 +1,3 @@
-@import "//at.alicdn.com/t/c/font_4342566_26gga0fncd3.css";
 
 /* 通用样式开始 */
 
@@ -169,20 +168,26 @@ a:hover{
     line-height: 4vh;
 }
 
+
 .list-items .list-title,
 .list-items .select-title{
     flex: 1;
     display: flex;
     text-align: center;
-    
     justify-content: center;
     color: black;
     font-weight: bold;
 }
+.list-items .list-title{
+    flex: 2;
+}
+
 
 .list-items .list-title .text,
 .list-items .select-title .text{
     margin-right: 5%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -193,7 +198,7 @@ a:hover{
 
 .condition-list{
     /* 控制条列列表显示 */
-    display:block;
+    display:none;
     background-color: #fff;
 }
 

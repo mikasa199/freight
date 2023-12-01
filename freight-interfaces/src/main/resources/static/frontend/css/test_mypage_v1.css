@@ -29,23 +29,14 @@ a:hover{
     .bottom-nav-container{
         width: 720px;
         margin: 0 auto;
-    }                    
+    }
 
 }
 
 
-/* @media screen and (max-width:540px){
-    .container,
-    .bottom-nav-container{
-        width: 540px;
-        margin: 0 auto;
-    }
 
-} */
 
 /* 通用样式结束 */
-
-
 
 /* 顶部标题栏开始 */
 
@@ -82,76 +73,50 @@ a:hover{
 
 /* 顶部标题栏结束 */
 
-
-
-
-/* 搜索栏开始 */
-
-.search-items{
-    
-    display: flex;
+/* 用户资料区开始 */
+.user-container{
+    background-color: lightgray;
     height: 10vh;
-    align-items: center;
-    position: relative;
-    
-}
-
-.search-items .logo{
-    position: absolute;
-    left: 8%;
-    top: 4vh;
-    font-size: 0.8em;
-    color: #666;
-
-}
-.search-items .search-text{
-    flex: 3;
-    background-color: #eee;
-    color: #666;
-    padding-left: 10%;
-    margin: 0 5%;
-    height: 5vh;
-    box-sizing: border-box;
-    font-size: 0.8em;
-    border-radius: 5px;
-}
-
-.search-items button{
-    flex: 1;
-    background-color: #3262f4;
-    height: 5vh;
-    border-radius: 5px;
-    color: #fff;
-    margin-right: 5%;
-}
-
-
-/* 搜索栏结束 */
-
-
-
-/* 顶部导航标题框开始 */
-.nav-container{
     display: flex;
+}
+
+.user-container .user-icon{
+    flex: 1;
+    background-color: red;
+    line-height: 10vh;
+    
+}
+
+.user-container .user-info{
+    flex: 4;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    height:5vh;
-    
-    align-items: center;
-}
-.nav-container .nav-function{
-    
 }
 
-.nav-container .nav-function.active{
-    color: #3262f4;
-    
-    font-weight: bold;
+.user-container .user-info .name{
+    flex: 1;
+}
+.user-container .user-info .tel{
+    flex: 1;
     
 }
 
 
 
-/* 顶部导航标题框结束 */
+
+
+
+
+
+
+
+
+
+
+
+/* 用户资料区结束 */
 
 
 /* 底部导航栏开始 */
@@ -191,6 +156,7 @@ a:hover{
     flex: 1;
     font-size: 1em;
     font-weight: bold;
+    
 }
 
 

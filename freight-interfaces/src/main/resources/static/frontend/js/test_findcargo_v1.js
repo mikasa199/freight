@@ -1,14 +1,24 @@
 
-// 测试查询数据
 
-// 控制查询数据
-
-
+// 控制弹出菜单逻辑开始
 const temp_conditionList = document.querySelector('.condition-list')
+const temp_conditionList_ul = document.querySelector('.condition-list ul')
+const temp_conditionName = document.querySelector('.list-items .list-title .text')
 
 document.querySelector('.top-container .list-items .list-title').addEventListener('click', () => {
-    temp_conditionList.style.display = 'none'
+    temp_conditionList.style.display = 'block'
 })
+
+temp_conditionList_ul.addEventListener('click', function (event) {
+    if (event.target.tagName === 'LI') {
+        temp_conditionName.innerText = event.target.innerText
+        // 选择完排序类型后关闭
+        temp_conditionList.style.display = 'none'
+    }
+})
+
+// 控制弹出菜单结束
+
 
 
 function AddCargoInfo() {
@@ -63,6 +73,7 @@ function AddCargoInfo() {
 function GetCargoInfo() {
     axios({
         url: 'http://192.168.10.101:9999/driver/cargo/list',
+        method:'GET',
          params: {
              page: 1,
              pageSize:10,
