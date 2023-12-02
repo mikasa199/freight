@@ -12,6 +12,7 @@ import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.repository.IDriverRepository;
 import com.yang.freight.domain.driver.service.deploy.IDriverDeploy;
+import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.support.code.SMSUtils;
 import com.yang.freight.domain.support.code.ValidateCodeUtils;
 import com.yang.freight.domain.support.ids.IIdGenerator;
@@ -42,13 +43,13 @@ public class DriverDeployImpl implements IDriverDeploy {
     private IDriverRepository driverRepository;
 
     @Override
-    public boolean createDriver(InitDriverReq req) {
+    public DriverVO createDriver(InitDriverReq req) {
         DriverVO driverVO = new DriverVO();
         IIdGenerator snowFlake = idGeneratorMap.get(Constants.Ids.SnowFlake);
         long driverId = snowFlake.nextId();
         driverVO.setDriverId(driverId);
         driverVO.setPhone(req.getPhone());
-        driverVO.setDriverName(req.getDriverName());
+        //driverVO.setDriverName(req.getDriverName());
 
         try {
             HashedPassword hashedPassword = encryption.encryptPassword(req.getPassword());
@@ -60,7 +61,12 @@ public class DriverDeployImpl implements IDriverDeploy {
 
 
         Boolean result = driverRepository.addDriver(driverVO);
-        return result;
+        return result ? driverVO : null;
+    }
+
+    @Override
+    public DriverVO queryByPhone(String phone) {
+        return driverRepository.queryByPhone(phone);
     }
 
     @Override
@@ -74,12 +80,12 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
-    public Return<String> driverLogin(InitDriverReq req) {
+    public Return<DriverVO> driverLogon(InitDriverReq req) {
 
         DriverVO driverVO = driverRepository.queryByPhone(req.getPhone());
 
         if (null == driverVO) {
-            return Return.error("该手机号还未注册！");
+            return Return.error("用户未注册！");
         }
 
         HashedPassword hashedPassword = new HashedPassword(driverVO.getHashedPassword(),driverVO.getSalt());
@@ -87,15 +93,15 @@ public class DriverDeployImpl implements IDriverDeploy {
         try {
             boolean result = encryption.verifyPassword(req.getPassword(), hashedPassword);
             if (result) {
-                return Return.success("密码正确，登录成功");
+                return Return.success(driverVO);
             }else {
-                return Return.error("密码错误，请重新输入");
+                return Return.error("密码错误，请重新输入！");
             }
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return null;
+        return Return.error("登录失败，未知错误，请重试~");
     }
 
     @Override
@@ -128,14 +134,24 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
+    public Return<Page<CargoVO>> queryPagesSortByMethod(Page<CargoVO> page, Constants.Method method) {
+        return null;
+    }
+
+    @Override
     public long cargoCount(String cargoName) {
         return driverRepository.cargoCount(cargoName);
     }
 
     @Override
-    public void submitOrder(SubmitOrderReq req) {
+    public boolean submitOrder(SubmitOrderReq req) {
+
         //1. 生成订单并设置订单状态
+        OrderVO order = driverRepository.createOrder(req);
 
         //2. 扣减库存
+        boolean b = driverRepository.subStock(req, order.getOrderId());
+
+        return b;
     }
 }

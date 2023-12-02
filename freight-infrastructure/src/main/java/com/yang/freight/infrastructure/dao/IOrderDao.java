@@ -21,8 +21,8 @@ public interface IOrderDao {
 
     /**
      * 更新订单状态
-     * @param order
-     * @return
+     *
+     * @param req@return
      */
-    int updateState(Order order);
+    int updateState(StateTransferReq req);
 }

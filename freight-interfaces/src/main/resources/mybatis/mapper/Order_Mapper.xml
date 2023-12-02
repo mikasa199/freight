@@ -21,6 +21,6 @@
     <update id="updateState" parameterType="com.yang.freight.domain.order.model.req.StateTransferReq">
         UPDATE `order`
         SET state = #{afterState}
-        WHERE order_id = #{orderId} AND state = #{afterState}
+        WHERE order_id = #{orderId} AND state = #{beforeState}
     </update>
 </mapper>

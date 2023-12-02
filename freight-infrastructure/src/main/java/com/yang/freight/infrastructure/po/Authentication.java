@@ -1,5 +1,7 @@
 package com.yang.freight.infrastructure.po;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
  * @date: 2023/11/11
  * @Copyright：
  */
+@Data
 public class Authentication {
     /**
      * 自增id
@@ -59,99 +62,4 @@ public class Authentication {
      */
     private String qualificationCertificate;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getAuthenticationId() {
-        return authenticationId;
-    }
-
-    public void setAuthenticationId(Long authenticationId) {
-        this.authenticationId = authenticationId;
-    }
-
-    public Long getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(Long driverId) {
-        this.driverId = driverId;
-    }
-
-    public int getAuthenticationStatus() {
-        return authenticationStatus;
-    }
-
-    public void setAuthenticationStatus(int authenticationStatus) {
-        this.authenticationStatus = authenticationStatus;
-    }
-
-    public String getIdCardNumber() {
-        return idCardNumber;
-    }
-
-    public void setIdCardNumber(String idCardNumber) {
-        this.idCardNumber = idCardNumber;
-    }
-
-    public Date getIdCardValidFrom() {
-        return idCardValidFrom;
-    }
-
-    public void setIdCardValidFrom(Date idCardValidFrom) {
-        this.idCardValidFrom = idCardValidFrom;
-    }
-
-    public Date getIdCardValidTo() {
-        return idCardValidTo;
-    }
-
-    public void setIdCardValidTo(Date idCardValidTo) {
-        this.idCardValidTo = idCardValidTo;
-    }
-
-    public String getDriverLicense() {
-        return driverLicense;
-    }
-
-    public void setDriverLicense(String driverLicense) {
-        this.driverLicense = driverLicense;
-    }
-
-    public Date getDriverLicenseValidTo() {
-        return driverLicenseValidTo;
-    }
-
-    public void setDriverLicenseValidTo(Date driverLicenseValidTo) {
-        this.driverLicenseValidTo = driverLicenseValidTo;
-    }
-
-    public String getQualificationCertificate() {
-        return qualificationCertificate;
-    }
-
-    public void setQualificationCertificate(String qualificationCertificate) {
-        this.qualificationCertificate = qualificationCertificate;
-    }
-
-    @Override
-    public String toString() {
-        return "Authentication{" +
-                "id=" + id +
-                ", authenticationId=" + authenticationId +
-                ", driverId=" + driverId +
-                ", authenticationStatus=" + authenticationStatus +
-                ", idCardNumber='" + idCardNumber + '\'' +
-                ", idCardValidFrom=" + idCardValidFrom +
-                ", idCardValidTo=" + idCardValidTo +
-                ", driverLicense='" + driverLicense + '\'' +
-                ", driverLicenseValidTo=" + driverLicenseValidTo +
-                ", qualificationCertificate='" + qualificationCertificate + '\'' +
-                '}';
-    }
 }

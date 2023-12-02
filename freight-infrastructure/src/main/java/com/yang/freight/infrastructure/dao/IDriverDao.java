@@ -32,5 +32,10 @@ public interface IDriverDao {
      */
     Driver queryById(long driverId);
 
+    /**
+     * 根据手机号查询
+     * @param phone
+     * @return
+     */
     Driver queryByPhone(String phone);
 }

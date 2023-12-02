@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -41,13 +42,17 @@ public class CargoDaoTest {
         cargo.setCargoId(100001L);
         cargo.setBossId(100001L);
         cargo.setCargoName("货物测试名");
-        cargo.setCargoWeight(10000L);
+        BigDecimal weight = new BigDecimal(10000);
+        cargo.setCargoWeight(weight);
         cargo.setBeginTime(new Date(2023,11,20));
         cargo.setEndTime(new Date(2023,11,30));
         cargo.setBeginLocation("苏州");
         cargo.setEndLocation("武汉");
-        cargo.setValue(80000L);
-        cargo.setStock(10000L);
+
+        BigDecimal value = new BigDecimal(80000);
+        BigDecimal stock = new BigDecimal(10000);
+        cargo.setValue(value);
+        cargo.setStock(stock);
         cargo.setInfo("货物备注信息");
 
         cargoDao.insert(cargo);
@@ -55,10 +60,36 @@ public class CargoDaoTest {
     }
 
     @Test
+    public void insertTest1() {
+        BigDecimal weight = new BigDecimal(10000);
+        BigDecimal value = new BigDecimal(80000);
+        BigDecimal stock = new BigDecimal(10000);
+
+        for (int i=0;i < 20;i++) {
+            Cargo cargo = new Cargo();
+            cargo.setCargoId(100002L + i);
+            cargo.setBossId(100001L);
+            cargo.setCargoName("货物测试名");
+            cargo.setCargoWeight(weight);
+            cargo.setBeginTime(new Date(2023,11,20));
+            cargo.setEndTime(new Date(2023,11,30));
+            cargo.setBeginLocation("江苏-苏州-nn区-888科技有限公司");
+            cargo.setEndLocation("湖北-武汉--xx区-999科技有限公司");
+            cargo.setValue(value);
+            cargo.setStock(stock);
+            cargo.setInfo("货物备注信息" + i);
+
+            cargoDao.insert(cargo);
+        }
+
+    }
+
+    @Test
     public void subStockTest() {
         SubCargoReq req = new SubCargoReq();
         req.setCargoId(100001L);
-        req.setSubStock(8000L);
+        BigDecimal bigDecimal = new BigDecimal(8000L);
+        req.setSubStock(bigDecimal);
 
         int i = cargoDao.subStock(req);
 
@@ -73,5 +104,11 @@ public class CargoDaoTest {
     public void queryListTest() {
         List<Cargo> cargoList = cargoDao.queryList(0, 1, "");
         logger.info("list size:{}",cargoList.size());
+    }
+
+    @Test
+    public void queryById() {
+        Cargo cargo = cargoDao.queryById(100001L);
+        logger.info(cargo.toString());
     }
 }

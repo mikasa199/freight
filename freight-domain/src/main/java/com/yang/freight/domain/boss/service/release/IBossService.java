@@ -1,9 +1,13 @@
 package com.yang.freight.domain.boss.service.release;
 
+import com.yang.freight.common.Return;
 import com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq;
 import com.yang.freight.domain.boss.model.req.InitBossReq;
 import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
 import com.yang.freight.domain.boss.model.req.UpdateBossReq;
+import com.yang.freight.domain.boss.model.vo.BossVO;
+
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @description:
@@ -11,14 +15,15 @@ import com.yang.freight.domain.boss.model.req.UpdateBossReq;
  * @date: 2023/11/20
  * @Copyright：
  */
-public interface IBossReleaseProcess {
+public interface IBossService {
 
 
     /**
      * 创建 Boss
      * @param req
+     * @return
      */
-    void createBoss(InitBossReq req);
+    BossVO createBoss(InitBossReq req) throws NoSuchAlgorithmException;
 
     /**
      * 更新 Boss信息
@@ -39,6 +44,26 @@ public interface IBossReleaseProcess {
      */
     void releaseCargoInfo(ReleaseCargoInfoReq req);
 
+    /**
+     * 根据手机号查询老板信息
+     * @param phone
+     * @return
+     */
+    BossVO queryByPhone(String phone);
 
+    /**
+     * 检查并初始化
+     * @param phone
+     * @return
+     */
+    BossVO checkAndInit(String phone);
+
+
+    /**
+     * 老板登录
+     * @param req
+     * @return
+     */
+    Return<BossVO> bossLogon(InitBossReq req);
 
 }

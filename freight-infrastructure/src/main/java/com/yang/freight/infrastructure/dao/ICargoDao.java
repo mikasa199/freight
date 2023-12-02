@@ -39,6 +39,13 @@ public interface ICargoDao {
     List<Cargo> queryList(@Param("page") long page, @Param("pageSize") long pageSize, @Param("cargoName") String cargoName);
 
     /**
+     * 根据Id查询货物信息
+     * @param cargoId
+     * @return
+     */
+    Cargo queryById(@Param("cargoId") long cargoId);
+
+    /**
      * 查询货物信息数量
      * @param cargoName
      * @return

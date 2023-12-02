@@ -1,5 +1,7 @@
 package com.yang.freight.infrastructure.po;
 
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import java.util.Date;
  * @date: 2023/11/11
  * @Copyright：
  */
+@Data
 public class Boss {
 
     /**
@@ -50,81 +53,4 @@ public class Boss {
      */
     private Date updateDate;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getBossId() {
-        return bossId;
-    }
-
-    public void setBossId(Long bossId) {
-        this.bossId = bossId;
-    }
-
-    public String getBossName() {
-        return bossName;
-    }
-
-    public void setBossName(String bossName) {
-        this.bossName = bossName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public byte[] getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(byte[] hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
-
-    public Date getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Boss{" +
-                "id=" + id +
-                ", bossId=" + bossId +
-                ", bossName='" + bossName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", hashedPassword=" + Arrays.toString(hashedPassword) +
-                ", salt=" + Arrays.toString(salt) +
-                ", registerDate=" + registerDate +
-                ", updateDate=" + updateDate +
-                '}';
-    }
 }

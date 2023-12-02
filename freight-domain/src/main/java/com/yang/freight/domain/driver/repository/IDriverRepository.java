@@ -5,8 +5,7 @@ import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
-
-import java.util.List;
+import com.yang.freight.domain.order.model.vo.OrderVO;
 
 /**
  * @description:
@@ -48,14 +47,16 @@ public interface IDriverRepository {
     /**
      * 创建订单
      * @param req
+     * @return
      */
-    public void createOrder(SubmitOrderReq req);
+    public OrderVO  createOrder(SubmitOrderReq req);
 
     /**
      * 扣减库存
      * @param req
+     * @param orderId
      * @return 是否扣减成功
      */
-    public boolean subStock(SubmitOrderReq req);
+    public boolean subStock(SubmitOrderReq req, long orderId);
 
 }

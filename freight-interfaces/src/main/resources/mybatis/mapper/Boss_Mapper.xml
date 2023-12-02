@@ -34,4 +34,9 @@
         FROM boss
         WHERE boss_id = #{bossId}
     </select>
+    <select id="queryByPhone" resultType="com.yang.freight.infrastructure.po.Boss" resultMap="BossMap">
+        SELECT boss_name,phone,hashed_password,salt,register_date,update_date
+        FROM boss
+        WHERE phone = #{phone}
+    </select>
 </mapper>
