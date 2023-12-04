@@ -2,6 +2,8 @@ package com.yang.freight.domain.boss.repository;
 
 import com.yang.freight.domain.boss.model.req.InitBossReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
+import com.yang.freight.domain.driver.model.vo.CargoVO;
+import com.yang.freight.domain.order.model.vo.OrderVO;
 
 /**
  * @description: 老板仓储服务
@@ -12,7 +14,7 @@ import com.yang.freight.domain.boss.model.vo.BossVO;
 public interface IBossRepository {
 
     /**
-     *
+     *新增老板
      * @param bossVO
      * @return
      */
@@ -24,4 +26,11 @@ public interface IBossRepository {
      * @return
      */
     BossVO queryByPhone(String phone);
+
+    /**
+     * 新增货物信息
+     * @param cargoVO
+     * @return
+     */
+    boolean addCargo(CargoVO cargoVO);
 }

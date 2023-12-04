@@ -1,5 +1,6 @@
 package com.yang.freight.test.dao;
 
+import com.yang.freight.common.Location;
 import com.yang.freight.domain.driver.model.req.SubCargoReq;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.po.Cargo;
@@ -64,6 +65,11 @@ public class CargoDaoTest {
         BigDecimal weight = new BigDecimal(10000);
         BigDecimal value = new BigDecimal(80000);
         BigDecimal stock = new BigDecimal(10000);
+        BigDecimal distance = new BigDecimal(10000);
+        //北京市朝阳区阜通东大街6号
+        Location beginLocation = new Location(116.310003, 39.991957);
+        //湖州市吴兴区二环东路759号
+        Location endLocation = new Location(120.134117,30.874626);
 
         for (int i=0;i < 20;i++) {
             Cargo cargo = new Cargo();
@@ -73,8 +79,9 @@ public class CargoDaoTest {
             cargo.setCargoWeight(weight);
             cargo.setBeginTime(new Date(2023,11,20));
             cargo.setEndTime(new Date(2023,11,30));
-            cargo.setBeginLocation("江苏-苏州-nn区-888科技有限公司");
-            cargo.setEndLocation("湖北-武汉--xx区-999科技有限公司");
+            cargo.setBeginLocation(beginLocation.toCoordinateString());
+            cargo.setEndLocation(endLocation.toCoordinateString());
+            cargo.setDistance(distance);
             cargo.setValue(value);
             cargo.setStock(stock);
             cargo.setInfo("货物备注信息" + i);

@@ -1,5 +1,7 @@
 package com.yang.freight.domain.driver.model.vo;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,12 +11,9 @@ import java.util.Date;
  * @date: 2023/11/11
  * @Copyright：
  */
+@Data
 public class CargoVO {
 
-    /**
-     * 自增id
-     */
-    private Long id;
 
     /**
      * 货物 id
@@ -75,6 +74,5 @@ public class CargoVO {
      * 货物备注信息
      */
     private String info;
-
 
 }

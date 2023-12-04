@@ -2,6 +2,7 @@ package com.yang.freight.controller;
 
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.boss.model.req.InitBossReq;
+import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.service.release.IBossService;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
@@ -69,6 +70,16 @@ public class BossController {
     public Return<BossVO> logon(@RequestBody InitBossReq req,HttpSession session){
         logger.info("用户登录：手机号：{}，密码：{}",req.getPhone(),req.getPassword());
         return bossService.bossLogon(req);
+    }
+
+    @PostMapping("/addCargo")
+    public Return<String> addCargo(@RequestBody ReleaseCargoInfoReq req) {
+        boolean b = bossService.releaseCargoInfo(req);
+        if (b) {
+            return Return.success("发布货物信息成功，等待司机接单");
+        }else {
+            return Return.error("发布货物信息失败，请稍后重试");
+        }
     }
 
 }

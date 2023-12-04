@@ -41,8 +41,9 @@ public interface IBossService {
     /**
      * 发布货物信息
      * @param req 发布获取请求请求类
+     * @return
      */
-    void releaseCargoInfo(ReleaseCargoInfoReq req);
+    boolean releaseCargoInfo(ReleaseCargoInfoReq req);
 
     /**
      * 根据手机号查询老板信息

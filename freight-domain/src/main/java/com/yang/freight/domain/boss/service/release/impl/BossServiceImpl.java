@@ -10,9 +10,10 @@ import com.yang.freight.domain.boss.model.req.UpdateBossReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.repository.IBossRepository;
 import com.yang.freight.domain.boss.service.release.IBossService;
-import com.yang.freight.domain.driver.model.vo.DriverVO;
+import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -65,8 +66,13 @@ public class BossServiceImpl implements IBossService {
     }
 
     @Override
-    public void releaseCargoInfo(ReleaseCargoInfoReq req) {
-
+    public boolean releaseCargoInfo(ReleaseCargoInfoReq req) {
+        CargoVO cargoVO = new CargoVO();
+        BeanUtils.copyProperties(req,cargoVO);
+        cargoVO.setCargoId(idGeneratorMap.get(Constants.Ids.SnowFlake).nextId());
+        cargoVO.setStock(req.getCargoWeight());
+        boolean result = bossRepository.addCargo(cargoVO);
+        return result;
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.yang.freight.domain.driver.repository.IDriverRepository;
 import com.yang.freight.domain.order.model.req.StateTransferReq;
 import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
+import com.yang.freight.domain.support.location.LocationUtils;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.dao.IDriverDao;
 import com.yang.freight.infrastructure.dao.IOrderDao;
@@ -90,6 +91,9 @@ public class DriverRepository implements IDriverRepository {
         for (Cargo cargo : cargoList) {
             CargoVO cargoVO = new CargoVO();
             BeanUtils.copyProperties(cargo,cargoVO);
+            //坐标转换为位置信息
+            cargoVO.setBeginLocation(LocationUtils.coordinateToAddress(cargo.getBeginLocation()));
+            cargoVO.setEndLocation(LocationUtils.coordinateToAddress(cargo.getEndLocation()));
             list.add(cargoVO);
         }
         page.setRecords(list);
