@@ -121,6 +121,14 @@ textarea {
     width: 90%;
 }
 
+/* 只读输入字段样式 */
+input[readonly] {
+    background-color: #f3f3f3; /* 浅灰色背景 */
+    opacity: 0.75; /* 轻微透明效果 */
+    cursor: default; /* 默认光标 */
+    border: 1px solid #ddd; /* 浅色边框 */
+}
+
 
 
 /* 用户输入栏结束 */

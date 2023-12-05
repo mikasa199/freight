@@ -233,6 +233,12 @@ a:hover{
 
 
 /* 内容栏开始 */
+.content-container{
+    margin-bottom: 10vh;
+}
+
+
+
 .content-container .information-container{
     background-color: #fff;
     width: 90%;
@@ -408,6 +414,7 @@ a:hover{
     right: 5%;
     bottom: 5%;
     background-color: pink;
+    display: none;
 }
 
 

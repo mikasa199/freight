@@ -60,12 +60,13 @@ document.querySelector('.user-input .user-phone').addEventListener('input', upda
 document.querySelector('.user-input .user-password').addEventListener('input', updateLoginButtonState);
 
 // 登录按钮点击事件处理
-document.querySelector('.confirm-container .user-confirm').addEventListener('click', () => {
+document.querySelector('.confirm-container .user-confirm').addEventListener('click', (event) => {
+    // event.preventDefault(); // 阻止链接的默认跳转行为
     const phone = document.querySelector('.user-input .user-phone').value;
     const pwd = document.querySelector('.user-input .user-password').value;
     
     // 根据选择的身份确定登录 URL
-    const url = selectedIdentity === '我是老板' ? 'http://192.168.10.101:9999/boss/logon' : 'http://192.168.10.101:9999/driver/logon';
+    const url = selectedIdentity === '我是老板' ? 'http://192.168.10.102:9999/boss/logon' : 'http://192.168.10.102:9999/driver/logon';
 
     axios({
         url: url,
@@ -80,11 +81,11 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         // 清除旧的用户ID（如果存在）
         localStorage.removeItem('userId');
         
-        const userId = response.data.userId; // 以实际响应结构为准
+        const userId = result.data.data.bossId; // 以实际响应结构为准
         localStorage.setItem('userId', userId); // 存储用户ID
 
         // 登录成功后跳转到 mypage 页面
-        window.location.href = './test_mypage_v1.html';
+        // window.location.href = './test_mypage_v1.html';
         // 登录成功的处理逻辑
     }).catch(error => {
         console.error(error);

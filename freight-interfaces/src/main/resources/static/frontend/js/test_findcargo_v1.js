@@ -105,47 +105,47 @@ function GetCargoInfo() {
 
 // 调用百度地图API，计算起点和终点距离
 // 确保DOM完全加载后执行
-document.addEventListener('DOMContentLoaded', function () {
-    calculateAndDisplayDistance();
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     calculateAndDisplayDistance();
+// });
 
-function calculateAndDisplayDistance() {
-    var map = new BMap.Map("l-map");  // 创建Map实例，虽然这里不显示地图，但可能需要初始化
+// function calculateAndDisplayDistance() {
+//     var map = new BMap.Map("l-map");  // 创建Map实例，虽然这里不显示地图，但可能需要初始化
 
-    // 获取起始地址和目的地址
-    const start_address = document.querySelector('.information-container .address .text_start').innerText;
-    const end_address = document.querySelector('.information-container .address .text_end').innerText;
+//     // 获取起始地址和目的地址
+//     const start_address = document.querySelector('.information-container .address .text_start').innerText;
+//     const end_address = document.querySelector('.information-container .address .text_end').innerText;
 
-    // 创建地址解析器实例
-    var geoCoder = new BMap.Geocoder();
+//     // 创建地址解析器实例
+//     var geoCoder = new BMap.Geocoder();
 
-    // 解析起始地址
-    geoCoder.getPoint(start_address, function(startPoint){
-        if (startPoint) {
-            // 解析目的地址
-            geoCoder.getPoint(end_address, function(endPoint){
-                if (endPoint) {
-                    // 计算起始地址和目的地址之间的距离
-                    var distance = (map.getDistance(startPoint, endPoint) / 1000).toFixed(2); // 转换为公里并保留两位小数
+//     // 解析起始地址
+//     geoCoder.getPoint(start_address, function(startPoint){
+//         if (startPoint) {
+//             // 解析目的地址
+//             geoCoder.getPoint(end_address, function(endPoint){
+//                 if (endPoint) {
+//                     // 计算起始地址和目的地址之间的距离
+//                     var distance = (map.getDistance(startPoint, endPoint) / 1000).toFixed(2); // 转换为公里并保留两位小数
 
-                    // 显示距离
-                    displayDistance(distance);
-                } else {
-                    alert("目的地址没有解析到结果!");
-                }
-            });
-        } else {
-            alert("起始地址没有解析到结果!");
-        }
-    });
-}
+//                     // 显示距离
+//                     displayDistance(distance);
+//                 } else {
+//                     alert("目的地址没有解析到结果!");
+//                 }
+//             });
+//         } else {
+//             alert("起始地址没有解析到结果!");
+//         }
+//     });
+// }
 
-function displayDistance(distance) {
-    var distanceInfo = document.querySelector('.information-container .distance .distance-info');
-    if (distanceInfo) {
-        distanceInfo.innerText = `总里程${distance}公里`;
-    }
-}
+// function displayDistance(distance) {
+//     var distanceInfo = document.querySelector('.information-container .distance .distance-info');
+//     if (distanceInfo) {
+//         distanceInfo.innerText = `总里程${distance}公里`;
+//     }
+// }
 
 
 
@@ -186,6 +186,7 @@ document.querySelector('.content-container ul').addEventListener('click', functi
 // 跟踪当前页码和当前排序代码
 let currentPage = 1;
 let currentSortCode = ''; // 初始排序代码为空
+let maxPage = 0; // 最大页数初始化
 
 // 检测是否正在加载数据
 let isLoading = false;
@@ -204,15 +205,20 @@ function fetchSortedCargoInfo(sortCode) {
     isLoading = true; // 开始加载数据
 
     axios({
-        url: 'http://192.168.10.101:9999/driver/cargo/list',
+        // url: 'http://192.168.10.102:9999/driver/cargo/list',
+        url:'http://192.168.10.102:9999/driver/cargo/list/sort',
         method: 'GET',
         params: {
             page: currentPage,
             pageSize: 10,
-            code: sortCode // 使用排序代码
+            code: +sortCode // 使用排序代码
         }
     }).then(response => {
+        console.log(response);
         const cargoInfoList = response.data.data.records;
+        maxPage = response.data.data.total; // 更新最大页数
+
+
         if (currentPage === 1) {
             renderCargoInfo(cargoInfoList); // 渲染新数据
         } else {
@@ -270,7 +276,7 @@ function renderCargoInfo(cargoList) {
             <!-- 距离信息 -->
             <div class="distance">
                 <i class="iconfont icon-ditu_dingwei_o"></i>
-                <div class="distance-info"></div>
+                <div class="distance-info">总里程${items.distance}公里</div>
             </div>
 
 
@@ -289,11 +295,14 @@ function renderCargoInfo(cargoList) {
     }).join('');
 
     document.querySelector('.content-container ul').innerHTML = htmlStr;
+    
+    // 滚动到页面顶部
+    window.scrollTo(0, 0);
 }
 
 // 添加新的数据到页面
 function appendDataToPage(data) {
-    const htmlStr = data.map(item => {
+    const htmlStr = data.map(items => {
         return `
         <li>
         <div class="information-container">
@@ -329,7 +338,7 @@ function appendDataToPage(data) {
             <!-- 距离信息 -->
             <div class="distance">
                 <i class="iconfont icon-ditu_dingwei_o"></i>
-                <div class="distance-info"></div>
+                <div class="distance-info">总里程${items.distance}公里</div>
             </div>
 
 
@@ -351,6 +360,12 @@ function appendDataToPage(data) {
 
 // 监听滚动事件以加载更多数据
 window.addEventListener('scroll', () => {
+
+    // 检查是否已到达最大页数
+    if (currentPage >= maxPage) {
+        return; // 如果达到最大页数，不再请求数据
+    }
+
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !isLoading) {
         isLoading = true;
         currentPage++;
@@ -362,106 +377,106 @@ window.addEventListener('scroll', () => {
 
 
 
-// 测试分页查询用模拟数据
+// // 测试分页查询用模拟数据
 
-function generateMockData(page, pageSize) {
-    const mockData = [];
-    for (let i = 1; i <= pageSize; i++) {
-        mockData.push({
-            beginLocation: `起始位置 ${page}-${i}`,
-            endLocation: `目的地 ${page}-${i}`,
-            beginTime: `2023-12-0${page} 08:00:00`,
-            cargoName: `货物 ${page}-${i}`,
-            value: `${100 + i} 元/吨`,
-            cargoWeight: `${1000 + i * 10} 吨`,
-            bossId: `司机ID ${1000 + page * 10 + i}`,
-            cargoId: `货物ID ${2000 + page * 10 + i}`
-        });
-    }
-    return mockData;
-}
+// function generateMockData(page, pageSize) {
+//     const mockData = [];
+//     for (let i = 1; i <= pageSize; i++) {
+//         mockData.push({
+//             beginLocation: `起始位置 ${page}-${i}`,
+//             endLocation: `目的地 ${page}-${i}`,
+//             beginTime: `2023-12-0${page} 08:00:00`,
+//             cargoName: `货物 ${page}-${i}`,
+//             value: `${100 + i} 元/吨`,
+//             cargoWeight: `${1000 + i * 10} 吨`,
+//             bossId: `司机ID ${1000 + page * 10 + i}`,
+//             cargoId: `货物ID ${2000 + page * 10 + i}`
+//         });
+//     }
+//     return mockData;
+// }
 
-// 模拟服务器获取数据
-function GetCargoInfo(page = 1, pageSize = 10) {
-    // 模拟从服务器获取数据
-    const result = {
-        data: {
-            data: {
-                records: generateMockData(page, pageSize)
-            }
-        }
-    };
+// // 模拟服务器获取数据
+// function GetCargoInfo(page = 1, pageSize = 10) {
+//     // 模拟从服务器获取数据
+//     const result = {
+//         data: {
+//             data: {
+//                 records: generateMockData(page, pageSize)
+//             }
+//         }
+//     };
 
-    // 使用模拟数据渲染页面
-    const CargoInfoList = result.data.data.records;
+//     // 使用模拟数据渲染页面
+//     const CargoInfoList = result.data.data.records;
 
-    const htmlStr = CargoInfoList.map(items => {
-        // 转换items为HTML字符串（您之前的函数）
-        return `
-        <li>
-        <div class="information-container">
-            <!-- 地址信息 -->
-            <div class="address">
-                <i class="iconfont icon-xiangshang"></i>
-                <div class="text_start">
-                    ${items.beginLocation}
-                </div>
+//     const htmlStr = CargoInfoList.map(items => {
+//         // 转换items为HTML字符串（您之前的函数）
+//         return `
+//         <li>
+//         <div class="information-container">
+//             <!-- 地址信息 -->
+//             <div class="address">
+//                 <i class="iconfont icon-xiangshang"></i>
+//                 <div class="text_start">
+//                     ${items.beginLocation}
+//                 </div>
                
-                <i class="iconfont icon-xiangxia"></i>
-                <div class="text_end">
-                     ${items.endLocation}
-                </div> 
-            </div>
+//                 <i class="iconfont icon-xiangxia"></i>
+//                 <div class="text_end">
+//                      ${items.endLocation}
+//                 </div> 
+//             </div>
 
-            <!-- 货物信息 -->
-            <div class="goods">
-                <div class="date">
-                    <i class="iconfont icon-shijian"></i>
-                    <span>发货: </span>
-                    <div class="date_text">${items.beginTime}</div>
-                </div>
-                <div class="goods-kind">
-                    <i class="iconfont icon-huowudui"></i>
-                    <div class="goods-info">
-                        <div class="kind">${items.cargoName}</div>
-                        <div class="price">${items.value}元/吨</div>
-                        <div class="weight">${items.cargoWeight}</div>
-                    </div>
-                </div>
-            </div>
-            <!-- 距离信息 -->
-            <div class="distance">
-                <i class="iconfont icon-ditu_dingwei_o"></i>
-                <div class="distance-info"></div>
-            </div>
+//             <!-- 货物信息 -->
+//             <div class="goods">
+//                 <div class="date">
+//                     <i class="iconfont icon-shijian"></i>
+//                     <span>发货: </span>
+//                     <div class="date_text">${items.beginTime}</div>
+//                 </div>
+//                 <div class="goods-kind">
+//                     <i class="iconfont icon-huowudui"></i>
+//                     <div class="goods-info">
+//                         <div class="kind">${items.cargoName}</div>
+//                         <div class="price">${items.value}元/吨</div>
+//                         <div class="weight">${items.cargoWeight}</div>
+//                     </div>
+//                 </div>
+//             </div>
+//             <!-- 距离信息 -->
+//             <div class="distance">
+//                 <i class="iconfont icon-ditu_dingwei_o"></i>
+//                 <div class="distance-info"></div>
+//             </div>
 
 
 
-            <!-- 接单链接 -->
-            <a href="javascript:void(0)" class="accept-bill">接单</a>
+//             <!-- 接单链接 -->
+//             <a href="javascript:void(0)" class="accept-bill">接单</a>
 
-            <!-- 司机ID和货物ID -->
-            <div class="id-Info">
-                <div class="driverId">${items.bossId}</div>
-                <div class="cargoId">${items.cargoId}</div>
-            </div>
-        </div>
-    </li>
-        `;
-    }).join('');
+//             <!-- 司机ID和货物ID -->
+//             <div class="id-Info">
+//                 <div class="driverId">${items.bossId}</div>
+//                 <div class="cargoId">${items.cargoId}</div>
+//             </div>
+//         </div>
+//     </li>
+//         `;
+//     }).join('');
 
-    document.querySelector('.content-container ul').innerHTML += htmlStr;
-}
+//     document.querySelector('.content-container ul').innerHTML += htmlStr;
+// }
 
-// 页面加载时调用一次以加载第一页数据
-GetCargoInfo();
+// // 页面加载时调用一次以加载第一页数据
+// GetCargoInfo();
 
-// 滚动到底部时加载更多数据
-window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        // 增加当前页码
-        currentPage++;
-        // 加载下一页数据
-        GetCargoInfo(currentPage);
-    }
-});
+// // 滚动到底部时加载更多数据
+// window.addEventListener('scroll', () => {
+//     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+//         // 增加当前页码
+//         currentPage++;
+//         // 加载下一页数据
+//         GetCargoInfo(currentPage);
+//     }
+// });
