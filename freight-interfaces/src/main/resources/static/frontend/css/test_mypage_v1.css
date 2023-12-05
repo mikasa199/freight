@@ -75,21 +75,30 @@ a:hover{
 
 /* 用户资料区开始 */
 .user-container{
-    background-color: lightgray;
+    background-color: lightblue;
     height: 10vh;
     display: flex;
 }
 
 .user-container .user-icon{
     flex: 1;
-    background-color: red;
+    /* background-color: red; */
     line-height: 10vh;
     
 }
 
+.user-container .user-icon .img{
+    width: 100%;
+    background-color: pink;;
+    margin: 0 auto;
+    height: 100%;
+    box-sizing: border-box;
+    background: url(../img/app_logo.png) no-repeat center center/contain;;
+}
+
 .user-container .user-info{
     flex: 4;
-    background-color: yellow;
+    background-color: pink;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -97,26 +106,73 @@ a:hover{
 
 .user-container .user-info .name{
     flex: 1;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1vh;
 }
-.user-container .user-info .tel{
+.user-container .user-info .number{
     flex: 1;
-    
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 
 
 
+.user-container .user-info .phone{
+    padding-left: 5%;
+    flex: 2;
+}
 
-
-
-
-
-
-
-
+.user-container .user-info .Id{
+    text-align: end;
+    padding-right: 5%;
+    flex: 1;
+}
 
 
 
 /* 用户资料区结束 */
+
+
+/* 用户确认栏开始 */
+
+.confirm-container{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10vh;
+    height: 10vh;
+}
+
+.confirm-container button{
+    background-color: #3262f4;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: 6vh;
+    border-radius: 10px;
+    color: #fff;
+   
+}
+
+
+
+/* 用户确认栏结束 */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 底部导航栏开始 */

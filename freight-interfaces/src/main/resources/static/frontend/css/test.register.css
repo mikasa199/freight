@@ -176,6 +176,7 @@ a:hover{
     padding: 1%;
     font-size: 0.8em;
     border-radius: 5px;
+    
 }
 
 .container .user-input .user-password{
@@ -221,8 +222,37 @@ a:hover{
     height: 6vh;
     border-radius: 10px;
     color: #fff;
+    opacity: .3;
 }
 
 
 
 /* 用户确认栏结束 */
+
+/* 蒙层提示区开始 */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 确保蒙层在其他内容上方 */
+}
+
+.modal-message {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+
+
+/* 蒙层提示区结束 */
