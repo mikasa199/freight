@@ -7,7 +7,9 @@
     <title>拉货APP_找货页面</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4342566_6zta98qkv6i.css">
     <link rel="stylesheet" href="../css/test_findcargo_v1.css">
+
 </head>
 
 <body>
@@ -24,11 +26,11 @@
                 </div>
 
 
-                <!-- 扫一扫组件 -->
+                <!-- 扫一扫组件
                 <a class="scan" href="#">
                     <div class="scan-logo iconfont icon-saoyisao"></div>
                     <span>扫一扫</span>
-                </a>
+                </a> -->
             </div>
 
             <!-- 导航栏 -->
@@ -63,12 +65,14 @@
             <!-- 条件列表弹出 -->
             <div class="condition-list ">
                 <ul>
-                    <li class="active">综合排序</li>
-                    <li>最新发布</li>
-                    <li>运费单价从高到低</li>
-                    <li>运费单价从低到高</li>
-                    <li>距离从远到近</li>
-                    <li>距离从近到远</li>
+                    <li class="active" data-code="">综合排序</li>
+                    <li data-code="-1">最新发布</li>
+                    <li data-code="-3">运费单价从高到低</li>
+                    <li data-code="3">运费单价从低到高</li>
+                    <li data-code="-5">距离从远到近</li>
+                    <li data-code="5">距离从近到远</li>
+                    <li data-code="-4">货物重量从多到少</li>
+                    <li data-code="4">货物重量量从少到多</li>
                 </ul>
             </div>
         </div>
@@ -83,179 +87,52 @@
                     <div class="information-container">
                         <!-- 地址信息 -->
                         <div class="address">
+                            <i class="iconfont icon-xiangshang"></i>
+                            <div class="text_start">
+                                浙江省你还u啊哈还低啊很大很大湖州市湖州
+                            </div>
 
-                            <span>
-                                <i class="iconfont icon-xiangshang"></i>
-                                湖州市 浙江明凯工业贸易公司
-                            </span>
-                            <span>
-                                <i class="iconfont icon-xiangxia"></i>
-                                苏州市 畅达路与兴港路交叉口
-                            </span>
+
+                            <i class="iconfont icon-xiangxia"></i>
+                            <div class="text_end">
+                                江苏省镇江市外国语学校江省湖州市湖州师范学院江苏真系那个是话有个
+                            </div>
                         </div>
+
+
+
                         <!-- 货物信息 -->
                         <div class="goods">
                             <div class="date">
                                 <i class="iconfont icon-shijian"></i>
-                                <span>发货: 2023-11-06 16:00:48</span>
+                                <span>发货: </span>
+                                <div class="date_text">2023-11-0312312323123323116 16:00:4823123213321</div>
                             </div>
                             <div class="goods-kind">
                                 <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">螺纹盘螺123元/吨</div>
+                                <div class="goods-info">
+                                    <div class="kind">煤矿2332121313131233121333331</div>
+                                    <div class="price">123321331231231221321312元/吨</div>
+                                    <div class="weight">10031231231232133210吨</div>
+                                </div>
                             </div>
                         </div>
                         <!-- 距离信息 -->
                         <div class="distance">
                             <i class="iconfont icon-ditu_dingwei_o"></i>
-                            <div class="time-info">总里程185.9公里，距离装车地36.0公里</div>
+                            <div class="distance-info"></div>
                         </div>
 
-                        <!-- 二维码 -->
-                        <a href="#" class="info-logo iconfont icon-erweima"></a>
-                    </div>
-                </li>
 
-                <li>
-                    <div class="information-container">
-                        <!-- 地址信息 -->
-                        <div class="address">
 
-                            <span>
-                                <i class="iconfont icon-xiangshang"></i>
-                                湖州市 浙江明凯工业贸易公司
-                            </span>
-                            <span>
-                                <i class="iconfont icon-xiangxia"></i>
-                                苏州市 畅达路与兴港路交叉口
-                            </span>
-                        </div>
-                        <!-- 货物信息 -->
-                        <div class="goods">
-                            <div class="date">
-                                <i class="iconfont icon-shijian"></i>
-                                <span>发货: 2023-11-06 16:00:48</span>
-                            </div>
-                            <div class="goods-kind">
-                                <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">螺纹盘螺123元/吨</div>
-                            </div>
-                        </div>
-                        <!-- 距离信息 -->
-                        <div class="distance">
-                            <i class="iconfont icon-ditu_dingwei_o"></i>
-                            <div class="time-info">总里程185.9公里，距离装车地36.0公里</div>
-                        </div>
+                        <!-- 接单链接 -->
+                        <a href="javascript:void(0)" class="accept-bill">接单</a>
 
-                        <!-- 二维码 -->
-                        <a href="#" class="info-logo iconfont icon-erweima"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="information-container">
-                        <!-- 地址信息 -->
-                        <div class="address">
-
-                            <span>
-                                <i class="iconfont icon-xiangshang"></i>
-                                湖州市 浙江明凯工业贸易公司
-                            </span>
-                            <span>
-                                <i class="iconfont icon-xiangxia"></i>
-                                苏州市 畅达路与兴港路交叉口
-                            </span>
+                        <!-- 司机ID和货物ID -->
+                        <div class="id-Info">
+                            <div class="driverId">12131332</div>
+                            <div class="cargoId">31231222</div>
                         </div>
-                        <!-- 货物信息 -->
-                        <div class="goods">
-                            <div class="date">
-                                <i class="iconfont icon-shijian"></i>
-                                <span>发货: 2023-11-06 16:00:48</span>
-                            </div>
-                            <div class="goods-kind">
-                                <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">螺纹盘螺123元/吨</div>
-                            </div>
-                        </div>
-                        <!-- 距离信息 -->
-                        <div class="distance">
-                            <i class="iconfont icon-ditu_dingwei_o"></i>
-                            <div class="time-info">总里程185.9公里，距离装车地36.0公里</div>
-                        </div>
-
-                        <!-- 二维码 -->
-                        <a href="#" class="info-logo iconfont icon-erweima"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="information-container">
-                        <!-- 地址信息 -->
-                        <div class="address">
-
-                            <span>
-                                <i class="iconfont icon-xiangshang"></i>
-                                湖州市 浙江明凯工业贸易公司
-                            </span>
-                            <span>
-                                <i class="iconfont icon-xiangxia"></i>
-                                苏州市 畅达路与兴港路交叉口
-                            </span>
-                        </div>
-                        <!-- 货物信息 -->
-                        <div class="goods">
-                            <div class="date">
-                                <i class="iconfont icon-shijian"></i>
-                                <span>发货: 2023-11-06 16:00:48</span>
-                            </div>
-                            <div class="goods-kind">
-                                <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">螺纹盘螺123元/吨</div>
-                            </div>
-                        </div>
-                        <!-- 距离信息 -->
-                        <div class="distance">
-                            <i class="iconfont icon-ditu_dingwei_o"></i>
-                            <div class="time-info">总里程185.9公里，距离装车地36.0公里</div>
-                        </div>
-
-                        <!-- 二维码 -->
-                        <a href="#" class="info-logo iconfont icon-erweima"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="information-container">
-                        <!-- 地址信息 -->
-                        <div class="address">
-
-                            <span>
-                                <i class="iconfont icon-xiangshang"></i>
-                                湖州市 浙江明凯工业贸易公司
-                            </span>
-                            <span>
-                                <i class="iconfont icon-xiangxia"></i>
-                                苏州市 畅达路与兴港路交叉口
-                            </span>
-                        </div>
-                        <!-- 货物信息 -->
-                        <div class="goods">
-                            <div class="date">
-                                <i class="iconfont icon-shijian"></i>
-                                <span>发货: 2023-11-06 16:00:48</span>
-                            </div>
-                            <div class="goods-kind">
-                                <i class="iconfont icon-huowudui"></i>
-                                <div class="goods-info">螺纹盘螺123元/吨</div>
-                            </div>
-                        </div>
-                        <!-- 距离信息 -->
-                        <div class="distance">
-                            <i class="iconfont icon-ditu_dingwei_o"></i>
-                            <div class="time-info">总里程185.9公里，距离装车地36.0公里</div>
-                        </div>
-
-                        <!-- 二维码 -->
-                        <a href="#" class="info-logo iconfont icon-erweima"></a>
                     </div>
                 </li>
 
@@ -263,43 +140,39 @@
             </ul>
 
         </div>
-
-
-
         <!-- 内容栏结束 -->
-
 
 
 
         <!-- 底部导航栏开始 -->
         <div class="bottom-nav-container">
-            <a class="nav-items active" href="#">
+            <a class="nav-items active" href="./test_findcargo_v1.html">
                 <div class="logo iconfont icon-huowudui"></div>
                 <div class="text">找货</div>
             </a>
 
-            <a class="nav-items" href="#">
+            <a class="nav-items" href="./test_freightbill_v1.html">
                 <div class="logo iconfont icon-yundanguanli"></div>
                 <div class="text">运单</div>
             </a>
 
 
 
-            <a class="nav-items" href="#">
+            <a class="nav-items" href="./test_mypage_v1.html">
                 <div class="logo iconfont icon-31wode"></div>
                 <div class="text">我的</div>
             </a>
         </div>
-
-
 
         <!-- 底部导航栏结束 -->
 
     </div>
 
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript"
+        src="https://api.map.baidu.com/api?v=3.0&ak=wcYbDR2bKB1VLYPPtoHxEEgcLbqPfCLS"></script>
+    <script src="../js/test_findcargo_v1.js" type="text/javascript"></script>
 </body>
 
 </html>
