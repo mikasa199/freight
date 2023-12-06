@@ -26,6 +26,13 @@ public interface IDriverDao {
     int updateHashedPasswordInt(Driver driver);
 
     /**
+     * 更新用户信息
+     * @param driver
+     * @return
+     */
+    int updateDriver(Driver driver);
+
+    /**
      * 根据id查询对应的司机
      * @param driverId
      * @return

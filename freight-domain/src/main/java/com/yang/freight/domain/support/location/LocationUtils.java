@@ -35,7 +35,7 @@ public class LocationUtils {
     private static final String KEY = "d31c10af75f60c3b96c62b5b2e633746";
     private static final String OUTPUT = "json";
     private static final String EXTENSIONS = "all";
-    private static final String RADIUS = "1000";
+    private static final String RADIUS = "10";
 
 
     private static Logger logger = LoggerFactory.getLogger(LocationUtils.class);

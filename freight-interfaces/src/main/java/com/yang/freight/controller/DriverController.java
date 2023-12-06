@@ -208,13 +208,14 @@ public class DriverController {
         cargoVOPage.setSize(pageSize);
         long cargoCount = driverDeploy.cargoCount("");
         cargoVOPage.setTotal(cargoCount);
-        return null;
+        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPagesSort(cargoVOPage, code);
+        return pageReturn;
     }
 
     @PostMapping("/order")
     public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
 
-        logger.info(req.toString());
+        logger.info("开始下单:{}",req.toString());
         boolean b = driverDeploy.submitOrder(req);
 
         if (b) {

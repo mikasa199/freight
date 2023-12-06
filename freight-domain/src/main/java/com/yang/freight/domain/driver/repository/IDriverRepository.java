@@ -37,6 +37,14 @@ public interface IDriverRepository {
     public Return<Page<CargoVO>> queryCargoList(Page<CargoVO> page, String cargoName);
 
     /**
+     * 按照条件排序查询
+     * @param page
+     * @param code
+     * @return
+     */
+    public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, int code);
+
+    /**
      * 查询货物数量
      * @param cargoName
      * @return

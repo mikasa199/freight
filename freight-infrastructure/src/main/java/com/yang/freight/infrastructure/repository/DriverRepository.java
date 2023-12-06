@@ -21,10 +21,14 @@ import com.yang.freight.infrastructure.po.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +51,9 @@ public class DriverRepository implements IDriverRepository {
 
     @Resource
     private IOrderDao orderDao;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Resource
     private Map<Constants.Ids,IIdGenerator> idGeneratorMap;
@@ -81,15 +88,60 @@ public class DriverRepository implements IDriverRepository {
     @Override
     public Return<Page<CargoVO>> queryCargoList(Page<CargoVO> page, String cargoName) {
         long count =  cargoCount(cargoName);
-        page.setTotal(count);
+        // page.setTotal(count);
 
         long current = page.getCurrent();
         long size = page.getSize();
+
+        if (count % size == 0) {
+            page.setTotal(count / size);
+        }else {
+            page.setTotal(count / size + 1);
+        }
 
         List<Cargo> cargoList = cargoDao.queryList((current - 1) * size, size, cargoName);
         ArrayList<CargoVO> list = new ArrayList<>();
         for (Cargo cargo : cargoList) {
             CargoVO cargoVO = new CargoVO();
+            BeanUtils.copyProperties(cargo,cargoVO);
+            //坐标转换为位置信息
+            cargoVO.setBeginLocation(LocationUtils.coordinateToAddress(cargo.getBeginLocation()));
+            cargoVO.setEndLocation(LocationUtils.coordinateToAddress(cargo.getEndLocation()));
+            list.add(cargoVO);
+        }
+        page.setRecords(list);
+        return Return.success(page);
+    }
+
+    @Override
+    public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, int code) {
+
+        long count =  cargoCount("");
+        // page.setTotal(count);
+
+        long current = page.getCurrent();
+        long size = page.getSize();
+
+        // 计算总页数
+        if (count % size == 0) {
+            page.setTotal(count / size);
+        }else {
+            page.setTotal(count / size + 1);
+        }
+
+        List<Cargo> cargoList = null;
+        if (code > 0) {
+            cargoList = cargoDao.queryListSortUp((current - 1) * size, size, code);
+        }else if (code < 0){
+            cargoList = cargoDao.queryListSortDown((current - 1) * size, size, code);
+        }else {
+            cargoList = cargoDao.queryList((current - 1) * size, size,"");
+        }
+
+        ArrayList<CargoVO> list = new ArrayList<>();
+        for (Cargo cargo : cargoList) {
+            CargoVO cargoVO = new CargoVO();
+            logger.info(cargoVO.toString());
             BeanUtils.copyProperties(cargo,cargoVO);
             //坐标转换为位置信息
             cargoVO.setBeginLocation(LocationUtils.coordinateToAddress(cargo.getBeginLocation()));
@@ -108,8 +160,9 @@ public class DriverRepository implements IDriverRepository {
     @Override
     public OrderVO createOrder(SubmitOrderReq req) {
 
-
         Cargo cargo = cargoDao.queryById(req.getCargoId());
+        logger.info(req.toString());
+        logger.info(cargo.toString());
 
         Order order = new Order();
         IIdGenerator iIdGenerator = idGeneratorMap.get(Constants.Ids.ShortCode);

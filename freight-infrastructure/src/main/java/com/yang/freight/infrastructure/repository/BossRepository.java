@@ -13,6 +13,8 @@ import com.yang.freight.infrastructure.dao.IBossDao;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.po.Boss;
 import com.yang.freight.infrastructure.po.Cargo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 
@@ -41,6 +43,8 @@ public class BossRepository implements IBossRepository {
     @Resource
     private Map<Constants.Ids, IIdGenerator> idGeneratorMap;
 
+    private Logger logger = LoggerFactory.getLogger(BossRepository.class);
+
 
     @Override
     public boolean addBoss(BossVO bossVO) {
@@ -55,6 +59,7 @@ public class BossRepository implements IBossRepository {
     public BossVO queryByPhone(String phone) {
 
         Boss boss = bossDao.queryByPhone(phone);
+        logger.info(boss.toString());
         if (null != boss) {
             BossVO bossVO = new BossVO();
             bossVO.setBossId(boss.getBossId());
@@ -62,6 +67,7 @@ public class BossRepository implements IBossRepository {
             bossVO.setBossName(boss.getBossName());
             bossVO.setHashedPassword(boss.getHashedPassword());
             bossVO.setSalt(boss.getSalt());
+            logger.info(bossVO.toString());
             return bossVO;
         }else {
             return null;

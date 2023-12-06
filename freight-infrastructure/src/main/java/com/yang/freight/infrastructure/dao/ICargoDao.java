@@ -39,6 +39,24 @@ public interface ICargoDao {
     List<Cargo> queryList(@Param("page") long page, @Param("pageSize") long pageSize, @Param("cargoName") String cargoName);
 
     /**
+     * 按照条件升序查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Cargo> queryListSortUp(@Param("page") long page, @Param("pageSize") long pageSize, @Param("code") int code);
+
+    /**
+     * 按照条件降序查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Cargo> queryListSortDown(@Param("page") long page, @Param("pageSize") long pageSize, @Param("code") int code);
+
+
+
+    /**
      * 根据Id查询货物信息
      * @param cargoId
      * @return

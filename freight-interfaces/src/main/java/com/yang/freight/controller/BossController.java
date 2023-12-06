@@ -74,6 +74,7 @@ public class BossController {
 
     @PostMapping("/addCargo")
     public Return<String> addCargo(@RequestBody ReleaseCargoInfoReq req) {
+        logger.info("开始发布货物信息：{}",req.toString());
         boolean b = bossService.releaseCargoInfo(req);
         if (b) {
             return Return.success("发布货物信息成功，等待司机接单");

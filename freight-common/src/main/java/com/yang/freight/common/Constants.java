@@ -17,7 +17,9 @@ public class Constants {
         VALUE_UP(3,"以单价升序排序"),
         VALUE_DOWN(-3,"以单价降序排序"),
         STOCK_UP(4,"以库存量升序排序"),
-        STOCK_DOWN(-4,"以库存量降序排序")
+        STOCK_DOWN(-4,"以库存量降序排序"),
+        DISTANCE_UP(5,"以距离升序排序"),
+        DISTANCE_DOWN(-5,"以距离降序排序")
         ;
 
         private int code;
@@ -27,6 +29,8 @@ public class Constants {
             this.code = code;
             this.info = info;
         }
+
+        //public Method ;
 
         public int getCode() {
             return code;

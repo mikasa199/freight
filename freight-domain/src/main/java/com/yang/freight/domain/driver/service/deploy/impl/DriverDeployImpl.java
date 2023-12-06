@@ -134,6 +134,11 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
+    public Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code) {
+        return driverRepository.queryCargoListSort(page,code);
+    }
+
+    @Override
     public Return<Page<CargoVO>> queryPagesSortByMethod(Page<CargoVO> page, Constants.Method method) {
         return null;
     }
@@ -145,6 +150,7 @@ public class DriverDeployImpl implements IDriverDeploy {
 
     @Override
     public boolean submitOrder(SubmitOrderReq req) {
+
 
         //1. 生成订单并设置订单状态
         OrderVO order = driverRepository.createOrder(req);

@@ -77,6 +77,14 @@ public interface IDriverDeploy {
     Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName);
 
     /**
+     * 按照条件排序查询
+     * @param page
+     * @param code
+     * @return
+     */
+    Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
+
+    /**
      * 根据条件进行排序查询
      * @param page
      * @param method

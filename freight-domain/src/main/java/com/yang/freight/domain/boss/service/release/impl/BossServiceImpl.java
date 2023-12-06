@@ -13,6 +13,8 @@ import com.yang.freight.domain.boss.service.release.IBossService;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,8 @@ public class BossServiceImpl implements IBossService {
 
     @Resource
     private IEncryption encryption;
+
+    private Logger logger = LoggerFactory.getLogger(BossServiceImpl.class);
 
     @Override
     public BossVO createBoss(InitBossReq req) throws NoSuchAlgorithmException {
@@ -90,6 +94,7 @@ public class BossServiceImpl implements IBossService {
         BossVO bossVO = bossRepository.queryByPhone(req.getPhone());
 
         if (null == bossVO) {
+            logger.info("用户未注册！");
             return Return.error("用户未注册！");
         }
 
@@ -98,8 +103,10 @@ public class BossServiceImpl implements IBossService {
         try {
             boolean result = encryption.verifyPassword(req.getPassword(), hashedPassword);
             if (result) {
+                logger.info("登录成功");
                 return Return.success(bossVO);
             }else {
+                logger.info("密码错误");
                 return Return.error("密码错误，请重新输入！");
             }
 

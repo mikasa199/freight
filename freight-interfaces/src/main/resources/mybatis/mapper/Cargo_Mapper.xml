@@ -51,5 +51,30 @@
         WHERE cargo_id = #{cargoId}
     </select>
 
+    <select id="queryListSortUp" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        ORDER BY
+            CASE
+                WHEN #{code} = 1 THEN begin_time
+                WHEN #{code} = 2 THEN end_time
+                WHEN #{code} = 3 THEN value
+                WHEN #{code} = 4 THEN stock
+                WHEN #{code} = 5 THEN distance
+            END ASC
+    </select>
+    <select id="queryListSortDown" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        ORDER BY
+            CASE
+                WHEN #{code} = -1 THEN begin_time
+                WHEN #{code} = -2 THEN end_time
+                WHEN #{code} = -3 THEN value
+                WHEN #{code} = -4 THEN stock
+                WHEN #{code} = -5 THEN distance
+            END DESC
+    </select>
+
 
 </mapper>
