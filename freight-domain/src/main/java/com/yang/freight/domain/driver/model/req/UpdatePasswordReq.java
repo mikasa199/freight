@@ -9,11 +9,12 @@ import lombok.Data;
  * @Copyright：
  */
 @Data
-public class InfoUpdateReq {
+public class UpdatePasswordReq {
 
     private long driverId;
 
-    private String driverName;
+    private String beforePassword;
 
-    private String phone;
+    private String afterPassword;
+
 }

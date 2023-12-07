@@ -3,10 +3,10 @@ package com.yang.freight.domain.driver.repository;
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
-
-import java.util.List;
+import com.yang.freight.domain.order.model.vo.OrderVO;
 
 /**
  * @description:
@@ -38,6 +38,14 @@ public interface IDriverRepository {
     public Return<Page<CargoVO>> queryCargoList(Page<CargoVO> page, String cargoName);
 
     /**
+     * 按照条件排序查询
+     * @param page
+     * @param code
+     * @return
+     */
+    public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, int code);
+
+    /**
      * 查询货物数量
      * @param cargoName
      * @return
@@ -48,14 +56,30 @@ public interface IDriverRepository {
     /**
      * 创建订单
      * @param req
+     * @return
      */
-    public void createOrder(SubmitOrderReq req);
+    public OrderVO  createOrder(SubmitOrderReq req);
 
     /**
      * 扣减库存
      * @param req
+     * @param orderId
      * @return 是否扣减成功
      */
-    public boolean subStock(SubmitOrderReq req);
+    public boolean subStock(SubmitOrderReq req, long orderId);
+
+    /**
+     * 新增身份认证信息
+     * @param authenticationVO
+     * @return
+     */
+    public boolean addAuthentication(AuthenticationVO authenticationVO);
+
+    /**
+     * 更新司机姓名
+     * @param driverVO
+     * @return
+     */
+    public boolean updateDriverName(DriverVO driverVO);
 
 }

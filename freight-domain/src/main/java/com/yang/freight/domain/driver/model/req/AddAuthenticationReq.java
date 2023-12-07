@@ -1,26 +1,18 @@
-package com.yang.freight.infrastructure.po;
+package com.yang.freight.domain.driver.model.req;
+
 
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * @description: 司机认证信息
+ * @description: 添加身份认证信息
  * @author：杨超
- * @date: 2023/11/11
+ * @date: 2023/12/6
  * @Copyright：
  */
 @Data
-public class Authentication {
-    /**
-     * 自增id
-     */
-    private Long id;
-
-    /**
-     * 认证信息id
-     */
-    private Long authenticationId;
+public class AddAuthenticationReq {
 
     /**
      * 司机id
@@ -28,9 +20,9 @@ public class Authentication {
     private Long driverId;
 
     /**
-     * 认证信息状态 0: 未认证, 1: 已认证, 2: 认证失败',
+     * 司机姓名
      */
-    private int authenticationStatus;
+    private String driverName;
 
     /**
      * 身份证号码
@@ -61,5 +53,4 @@ public class Authentication {
      * 从业资格证
      */
     private String qualificationCertificate;
-
 }

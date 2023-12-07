@@ -1,22 +1,17 @@
-package com.yang.freight.infrastructure.po;
+package com.yang.freight.domain.driver.model.vo;
 
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * @description: 司机认证信息
+ * @description:
  * @author：杨超
- * @date: 2023/11/11
+ * @date: 2023/12/6
  * @Copyright：
  */
 @Data
-public class Authentication {
-    /**
-     * 自增id
-     */
-    private Long id;
-
+public class AuthenticationVO {
     /**
      * 认证信息id
      */
@@ -61,5 +56,4 @@ public class Authentication {
      * 从业资格证
      */
     private String qualificationCertificate;
-
 }

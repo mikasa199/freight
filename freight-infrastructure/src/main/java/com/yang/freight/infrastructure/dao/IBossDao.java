@@ -47,4 +47,11 @@ public interface IBossDao {
      * @return
      */
     Boss queryById(long bossId);
+
+    /**
+     *
+     * @param phone
+     * @return
+     */
+    Boss queryByPhone(String phone);
 }

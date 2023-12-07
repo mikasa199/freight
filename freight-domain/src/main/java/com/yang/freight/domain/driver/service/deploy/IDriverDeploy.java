@@ -1,11 +1,9 @@
 package com.yang.freight.domain.driver.service.deploy;
 
+import com.yang.freight.common.Constants;
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.driver.model.req.CargoInfoLimitPageReq;
-import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 
@@ -24,13 +22,21 @@ public interface IDriverDeploy {
      * @param req
      * @return
      */
-    boolean createDriver(InitDriverReq req);
+    DriverVO createDriver(InitDriverReq req);
+
+    /**
+     * 根据手机号查询
+     * @param phone
+     * @return
+     */
+    DriverVO queryByPhone(String phone);
 
     /**
      * 更新密码
      * @param req
+     * @return
      */
-    void updatePassword(DriverUpdatePasswordReq req);
+    boolean updatePassword(UpdatePasswordReq req);
 
     /**
      * 分页查询货物信息
@@ -44,7 +50,7 @@ public interface IDriverDeploy {
      * @param req 用户登录输入的信息
      * @return 返回用户是否正确
      */
-    Return<String> driverLogin(InitDriverReq req);
+    Return<DriverVO> driverLogon(InitDriverReq req);
 
     /**
      * 发送验证码
@@ -54,7 +60,7 @@ public interface IDriverDeploy {
     String sendMsg(String phone) throws Exception;
 
     /**
-     * 检验并初始化
+     * 检验并初始化，如果手机号已被注册，则返回对应的用户，否则返回新创建的用户
      * @param phone
      * @return
      */
@@ -69,6 +75,22 @@ public interface IDriverDeploy {
     Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName);
 
     /**
+     * 按照条件排序查询
+     * @param page
+     * @param code
+     * @return
+     */
+    Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
+
+    /**
+     * 根据条件进行排序查询
+     * @param page
+     * @param method
+     * @return
+     */
+    Return<Page<CargoVO>> queryPagesSortByMethod(Page<CargoVO> page, Constants.Method method);
+
+    /**
      * 货物数量统计
      * @return
      * @param cargoName
@@ -78,7 +100,15 @@ public interface IDriverDeploy {
     /**
      * 提交扣减库存的订单
      * @param req
+     * @return
      */
-    void submitOrder(SubmitOrderReq req);
+    boolean submitOrder(SubmitOrderReq req);
+
+    /**
+     * 新增身份认证
+     * @param req
+     * @return
+     */
+    boolean addAuthentication(AddAuthenticationReq req);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 
 /**
  * @description:
@@ -37,8 +38,10 @@ public class OrderDaoTest {
         order.setCargoId(100001L);
         order.setBossId(100001L);
         order.setDriverId(100001L);
-        order.setCargoWeight(8000L);
-        order.setValue(8000L);
+        BigDecimal big1 = new BigDecimal(8000L);
+
+        order.setCargoWeight(big1);
+        order.setValue(big1);
         order.setState(0);
         order.setInfo("订单备注信息");
         orderDao.insert(order);

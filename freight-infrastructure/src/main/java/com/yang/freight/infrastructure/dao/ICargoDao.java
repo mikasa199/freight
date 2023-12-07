@@ -20,7 +20,7 @@ public interface ICargoDao {
      * 新增货物信息
      * @param cargo
      */
-    void insert(Cargo cargo);
+    int insert(Cargo cargo);
 
     /**
      * 根据货物id 扣减对应的重量
@@ -37,6 +37,31 @@ public interface ICargoDao {
      * @return
      */
     List<Cargo> queryList(@Param("page") long page, @Param("pageSize") long pageSize, @Param("cargoName") String cargoName);
+
+    /**
+     * 按照条件升序查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Cargo> queryListSortUp(@Param("page") long page, @Param("pageSize") long pageSize, @Param("code") int code);
+
+    /**
+     * 按照条件降序查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Cargo> queryListSortDown(@Param("page") long page, @Param("pageSize") long pageSize, @Param("code") int code);
+
+
+
+    /**
+     * 根据Id查询货物信息
+     * @param cargoId
+     * @return
+     */
+    Cargo queryById(@Param("cargoId") long cargoId);
 
     /**
      * 查询货物信息数量

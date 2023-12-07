@@ -1,6 +1,5 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
 import com.yang.freight.infrastructure.po.Driver;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,11 +25,25 @@ public interface IDriverDao {
     int updateHashedPasswordInt(Driver driver);
 
     /**
+     * 更新用户信息
+     * @param driver
+     * @return
+     */
+    int updateDriver(Driver driver);
+
+    int updateDriverName(Driver driver);
+
+    /**
      * 根据id查询对应的司机
      * @param driverId
      * @return
      */
     Driver queryById(long driverId);
 
+    /**
+     * 根据手机号查询
+     * @param phone
+     * @return
+     */
     Driver queryByPhone(String phone);
 }

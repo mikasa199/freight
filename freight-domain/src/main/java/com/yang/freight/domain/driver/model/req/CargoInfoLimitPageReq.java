@@ -1,6 +1,7 @@
 package com.yang.freight.domain.driver.model.req;
 
 import com.yang.freight.common.PageRequest;
+import lombok.Data;
 
 /**
  * @description:
@@ -8,6 +9,7 @@ import com.yang.freight.common.PageRequest;
  * @date: 2023/11/20
  * @Copyright：
  */
+@Data
 public class CargoInfoLimitPageReq extends PageRequest {
     /**
      * 货物id
@@ -22,19 +24,4 @@ public class CargoInfoLimitPageReq extends PageRequest {
         super(page, rows);
     }
 
-    public long getCargoId() {
-        return cargoId;
-    }
-
-    public void setCargoId(long cargoId) {
-        this.cargoId = cargoId;
-    }
-
-    public String getCargoName() {
-        return cargoName;
-    }
-
-    public void setCargoName(String cargoName) {
-        this.cargoName = cargoName;
-    }
 }
