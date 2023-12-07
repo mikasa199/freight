@@ -4,10 +4,8 @@ import com.yang.freight.common.Constants;
 import com.yang.freight.common.HashedPassword;
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.driver.model.req.CargoInfoLimitPageReq;
-import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.req.*;
+import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.repository.IDriverRepository;
@@ -17,6 +15,9 @@ import com.yang.freight.domain.support.code.SMSUtils;
 import com.yang.freight.domain.support.code.ValidateCodeUtils;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -41,6 +42,8 @@ public class DriverDeployImpl implements IDriverDeploy {
 
     @Resource
     private IDriverRepository driverRepository;
+
+    private Logger logger = LoggerFactory.getLogger(DriverDeployImpl.class);
 
     @Override
     public DriverVO createDriver(InitDriverReq req) {
@@ -70,8 +73,10 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
-    public void updatePassword(DriverUpdatePasswordReq req) {
+    public boolean updatePassword(UpdatePasswordReq req) {
 
+
+        return false;
     }
 
     @Override
@@ -159,5 +164,24 @@ public class DriverDeployImpl implements IDriverDeploy {
         boolean b = driverRepository.subStock(req, order.getOrderId());
 
         return b;
+    }
+
+    @Override
+    public boolean addAuthentication(AddAuthenticationReq req) {
+
+        // 更新用户姓名
+        DriverVO driverVO = new DriverVO();
+        driverVO.setDriverId(req.getDriverId());
+        driverVO.setDriverName(req.getDriverName());
+        logger.info("更新用户姓名:{}",driverVO.toString());
+        boolean result1 = driverRepository.updateDriverName(driverVO);
+
+        AuthenticationVO authenticationVO = new AuthenticationVO();
+        BeanUtils.copyProperties(req,authenticationVO);
+        authenticationVO.setAuthenticationId(idGeneratorMap.get(Constants.Ids.SnowFlake).nextId());
+        authenticationVO.setAuthenticationStatus(0);
+        logger.info("新增实名认证信息:{}",authenticationVO.toString());
+        boolean result2 = driverRepository.addAuthentication(authenticationVO);
+        return result1 && result2;
     }
 }

@@ -2,6 +2,7 @@ package com.yang.freight.controller;
 
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
+import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
 import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
@@ -225,5 +226,12 @@ public class DriverController {
         }
 
     }
+
+    @PostMapping("/authentication")
+    public Return<String> addAuthentication(@RequestBody AddAuthenticationReq req) {
+        boolean result = driverDeploy.addAuthentication(req);
+        return result ? Return.success("上传验证信息成功") : Return.error("上传认证信息失败");
+    }
+
 
 }

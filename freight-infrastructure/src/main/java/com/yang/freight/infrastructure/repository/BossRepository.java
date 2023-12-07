@@ -59,8 +59,9 @@ public class BossRepository implements IBossRepository {
     public BossVO queryByPhone(String phone) {
 
         Boss boss = bossDao.queryByPhone(phone);
-        logger.info(boss.toString());
+
         if (null != boss) {
+            logger.info(boss.toString());
             BossVO bossVO = new BossVO();
             bossVO.setBossId(boss.getBossId());
             bossVO.setPhone(phone);

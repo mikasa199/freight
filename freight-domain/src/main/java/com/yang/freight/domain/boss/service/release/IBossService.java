@@ -6,6 +6,7 @@ import com.yang.freight.domain.boss.model.req.InitBossReq;
 import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
 import com.yang.freight.domain.boss.model.req.UpdateBossReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
+import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -66,5 +67,7 @@ public interface IBossService {
      * @return
      */
     Return<BossVO> bossLogon(InitBossReq req);
+
+
 
 }

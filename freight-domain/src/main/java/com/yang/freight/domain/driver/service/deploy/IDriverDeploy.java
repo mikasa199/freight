@@ -3,10 +3,7 @@ package com.yang.freight.domain.driver.service.deploy;
 import com.yang.freight.common.Constants;
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.driver.model.req.CargoInfoLimitPageReq;
-import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 
@@ -37,8 +34,9 @@ public interface IDriverDeploy {
     /**
      * 更新密码
      * @param req
+     * @return
      */
-    void updatePassword(DriverUpdatePasswordReq req);
+    boolean updatePassword(UpdatePasswordReq req);
 
     /**
      * 分页查询货物信息
@@ -105,5 +103,12 @@ public interface IDriverDeploy {
      * @return
      */
     boolean submitOrder(SubmitOrderReq req);
+
+    /**
+     * 新增身份认证
+     * @param req
+     * @return
+     */
+    boolean addAuthentication(AddAuthenticationReq req);
 
 }

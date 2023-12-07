@@ -5,6 +5,7 @@ import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.SubCargoReq;
 import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.repository.IDriverRepository;
@@ -12,9 +13,11 @@ import com.yang.freight.domain.order.model.req.StateTransferReq;
 import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.location.LocationUtils;
+import com.yang.freight.infrastructure.dao.IAuthenticationDao;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.dao.IDriverDao;
 import com.yang.freight.infrastructure.dao.IOrderDao;
+import com.yang.freight.infrastructure.po.Authentication;
 import com.yang.freight.infrastructure.po.Cargo;
 import com.yang.freight.infrastructure.po.Driver;
 import com.yang.freight.infrastructure.po.Order;
@@ -52,8 +55,8 @@ public class DriverRepository implements IDriverRepository {
     @Resource
     private IOrderDao orderDao;
 
-    @Autowired
-    private DataSource dataSource;
+    @Resource
+    private IAuthenticationDao authenticationDao;
 
     @Resource
     private Map<Constants.Ids,IIdGenerator> idGeneratorMap;
@@ -73,6 +76,7 @@ public class DriverRepository implements IDriverRepository {
         Driver driver = driverDao.queryByPhone(phone);
 
         if (null != driver) {
+            logger.info(driver.toString());
             DriverVO driverVO = new DriverVO();
             driverVO.setDriverId(driver.getDriverId());
             driverVO.setDriverName(driver.getDriverName());
@@ -88,7 +92,6 @@ public class DriverRepository implements IDriverRepository {
     @Override
     public Return<Page<CargoVO>> queryCargoList(Page<CargoVO> page, String cargoName) {
         long count =  cargoCount(cargoName);
-        // page.setTotal(count);
 
         long current = page.getCurrent();
         long size = page.getSize();
@@ -206,5 +209,23 @@ public class DriverRepository implements IDriverRepository {
                 return true;
             }
         }
+    }
+
+    @Override
+    public boolean addAuthentication(AuthenticationVO authenticationVO) {
+
+        Authentication authentication = new Authentication();
+        BeanUtils.copyProperties(authenticationVO,authentication);
+        int result = authenticationDao.insert(authentication);
+        return result == 1;
+    }
+
+    @Override
+    public boolean updateDriverName(DriverVO driverVO) {
+        Driver driver = new Driver();
+        BeanUtils.copyProperties(driverVO,driver);
+        logger.info("更新司机姓名driverId:{},driverName:{}",driver.getDriverId(),driver.getDriverName());
+        int result = driverDao.updateDriverName(driver);
+        return result == 1;
     }
 }

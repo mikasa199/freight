@@ -3,6 +3,7 @@ package com.yang.freight.domain.driver.repository;
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.order.model.vo.OrderVO;
@@ -66,5 +67,19 @@ public interface IDriverRepository {
      * @return 是否扣减成功
      */
     public boolean subStock(SubmitOrderReq req, long orderId);
+
+    /**
+     * 新增身份认证信息
+     * @param authenticationVO
+     * @return
+     */
+    public boolean addAuthentication(AuthenticationVO authenticationVO);
+
+    /**
+     * 更新司机姓名
+     * @param driverVO
+     * @return
+     */
+    public boolean updateDriverName(DriverVO driverVO);
 
 }

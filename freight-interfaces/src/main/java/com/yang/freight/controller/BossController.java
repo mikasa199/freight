@@ -43,6 +43,7 @@ public class BossController {
         String phone = (String)map.get("phone");
         String code = (String)map.get("code");
         String password = (String)map.get("password");
+        logger.info("用户注册(老板) phone:{},code:{},password:{}",phone,code,password);
         Object codeInRedis = redisTemplate.opsForValue().get(phone);
 
         if (null != codeInRedis && codeInRedis.equals(code)) {

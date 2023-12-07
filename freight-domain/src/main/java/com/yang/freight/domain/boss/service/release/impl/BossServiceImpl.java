@@ -10,6 +10,7 @@ import com.yang.freight.domain.boss.model.req.UpdateBossReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.repository.IBossRepository;
 import com.yang.freight.domain.boss.service.release.IBossService;
+import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
@@ -115,4 +116,5 @@ public class BossServiceImpl implements IBossService {
         }
         return Return.error("登录失败，未知错误，请重试~");
     }
+
 }

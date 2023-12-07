@@ -16,7 +16,7 @@ public interface IAuthenticationDao {
      * 向数据库插入资格验证信息
      * @param authentication
      */
-    void insert(Authentication authentication);
+    int insert(Authentication authentication);
 
     /**
      * 根据司机id查询信息
