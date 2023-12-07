@@ -1,3 +1,8 @@
+// 导入配置文件
+
+import config from './config.js';
+
+
 
 
 // 控制弹出菜单逻辑开始
@@ -26,7 +31,7 @@ temp_conditionList_ul.addEventListener('click', function (event) {
 // 从服务器读取数据加载货物信息进行页面渲染
 function GetCargoInfo() {
     axios({
-        url: 'http://192.168.10.101:9999/driver/cargo/list',
+        url: config.cargoListApi,
         method:'GET',
          params: {
              page: 1,
@@ -205,8 +210,7 @@ function fetchSortedCargoInfo(sortCode) {
     isLoading = true; // 开始加载数据
 
     axios({
-        // url: 'http://192.168.10.102:9999/driver/cargo/list',
-        url:'http://192.168.10.102:9999/driver/cargo/list/sort',
+        url:config.cargoListSortApi,
         method: 'GET',
         params: {
             page: currentPage,

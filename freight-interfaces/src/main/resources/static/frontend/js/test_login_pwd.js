@@ -1,3 +1,7 @@
+// 导入配置文件
+
+import config from './config.js';
+
 
 
 
@@ -66,7 +70,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
     const pwd = document.querySelector('.user-input .user-password').value;
     
     // 根据选择的身份确定登录 URL
-    const url = selectedIdentity === '我是老板' ? 'http://192.168.10.102:9999/boss/logon' : 'http://192.168.10.102:9999/driver/logon';
+    const url = selectedIdentity === '我是老板' ? config.login_pwd_BossApi : config.login_pwd_DriverApi;
 
     axios({
         url: url,
@@ -81,11 +85,11 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         // 清除旧的用户ID（如果存在）
         localStorage.removeItem('userId');
         
-        const userId = result.data.data.bossId; // 以实际响应结构为准
+        const userId = selectedIdentity === '我是老板' ? result.data.data.bossId : result.data.data.driverId; // 以实际响应结构为准
         localStorage.setItem('userId', userId); // 存储用户ID
 
         // 登录成功后跳转到 mypage 页面
-        // window.location.href = './test_mypage_v1.html';
+        window.location.href = './test_mypage_v1.html';
         // 登录成功的处理逻辑
     }).catch(error => {
         console.error(error);

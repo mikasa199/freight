@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4342566_6zta98qkv6i.css">
-    <link rel="stylesheet" href="../css/test_postbill.css">
+    <link rel="stylesheet" href="../css/test_account.css">
 </head>
 
 <body>
@@ -19,44 +19,32 @@
 
         <!-- 顶部标题栏 -->
         <div class="top-container">
-            <div class="title">发布运单</div>
+            <div class="title">账号管理</div>
         </div>
 
 
         <!-- 用户输入栏 -->
         <form action="" class="user-input">
             <div class="items">
-                <div class="text">货物名称</div>
-                <input type="text" name="cargo-name">
+                <div class="text">用户名</div>
+                <input type="text" name="account-name">
             </div>
 
-            <!-- <div class="items">
-                <div class="text">货物重量</div>
-                <input type="text" name="cargo-weight">
-            </div> -->
-
-            <div class="half-items">
-                <div class="left">
-                    <div class="text">货物重量</div>
-                    <input type="text" name="cargo-weight">
-                </div>
-
-                <div class="right">
-                    <div class="text">货物单价</div>
-                    <input type="text" name="cargo-value">
-                </div>
+            <div class="items">
+                <div class="text">性别</div>
+                <input type="text" name="gender">
             </div>
 
             <div class="half-items">
                 <div class="left">
-                    <div class="text">起点</div>
-                    <input type="text" name="address-start" value="">
+                    <div class="text">常住地</div>
+                    <input type="text" name="address-living" value="江苏省镇江市外国语学校">
 
 
                 </div>
                 <div class="right">
-                    <div class="text">终点</div>
-                    <input type="text" name="address-end" value="">
+                    <div class="text">公司</div>
+                    <input type="text" name="company" value="浙江省湖州市湖州师范学院">
 
                 </div>
 
@@ -64,18 +52,18 @@
 
             <div class="half-items">
                 <div class="left">
-                    <div class="text">开始时间</div>
-                    <input type="text" name="date-start">
+                    <div class="text">生日</div>
+                    <input type="text" name="birthday">
                 </div>
                 <div class="right">
-                    <div class="text">结束时间</div>
-                    <input type="text" name="date-end">
+                    <div class="text">状态</div>
+                    <input type="text" name="state">
                 </div>
             </div>
 
             <div class="items">
-                <div class="text">备注信息</div>
-                <textarea name="cargo-Info" id="" cols="30" rows="10"></textarea>
+                <div class="text">个性签名</div>
+                <textarea name="signature" id="" cols="30" rows="10"></textarea>
             </div>
 
         </form>
@@ -84,7 +72,7 @@
         <!-- 用户确认区 -->
         <div class="confirm-container">
             <button class="save">暂存</button>
-            <button class="post">发布</button>
+            <button class="post submit">提交</button>
         </div>
 
 
