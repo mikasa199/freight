@@ -31,7 +31,7 @@
         FROM cargo
         <where>
             <if test="cargoName != null and cargoName != '' ">
-                cargo_name LIKE #{cargoName}
+                cargo_name LIKE CONCAT('%', #{cargoName}, '%')
             </if>
         </where>
         LIMIT #{page}, #{pageSize}
