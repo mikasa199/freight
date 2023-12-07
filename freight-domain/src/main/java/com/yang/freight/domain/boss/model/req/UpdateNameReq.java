@@ -3,18 +3,15 @@ package com.yang.freight.domain.boss.model.req;
 import lombok.Data;
 
 /**
- * @description: 信息更新请求类
+ * @description:
  * @author：杨超
- * @date: 2023/11/21
+ * @date: 2023/12/7
  * @Copyright：
  */
 @Data
-public class UpdateBossReq {
+public class UpdateNameReq {
 
-    private Long bossId;
+    private long bossId;
 
     private String bossName;
-
-    private String phone;
-
 }

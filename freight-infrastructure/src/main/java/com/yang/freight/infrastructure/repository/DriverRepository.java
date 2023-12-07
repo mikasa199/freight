@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -83,6 +84,23 @@ public class DriverRepository implements IDriverRepository {
             driverVO.setHashedPassword(driver.getHashedPassword());
             driverVO.setSalt(driver.getSalt());
             driverVO.setPhone(phone);
+            return driverVO;
+        }else {
+            return null;
+        }
+    }
+
+    @Override
+    public DriverVO queryById(long driverId) {
+        Driver driver = driverDao.queryById(driverId);
+        if (null != driver) {
+            logger.info(driver.toString());
+            DriverVO driverVO = new DriverVO();
+            driverVO.setDriverId(driver.getDriverId());
+            driverVO.setDriverName(driver.getDriverName());
+            driverVO.setHashedPassword(driver.getHashedPassword());
+            driverVO.setSalt(driver.getSalt());
+            driverVO.setPhone(driver.getPhone());
             return driverVO;
         }else {
             return null;
@@ -226,6 +244,22 @@ public class DriverRepository implements IDriverRepository {
         BeanUtils.copyProperties(driverVO,driver);
         logger.info("更新司机姓名driverId:{},driverName:{}",driver.getDriverId(),driver.getDriverName());
         int result = driverDao.updateDriverName(driver);
+        return result == 1;
+    }
+
+    @Override
+    public boolean updatePassword(DriverVO driverVO) {
+        Driver driver = new Driver();
+        BeanUtils.copyProperties(driverVO,driver);
+        int result = driverDao.updateHashedPassword(driver);
+        return result == 1;
+    }
+
+    @Override
+    public boolean updatePhone(DriverVO driverVO) {
+        Driver driver = new Driver();
+        BeanUtils.copyProperties(driverVO,driver);
+        int result = driverDao.updatePhone(driver);
         return result == 1;
     }
 }

@@ -3,14 +3,12 @@ package com.yang.freight.domain.boss.service.release.impl;
 import com.yang.freight.common.Constants;
 import com.yang.freight.common.HashedPassword;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq;
-import com.yang.freight.domain.boss.model.req.InitBossReq;
-import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
-import com.yang.freight.domain.boss.model.req.UpdateBossReq;
+import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.repository.IBossRepository;
 import com.yang.freight.domain.boss.service.release.IBossService;
 import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
+import com.yang.freight.domain.driver.model.req.UpdatePhoneReq;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
@@ -66,8 +64,33 @@ public class BossServiceImpl implements IBossService {
     }
 
     @Override
-    public void updatePassword(BossUpdatePasswordReq req) {
+    public boolean updatePassword(UpdatePhoneReq req) {
+        //1. 验证密码是否正确
+        BossVO bossVO = bossRepository.queryById(req.getDriverId());
+        try {
+            boolean resultVerify = encryption.verifyPassword(req.getBeforePhone(), new HashedPassword(bossVO.getHashedPassword(), bossVO.getSalt()));
 
+            if (resultVerify) {
+                //2. 更新密码
+                HashedPassword hashedPassword = encryption.encryptPassword(req.getAfterPhone());
+                bossVO.setHashedPassword(hashedPassword.getHashedPassword());
+                bossVO.setSalt(hashedPassword.getSalt());
+                return bossRepository.updatePassword(bossVO);
+            }
+            logger.info("历史密码输入错误");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateName(UpdateNameReq req) {
+        //1. 更新姓名
+        BossVO bossVO = new BossVO();
+        bossVO.setBossId(req.getBossId());
+        bossVO.setBossName(req.getBossName());
+        return bossRepository.updateName(bossVO);
     }
 
     @Override

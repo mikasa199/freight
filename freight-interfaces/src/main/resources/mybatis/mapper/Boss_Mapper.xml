@@ -20,9 +20,19 @@
         SET boss_name = #{bossName}, phone = #{phone}, hashed_password = #{hashedPassword},salt = #{salt},update_date = now()
         WHERE boss_id = #{bossId}
     </update>
-    <update id="updatePassword" parameterType="com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq">
+    <update id="updatePassword" parameterType="boss">
         UPDATE boss
-        SET hashed_password = #{hashedPassword}, salt = #{salt}
+        SET hashed_password = #{hashedPassword}, salt = #{salt}, update_date = now()
+        WHERE boss_id = #{bossId}
+    </update>
+    <update id="updateBossName" parameterType="boss">
+        UPDATE boss
+        SET boss_name = #{bossName}, update_date = now()
+        WHERE boss_id = #{bossId}
+    </update>
+    <update id="updatePhone" parameterType="boss">
+        UPDATE boss
+        SET phone = #{phone}, update_date = now()
         WHERE boss_id = #{bossId}
     </update>
     <delete id="deleteById" parameterType="long">

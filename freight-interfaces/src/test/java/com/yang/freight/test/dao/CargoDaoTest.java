@@ -162,7 +162,7 @@ public class CargoDaoTest {
 
     @Test
     public void queryById() {
-        Cargo cargo = cargoDao.queryById(100001L);
+        Cargo cargo = cargoDao.queryById(1731678346183606272L);
         logger.info(cargo.toString());
     }
 }

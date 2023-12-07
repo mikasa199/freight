@@ -76,6 +76,22 @@ public class BossRepository implements IBossRepository {
     }
 
     @Override
+    public BossVO queryById(long bossId) {
+        Boss boss = bossDao.queryById(bossId);
+        if (null != boss) {
+            BossVO bossVO = new BossVO();
+            bossVO.setBossId(boss.getBossId());
+            bossVO.setBossName(boss.getBossName());
+            bossVO.setPhone(boss.getPhone());
+            bossVO.setHashedPassword(boss.getHashedPassword());
+            bossVO.setSalt(boss.getSalt());
+            return bossVO;
+        }
+        logger.info("没有查询到对应的老板信息 bossId:{}",bossId);
+        return null;
+    }
+
+    @Override
     public boolean addCargo(CargoVO cargoVO) {
         Cargo cargo = new Cargo();
         BeanUtils.copyProperties(cargoVO,cargo);
@@ -90,5 +106,21 @@ public class BossRepository implements IBossRepository {
 
         int result = cargoDao.insert(cargo);
         return result == 1;
+    }
+
+    @Override
+    public boolean updateName(BossVO bossVO) {
+        Boss boss = new Boss();
+        BeanUtils.copyProperties(bossVO,boss);
+        int i = bossDao.updateBossName(boss);
+        return i == 1;
+    }
+
+    @Override
+    public boolean updatePassword(BossVO bossVO) {
+        Boss boss = new Boss();
+        BeanUtils.copyProperties(bossVO,boss);
+        int i = bossDao.updatePassword(boss);
+        return i == 1;
     }
 }

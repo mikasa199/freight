@@ -1,23 +1,20 @@
-package com.yang.freight.domain.driver.model.req;
+package com.yang.freight.domain.boss.model.req;
 
 import lombok.Data;
 
 /**
  * @description:
  * @author：杨超
- * @date: 2023/11/19
+ * @date: 2023/12/7
  * @Copyright：
  */
 @Data
 public class UpdatePasswordReq {
 
-    /**
-     * 司机id
-     */
-    private long driverId;
+    private long bossId;
 
     /**
-     * 历史密码
+     * 旧密码
      */
     private String beforePassword;
 

@@ -2,9 +2,7 @@ package com.yang.freight.controller;
 
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
+import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.service.deploy.IDriverDeploy;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -234,4 +233,30 @@ public class DriverController {
     }
 
 
+    @PostMapping("/update/name")
+    public Return<String> updateName(@RequestBody UpdateNameReq req) {
+        boolean result = driverDeploy.updateName(req);
+        return result ? Return.success("姓名更新成功") : Return.error("姓名更新失败");
+    }
+
+    @PostMapping("/update/password")
+    public Return<String> updatePassword(@RequestBody UpdatePasswordReq req) {
+        try {
+            boolean b = driverDeploy.updatePassword(req);
+            return b ? Return.success("密码更新成功") : Return.error("历史密码输入错误");
+        } catch (NoSuchAlgorithmException e) {
+            return Return.error("密码更新失败，调用方法出错");
+        }
+    }
+
+    @PostMapping("/update/phone")
+    public Return<String> updatePhone(@RequestBody UpdatePhoneReq req) {
+        Object codeInRedis = redisTemplate.opsForValue().get(req.getBeforePhone());
+        if (null != codeInRedis && codeInRedis.equals(req.getCode())) {
+            logger.info("验证码正确");
+            boolean b = driverDeploy.updatePhone(req);
+            return b ? Return.success("手机号修改成功") : Return.error("手机号修改失败，请重试");
+        }
+        return Return.error("验证码错误");
+    }
 }
