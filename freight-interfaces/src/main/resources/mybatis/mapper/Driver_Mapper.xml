@@ -15,19 +15,24 @@
         INSERT INTO driver(driver_id, driver_name, phone, hashed_password, salt, register_date, update_date)
         VALUES(#{driverId},#{driverName},#{phone},#{hashedPassword},#{salt},now(),now())
     </insert>
-    <update id="updateHashedPasswordInt" parameterType="com.yang.freight.domain.driver.model.req.UpdatePasswordReq">
+    <update id="updateHashedPassword" parameterType="com.yang.freight.domain.driver.model.req.UpdatePasswordReq">
         UPDATE driver
         SET hashed_password = #{hashedPassword}, salt = #{salt}
         WHERE driver_id = #{driverId}
     </update>
     <update id="updateDriver" parameterType="driver">
         UPDATE driver
-        SET driver_name = #{driverName}, phone = #{phone}, update_time = now()
+        SET driver_name = #{driverName}, phone = #{phone}, update_date = now()
         WHERE driver_id = #{driverId}
     </update>
     <update id="updateDriverName" parameterType="driver">
         UPDATE driver
-        SET driver_name = #{driverName}, update_time = now()
+        SET driver_name = #{driverName}, update_date = now()
+        WHERE driver_id = #{driverId}
+    </update>
+    <update id="updatePhone" parameterType="driver">
+        UPDATE driver
+        SET phone = #{phone}, update_date = now()
         WHERE driver_id = #{driverId}
     </update>
     <select id="queryById" parameterType="long" resultType="com.yang.freight.infrastructure.po.Driver" resultMap="DriverMap">

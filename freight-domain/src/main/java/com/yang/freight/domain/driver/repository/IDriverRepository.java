@@ -6,6 +6,7 @@ import com.yang.freight.domain.driver.model.req.SubmitOrderReq;
 import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
+import com.yang.freight.domain.driver.service.deploy.impl.DriverDeployImpl;
 import com.yang.freight.domain.order.model.vo.OrderVO;
 
 /**
@@ -28,6 +29,8 @@ public interface IDriverRepository {
      * @return
      */
     public DriverVO queryByPhone(String phone);
+
+    public DriverVO queryById(long driverId);
 
     /**
      * 查询货物信息
@@ -81,5 +84,9 @@ public interface IDriverRepository {
      * @return
      */
     public boolean updateDriverName(DriverVO driverVO);
+
+    public boolean updatePassword(DriverVO driverVO);
+
+    public boolean updatePhone(DriverVO driverVO);
 
 }

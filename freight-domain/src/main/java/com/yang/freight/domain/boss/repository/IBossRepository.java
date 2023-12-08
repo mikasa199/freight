@@ -28,9 +28,30 @@ public interface IBossRepository {
     BossVO queryByPhone(String phone);
 
     /**
+     * 根据id查询信息
+     * @param bossId
+     * @return
+     */
+    BossVO queryById(long bossId);
+
+    /**
      * 新增货物信息
      * @param cargoVO
      * @return
      */
     boolean addCargo(CargoVO cargoVO);
+
+    /**
+     * 更新姓名
+     * @param bossVO
+     * @return
+     */
+    boolean updateName(BossVO bossVO);
+
+    /**
+     * 更新密码
+     * @param bossVO
+     * @return
+     */
+    boolean updatePassword(BossVO bossVO);
 }

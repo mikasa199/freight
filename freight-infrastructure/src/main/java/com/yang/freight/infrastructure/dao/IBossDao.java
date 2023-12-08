@@ -35,6 +35,20 @@ public interface IBossDao {
     int updatePassword(Boss boss);
 
     /**
+     * 更新姓名
+     * @param boss
+     * @return
+     */
+    int updateBossName(Boss boss);
+
+    /**
+     * 更新手机号
+     * @param boss
+     * @return
+     */
+    int updatePhone(Boss boss);
+
+    /**
      * 根据boosId删除信息
      * @param boosId
      * @return

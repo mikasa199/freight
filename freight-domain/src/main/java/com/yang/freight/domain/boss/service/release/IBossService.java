@@ -1,12 +1,10 @@
 package com.yang.freight.domain.boss.service.release;
 
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq;
-import com.yang.freight.domain.boss.model.req.InitBossReq;
-import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
-import com.yang.freight.domain.boss.model.req.UpdateBossReq;
+import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
+import com.yang.freight.domain.driver.model.req.UpdatePhoneReq;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -35,8 +33,16 @@ public interface IBossService {
     /**
      * 更新密码
      * @param req
+     * @return
      */
-    void updatePassword(BossUpdatePasswordReq req);
+    boolean updatePassword(UpdatePhoneReq req);
+
+    /**
+     * 更新名字
+     * @param req
+     * @return
+     */
+    boolean updateName(UpdateNameReq req);
 
 
     /**

@@ -43,6 +43,7 @@ public class DriverDeployImpl implements IDriverDeploy {
     @Resource
     private IDriverRepository driverRepository;
 
+
     private Logger logger = LoggerFactory.getLogger(DriverDeployImpl.class);
 
     @Override
@@ -73,16 +74,44 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
-    public boolean updatePassword(UpdatePasswordReq req) {
+    public boolean updatePassword(UpdatePasswordReq req) throws NoSuchAlgorithmException {
 
-
+        //1. 验证历史密码是否正确
+        DriverVO driverVO = driverRepository.queryById(req.getDriverId());
+        boolean result = encryption.verifyPassword(req.getBeforePassword(), new HashedPassword(driverVO.getHashedPassword(), driverVO.getSalt()));
+        //2. 更新密码
+        if (result) {
+            HashedPassword hashedPassword = encryption.encryptPassword(req.getAfterPassword());
+            driverVO.setHashedPassword(hashedPassword.getHashedPassword());
+            driverVO.setSalt(hashedPassword.getSalt());
+            boolean resultUpdatePassword = driverRepository.updatePassword(driverVO);
+            logger.info("密码更新成功");
+            return true;
+        }
+        logger.info("历史密码错误");
         return false;
     }
 
     @Override
-    public List<CargoVO> queryCargoInfoLimitPage(CargoInfoLimitPageReq req) {
-        return null;
+    public boolean updatePhone(UpdatePhoneReq req) {
+        //1. 验证码是否正确(上一层处理)
+
+        //2. 更新手机号
+        DriverVO driverVO = new DriverVO();
+        driverVO.setDriverId(req.getDriverId());
+        driverVO.setPhone(req.getAfterPhone());
+        return driverRepository.updatePhone(driverVO);
     }
+
+    @Override
+    public boolean updateName(UpdateNameReq req) {
+        DriverVO driverVO = new DriverVO();
+        driverVO.setDriverId(req.getDriverId());
+        driverVO.setDriverName(req.getDriverName());
+        boolean b = driverRepository.updateDriverName(driverVO);
+        return b;
+    }
+
 
     @Override
     public Return<DriverVO> driverLogon(InitDriverReq req) {
@@ -143,10 +172,6 @@ public class DriverDeployImpl implements IDriverDeploy {
         return driverRepository.queryCargoListSort(page,code);
     }
 
-    @Override
-    public Return<Page<CargoVO>> queryPagesSortByMethod(Page<CargoVO> page, Constants.Method method) {
-        return null;
-    }
 
     @Override
     public long cargoCount(String cargoName) {

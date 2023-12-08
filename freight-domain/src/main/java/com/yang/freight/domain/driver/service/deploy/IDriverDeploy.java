@@ -7,6 +7,7 @@ import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -35,15 +36,24 @@ public interface IDriverDeploy {
      * 更新密码
      * @param req
      * @return
+     * @throws NoSuchAlgorithmException
      */
-    boolean updatePassword(UpdatePasswordReq req);
+    boolean updatePassword(UpdatePasswordReq req) throws NoSuchAlgorithmException;
 
     /**
-     * 分页查询货物信息
+     * 更新手机号
      * @param req
      * @return
      */
-    List<CargoVO> queryCargoInfoLimitPage(CargoInfoLimitPageReq req);
+    boolean updatePhone(UpdatePhoneReq req);
+
+    /**
+     * 更新姓名
+     * @param req
+     * @return
+     */
+    boolean updateName(UpdateNameReq req);
+
 
     /**
      * 司机用户登录
@@ -82,13 +92,6 @@ public interface IDriverDeploy {
      */
     Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
 
-    /**
-     * 根据条件进行排序查询
-     * @param page
-     * @param method
-     * @return
-     */
-    Return<Page<CargoVO>> queryPagesSortByMethod(Page<CargoVO> page, Constants.Method method);
 
     /**
      * 货物数量统计
@@ -110,5 +113,9 @@ public interface IDriverDeploy {
      * @return
      */
     boolean addAuthentication(AddAuthenticationReq req);
+
+
+
+
 
 }

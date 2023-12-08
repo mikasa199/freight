@@ -67,7 +67,7 @@ public class DriverDaoTest {
 //        req.setSalt(hashedPassword.getSalt());
 //        Driver driver1 = new Driver();
 //        BeanUtils.copyProperties(req,driver1);
-//        int i = driverDao.updateHashedPasswordInt(driver1);
+//        int i = driverDao.updateHashedPassword(driver1);
 //        if (i == 1) {
 //            logger.info("更新成功");
 //        } else {
