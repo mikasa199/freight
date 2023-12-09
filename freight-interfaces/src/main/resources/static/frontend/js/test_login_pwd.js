@@ -56,6 +56,11 @@ document.querySelectorAll('.identity-container button').forEach(button => {
 
         // 更新登录按钮状态
         updateLoginButtonState();
+
+        // 存储用户身份到 localStorage
+        const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+        userInfo.userIdentity = selectedIdentity === '我是老板' ? boss : driver;
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
     });
 });
 
@@ -68,9 +73,15 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
     // event.preventDefault(); // 阻止链接的默认跳转行为
     const phone = document.querySelector('.user-input .user-phone').value;
     const pwd = document.querySelector('.user-input .user-password').value;
+
+
     
     // 根据选择的身份确定登录 URL
     const url = selectedIdentity === '我是老板' ? config.login_pwd_BossApi : config.login_pwd_DriverApi;
+
+    // 从 localStorage 获取先前保存的用户身份信息
+    const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+    const previousIdentity = userInfo.userIdentity;
 
     axios({
         url: url,
@@ -83,10 +94,31 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         console.log(result);
 
         // 清除旧的用户ID（如果存在）
-        localStorage.removeItem('userId');
+        localStorage.removeItem('userInfo');
         
-        const userId = selectedIdentity === '我是老板' ? result.data.data.bossId : result.data.data.driverId; // 以实际响应结构为准
-        localStorage.setItem('userId', userId); // 存储用户ID
+        // 使用 BigInt 处理可能的超长整数
+        
+
+        if (selectedIdentity === '我是老板') {
+           const newUserInfo = {
+                userId: BigInt(result.data.data.bossId).toString(), // 将 BigInt 转换为字符串存储
+                userName: result.data.data.bossName,
+                userPhone: result.data.data.phone
+            }
+            localStorage.setItem('userInfo', JSON.stringify(userInfo)); // 登录时存取用户资料
+        } else if(selectedIdentity === '我是司机'){
+           
+
+            const newUserInfo = {
+                userId: BigInt(result.data.data.driverId).toString(), // 将 BigInt 转换为字符串存储
+                userName: result.data.data.driverName,
+                userPhone: result.data.data.phone,
+                userIdentity: previousIdentity // 保留之前的身份信息
+            }
+
+            localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 登录时存取用户资料
+        }
+        
 
         // 登录成功后跳转到 mypage 页面
         window.location.href = './test_mypage_v1.html';

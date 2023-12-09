@@ -24,47 +24,43 @@
 
 
         <!-- 用户输入栏 -->
-        <form action="" class="user-input">
-            <div class="items">
-                <div class="text">用户名</div>
-                <input type="text" name="account-name">
+        <form action="" class="user-input ">
+            <button class="adjust-btn name">点击修改用户名</button>
+            <div class="items readonly name-margin">
+                <div class="text">原用户名</div>
+                <input type="text" name="name" readonly>
             </div>
 
-            <div class="items">
-                <div class="text">性别</div>
-                <input type="text" name="gender">
+            <div class="items readonly">
+                <div class="text">新的用户名</div>
+                <input type="text" name="adjust-name" readonly>
             </div>
 
-            <div class="half-items">
-                <div class="left">
-                    <div class="text">常住地</div>
-                    <input type="text" name="address-living" value="江苏省镇江市外国语学校">
 
-
-                </div>
-                <div class="right">
-                    <div class="text">公司</div>
-                    <input type="text" name="company" value="浙江省湖州市湖州师范学院">
-
-                </div>
-
+            <button class="adjust-btn pwd">点击修改密码</button>
+            <div class="items pwd-margin readonly">
+                <div class="text">输入原密码</div>
+                <input type="text" name="password" readonly>
             </div>
 
-            <div class="half-items">
-                <div class="left">
-                    <div class="text">生日</div>
-                    <input type="text" name="birthday">
-                </div>
-                <div class="right">
-                    <div class="text">状态</div>
-                    <input type="text" name="state">
-                </div>
+            <div class="items readonly">
+                <div class="text">新密码</div>
+                <input type="text" name="adjust-password" readonly>
             </div>
 
-            <div class="items">
+
+            <div class="items readonly">
+                <div class="text">确认新密码</div>
+                <input type="text" name="confirm-adjust-password" readonly>
+            </div>
+
+
+
+
+            <!-- <div class="items">
                 <div class="text">个性签名</div>
                 <textarea name="signature" id="" cols="30" rows="10"></textarea>
-            </div>
+            </div> -->
 
         </form>
 
@@ -76,15 +72,16 @@
         </div>
 
 
-        <div id="map-container"></div>
+        <!-- 在 HTML 中添加蒙层元素 -->
+        <div id="overlay" style="display:none;">
+            <div class="overlay-content">错误信息</div>
+        </div>
 
     </div>
 
     <script src="../form-serialize/lib/form-serialize.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript"
-        src="https://api.map.baidu.com/api?v=3.0&ak=wcYbDR2bKB1VLYPPtoHxEEgcLbqPfCLS"></script>
-    <script src="../js/test_postbill.js"></script>
+    <script type="module" src="../js/test_account.js"></script>
 
 </body>
 

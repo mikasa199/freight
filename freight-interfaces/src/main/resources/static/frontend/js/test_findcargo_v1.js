@@ -104,7 +104,7 @@ function GetCargoInfo() {
 }
 
 
-// GetCargoInfo() 
+// GetCargoInfo()
 
 
 
@@ -151,6 +151,47 @@ function GetCargoInfo() {
 //         distanceInfo.innerText = `总里程${distance}公里`;
 //     }
 // }
+
+
+// 页面顶部搜索框逻辑
+
+// 获取搜索框的引用
+const searchInput = document.querySelector('.search-items .text input[type="text"]');
+
+// 为搜索框添加键盘事件监听器
+searchInput.addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) {
+        // 用户按下Enter键，执行搜索
+        const cargoName = searchInput.value.trim(); // 获取用户输入并去除前后空格
+        fetchCargoData(cargoName, 1, 10); // 调用函数执行搜索，假设每页10条数据，从第1页开始
+    }
+});
+
+// 获取数据的函数
+function fetchCargoData(cargoName, page, pageSize) {
+    axios({
+        url: config.cargoListSortApi, 
+        method: 'GET',
+        params: {
+            cargoName: cargoName, // 用户输入的货物名称
+            page: page,
+            pageSize: pageSize
+        }
+    }).then(response => {
+        console.log(response);
+        const cargoInfoList = response.data.data.records;
+        // 可以在这里调用渲染函数来显示搜索结果
+        renderCargoInfo(cargoInfoList);
+    }).catch(error => {
+        console.error(error);
+        // 处理错误情况
+    });
+}
+
+
+
+
+
 
 
 
@@ -273,7 +314,7 @@ function renderCargoInfo(cargoList) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        <div class="weight">${items.cargoWeight}</div>
+                        
                     </div>
                 </div>
             </div>
@@ -335,7 +376,7 @@ function appendDataToPage(data) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        <div class="weight">${items.cargoWeight}</div>
+                        
                     </div>
                 </div>
             </div>
