@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitButton = document.querySelector('.confirm-container .submit');
 
     // 获取原账户名
-    const userName = localStorage.getItem('userInfo.userName');
-    originalUserNameInput.value = userName
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    originalUserNameInput.value = userInfo.userName
 
     // 获取蒙层元素
     const overlay = document.getElementById('overlay');
@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function hideOverlay() {
         overlay.style.display = 'none';
     }
+
+
+    let userNameUpdateSuccess = false;
+    let passwordUpdateSuccess = false;
 
     // 点击蒙层任意位置关闭
     overlay.addEventListener('click', function() {
@@ -70,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         event.preventDefault(); // 阻止默认行为
 
-        // 清空反馈信息数组
-        feedbackMessages = [];
+        // // 清空反馈信息数组
+        // const feedbackMessages = [];
 
 
         // 获取userId
@@ -83,23 +87,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const userIdentity = userInfo ? userInfo.userIdentity : null;
 
         // 根据用户身份选择接口
-        const nameUpdateApi = userIdentity === '我是老板' ? config.boss_update_nameApi : config.driver_update_nameApi;
-        const passwordUpdateApi = userIdentity === '我是老板' ? config.boss_update_passwordApi : config.driver_update_passwordApi;
+        const nameUpdateApi = userIdentity === 'boss' ? config.account_boss_update_nameApi : config.account_driver_update_nameApi;
+        const passwordUpdateApi = userIdentity === 'boss' ? config.account_boss_update_passwordApi : config.account_driver_update_passwordApi;
 
         // 检查用户名是否被更改
         if (!newUserNameInput.readOnly) {
             const newUserName = newUserNameInput.value;
-            // 构建提交用户名的数据
-            const dataForName = {
-                driverId: userId,
-                driverName: newUserName
-            };
+            // 依据身份构建提交用户名的数据
 
-            let userNameUpdateSuccess = false;
-            let passwordUpdateSuccess = false;
+           
+        const dataForName = userIdentity === 'driver' ? {
+            driverId: userId,
+            driverName: newUserName
+        } : {
+            bossId: userId,
+            bossName: newUserName
+        }
             // 提交新用户名
             axios({
-                url: config.account_update_nameApi,
+                url: nameUpdateApi,
                 method: 'POST',
                 data: dataForName
             }).then(result => {
@@ -120,15 +126,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const confirmPassword = confirmPasswordInput.value;
 
             if(afterPassword === confirmPassword) {
-                // 构建提交密码的数据
-                const dataForPassword = {
+                // 依据身份判定构建提交密码的数据
+
+                const dataForPassword =  userIdentity === 'driver' ? {
                     driverId: userId,
+                    beforePassword: beforePassword,
+                    afterPassword: afterPassword
+                } : {
+                    bossId: userId,
                     beforePassword: beforePassword,
                     afterPassword: afterPassword
                 };
                 // 提交新密码
                 axios({
-                    url: config.account_update_passwordApi,
+                    url: passwordUpdateApi,
                     method: 'POST',
                     data: dataForPassword
                 }).then(result => {

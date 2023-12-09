@@ -170,7 +170,7 @@ searchInput.addEventListener('keyup', function(event) {
 // 获取数据的函数
 function fetchCargoData(cargoName, page, pageSize) {
     axios({
-        url: config.cargoListSortApi, 
+        url: config.cargoListApi, 
         method: 'GET',
         params: {
             cargoName: cargoName, // 用户输入的货物名称

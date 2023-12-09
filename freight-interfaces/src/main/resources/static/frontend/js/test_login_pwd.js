@@ -59,7 +59,7 @@ document.querySelectorAll('.identity-container button').forEach(button => {
 
         // 存储用户身份到 localStorage
         const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
-        userInfo.userIdentity = selectedIdentity === '我是老板' ? boss : driver;
+        userInfo.userIdentity = selectedIdentity === '我是老板' ? 'boss' : 'driver';
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
     });
 });
@@ -103,9 +103,10 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
            const newUserInfo = {
                 userId: BigInt(result.data.data.bossId).toString(), // 将 BigInt 转换为字符串存储
                 userName: result.data.data.bossName,
-                userPhone: result.data.data.phone
+               userPhone: result.data.data.phone,
+               userIdentity: previousIdentity // 保留之前的身份信息
             }
-            localStorage.setItem('userInfo', JSON.stringify(userInfo)); // 登录时存取用户资料
+            localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 登录时存取用户资料
         } else if(selectedIdentity === '我是司机'){
            
 
@@ -124,7 +125,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         window.location.href = './test_mypage_v1.html';
         // 登录成功的处理逻辑
     }).catch(error => {
-        console.error(error);
+        console.log(error);
         // 登录失败的处理逻辑
         showOverlay("登录失败：" + error.message); // 显示错误信息
     });
