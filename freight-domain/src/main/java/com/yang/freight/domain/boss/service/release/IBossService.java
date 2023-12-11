@@ -3,8 +3,6 @@ package com.yang.freight.domain.boss.service.release;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
-import com.yang.freight.domain.driver.model.req.AddAuthenticationReq;
-import com.yang.freight.domain.driver.model.req.UpdatePhoneReq;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -35,7 +33,7 @@ public interface IBossService {
      * @param req
      * @return
      */
-    boolean updatePassword(UpdatePhoneReq req);
+    boolean updatePassword(UpdatePasswordReq req);
 
     /**
      * 更新名字
@@ -44,13 +42,20 @@ public interface IBossService {
      */
     boolean updateName(UpdateNameReq req);
 
-
     /**
-     * 发布货物信息
-     * @param req 发布获取请求请求类
+     * 更新手机号
+     * @param req
      * @return
      */
-    boolean releaseCargoInfo(ReleaseCargoInfoReq req);
+    boolean updatePhone(UpdatePhoneReq req);
+
+
+//    /**
+//     * 发布货物信息
+//     * @param req 发布获取请求请求类
+//     * @return
+//     */
+//    boolean releaseCargoInfo(ReleaseCargoInfoReq req);
 
     /**
      * 根据手机号查询老板信息

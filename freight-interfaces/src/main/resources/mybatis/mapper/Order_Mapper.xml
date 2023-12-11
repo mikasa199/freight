@@ -14,6 +14,25 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
+
+    <resultMap id="OrderResMap" type="com.yang.freight.domain.order.model.res.OrderRes">
+        <result column="order_id" property="orderId"/>
+        <result column="cargo_id" property="cargoId"/>
+        <result column="cargo_name" property="cargoName"/>
+        <result column="begin_location" property="beginLocation"/>
+        <result column="end_location" property="endLocation"/>
+        <result column="distance" property="distance"/>
+        <result column="begin_time" property="beginTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="stock" property="stock"/>
+        <result column="info" property="info"/>
+        <result column="boss_id" property="bossId"/>
+        <result column="driver_id" property="driverId"/>
+        <result column="cargo_weight" property="cargoWeight"/>
+        <result column="value" property="value"/>
+        <result column="state" property="state"/>
+    </resultMap>
+
     <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Order">
         INSERT INTO `order`(order_id, cargo_id, boss_id, driver_id, cargo_weight, value, state, info, created_time, updated_time)
         VALUES (#{orderId},#{cargoId},#{bossId},#{driverId},#{cargoWeight},#{value},#{state},#{info},now(),now());
@@ -23,4 +42,37 @@
         SET state = #{afterState}
         WHERE order_id = #{orderId} AND state = #{beforeState}
     </update>
+    <select id="queryByOrderId" resultType="com.yang.freight.infrastructure.po.Order" resultMap="OrderMap">
+        SELECT order_id, cargo_id, boss_id, driver_id, cargo_weight, value, state, info, created_time, updated_time
+        FROM `order`
+        WHERE order_id = #{orderId}
+    </select>
+    <select id="queryByDriverId" resultType="com.yang.freight.domain.order.model.res.OrderRes" resultMap="OrderResMap">
+        SELECT  o.order_id,o.cargo_id,c.cargo_name,c.begin_location,c.end_location,
+                c.distance,c.begin_time,c.end_time,c.stock,c.info,
+                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state
+        FROM `order` o
+        INNER JOIN cargo c ON o.cargo_id = c.cargo_id
+        WHERE o.driver_id = #{driverId}
+        LIMIT #{page}, #{pageSize}
+    </select>
+    <select id="queryByCargoId" resultType="com.yang.freight.domain.order.model.res.OrderRes" resultMap="OrderResMap">
+        SELECT  o.order_id,o.cargo_id,c.cargo_name,c.begin_location,c.end_location,
+                c.distance,c.begin_time,c.end_time,c.stock,c.info,
+                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state
+        FROM `order` o
+        INNER JOIN cargo c ON o.cargo_id = c.cargo_id
+        WHERE o.cargo_id = #{cargoId}
+        LIMIT #{page}, #{pageSize}
+    </select>
+    <select id="countByDriverId" resultType="java.lang.Integer">
+        SELECT COUNT(order_id)
+        FROM `order`
+        WHERE driver_id = #{driverId}
+    </select>
+    <select id="countByCargoId" resultType="java.lang.Integer">
+        SELECT COUNT(order_id)
+        FROM `order`
+        WHERE cargo_id = #{cargoId}
+    </select>
 </mapper>

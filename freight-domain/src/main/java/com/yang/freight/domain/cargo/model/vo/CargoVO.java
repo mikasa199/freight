@@ -1,4 +1,4 @@
-package com.yang.freight.domain.driver.model.vo;
+package com.yang.freight.domain.cargo.model.vo;
 
 import lombok.Data;
 

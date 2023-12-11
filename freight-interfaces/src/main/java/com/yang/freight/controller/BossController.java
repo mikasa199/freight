@@ -1,8 +1,7 @@
 package com.yang.freight.controller;
 
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.boss.model.req.InitBossReq;
-import com.yang.freight.domain.boss.model.req.ReleaseCargoInfoReq;
+import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.service.release.IBossService;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
@@ -73,15 +72,42 @@ public class BossController {
         return bossService.bossLogon(req);
     }
 
-    @PostMapping("/addCargo")
-    public Return<String> addCargo(@RequestBody ReleaseCargoInfoReq req) {
-        logger.info("开始发布货物信息：{}",req.toString());
-        boolean b = bossService.releaseCargoInfo(req);
-        if (b) {
-            return Return.success("发布货物信息成功，等待司机接单");
-        }else {
-            return Return.error("发布货物信息失败，请稍后重试");
+//    @PostMapping("/addCargo")
+//    public Return<String> addCargo(@RequestBody ReleaseCargoInfoReq req) {
+//        logger.info(req.toString());
+//        logger.info("开始发布货物信息：{}",req.toString());
+//        boolean b = bossService.releaseCargoInfo(req);
+//        if (b) {
+//            return Return.success("发布货物信息成功，等待司机接单");
+//        }else {
+//            return Return.error("发布货物信息失败，请稍后重试");
+//        }
+//    }
+
+    @PostMapping("/update/name")
+    public Return<String> updateName(@RequestBody UpdateNameReq req) {
+        logger.info(req.toString());
+        boolean b = bossService.updateName(req);
+        return b ? Return.success("姓名更新成功") : Return.error("姓名更新失败，请重试");
+    }
+
+    @PostMapping("/update/password")
+    public Return<String> updatePassword(@RequestBody UpdatePasswordReq req) {
+        logger.info(req.toString());
+        boolean b = bossService.updatePassword(req);
+        return b ? Return.success("密码更新成功") : Return.error("历史密码错误，请重新输入");
+    }
+
+    @PostMapping("/update/phone")
+    public Return<String> updatePhone(@RequestBody UpdatePhoneReq req) {
+        logger.info(req.toString());
+        //1. 检验验证码是否正确
+        Object codeInRedis = redisTemplate.opsForValue().get(req.getBeforePhone());
+        if (!codeInRedis.equals(req.getCode())) {
+            return Return.error("验证码错误");
         }
+        boolean b = bossService.updatePhone(req);
+        return b ? Return.success("手机号更换成功") : Return.error("手机号更新失败");
     }
 
 }

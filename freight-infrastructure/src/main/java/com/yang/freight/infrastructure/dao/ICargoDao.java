@@ -1,6 +1,6 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.driver.model.req.SubCargoReq;
+import com.yang.freight.domain.cargo.model.req.SubCargoReq;
 import com.yang.freight.infrastructure.po.Cargo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -62,6 +62,13 @@ public interface ICargoDao {
      * @return
      */
     Cargo queryById(@Param("cargoId") long cargoId);
+
+    /**
+     * 根据司机id查询货物信息
+     * @param bossId
+     * @return
+     */
+    List<Cargo> queryByBossId(@Param("bossId") long bossId);
 
     /**
      * 查询货物信息数量

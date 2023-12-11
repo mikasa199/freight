@@ -1,9 +1,7 @@
 package com.yang.freight.controller;
 
-import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.*;
-import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.service.deploy.IDriverDeploy;
 import org.slf4j.Logger;
@@ -180,51 +178,51 @@ public class DriverController {
         return Return.error("验证码错误");
     }
 
-    /**
-     * 分页查询货物信息
-     * @param page
-     * @param pageSize
-     * @param cargoName
-     * @return
-     */
-    @GetMapping("cargo/list")
-    public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
+//    /**
+//     * 分页查询货物信息
+//     * @param page
+//     * @param pageSize
+//     * @param cargoName
+//     * @return
+//     */
+//    @GetMapping("cargo/list")
+//    public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
+//
+//        logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
+//        Page<CargoVO> cargoVOPage = new Page<>();
+//        cargoVOPage.setCurrent(page);
+//        cargoVOPage.setSize(pageSize);
+//        long cargoCount = driverDeploy.cargoCount(cargoName);
+//        cargoVOPage.setTotal(cargoCount);
+//        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPages(cargoVOPage, cargoName);
+//        return pageReturn;
+//    }
+//
+//    @GetMapping("cargo/list/sort")
+//    public Return<Page<CargoVO>> queryCargoPagesSort(long page, long pageSize, int code) {
+//        logger.info("page:{},pageSize:{},code:{}",page,pageSize,code);
+//        Page<CargoVO> cargoVOPage = new Page<>();
+//        cargoVOPage.setCurrent(page);
+//        cargoVOPage.setSize(pageSize);
+//        long cargoCount = driverDeploy.cargoCount("");
+//        cargoVOPage.setTotal(cargoCount);
+//        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPagesSort(cargoVOPage, code);
+//        return pageReturn;
+//    }
 
-        logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
-        Page<CargoVO> cargoVOPage = new Page<>();
-        cargoVOPage.setCurrent(page);
-        cargoVOPage.setSize(pageSize);
-        long cargoCount = driverDeploy.cargoCount(cargoName);
-        cargoVOPage.setTotal(cargoCount);
-        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPages(cargoVOPage, cargoName);
-        return pageReturn;
-    }
-
-    @GetMapping("cargo/list/sort")
-    public Return<Page<CargoVO>> queryCargoPagesSort(long page, long pageSize, int code) {
-        logger.info("page:{},pageSize:{},code:{}",page,pageSize,code);
-        Page<CargoVO> cargoVOPage = new Page<>();
-        cargoVOPage.setCurrent(page);
-        cargoVOPage.setSize(pageSize);
-        long cargoCount = driverDeploy.cargoCount("");
-        cargoVOPage.setTotal(cargoCount);
-        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPagesSort(cargoVOPage, code);
-        return pageReturn;
-    }
-
-    @PostMapping("/order")
-    public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
-
-        logger.info("开始下单:{}",req.toString());
-        boolean b = driverDeploy.submitOrder(req);
-
-        if (b) {
-            return Return.success("下单成功");
-        }else {
-            return Return.error("下单失败");
-        }
-
-    }
+//    @PostMapping("/order")
+//    public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
+//
+//        logger.info("开始下单:{}",req.toString());
+//        boolean b = driverDeploy.submitOrder(req);
+//
+//        if (b) {
+//            return Return.success("下单成功");
+//        }else {
+//            return Return.error("下单失败");
+//        }
+//
+//    }
 
     @PostMapping("/authentication")
     public Return<String> addAuthentication(@RequestBody AddAuthenticationReq req) {
@@ -235,12 +233,14 @@ public class DriverController {
 
     @PostMapping("/update/name")
     public Return<String> updateName(@RequestBody UpdateNameReq req) {
+        logger.info(req.toString());
         boolean result = driverDeploy.updateName(req);
         return result ? Return.success("姓名更新成功") : Return.error("姓名更新失败");
     }
 
     @PostMapping("/update/password")
     public Return<String> updatePassword(@RequestBody UpdatePasswordReq req) {
+        logger.info(req.toString());
         try {
             boolean b = driverDeploy.updatePassword(req);
             return b ? Return.success("密码更新成功") : Return.error("历史密码输入错误");
@@ -251,6 +251,7 @@ public class DriverController {
 
     @PostMapping("/update/phone")
     public Return<String> updatePhone(@RequestBody UpdatePhoneReq req) {
+        logger.info(req.toString());
         Object codeInRedis = redisTemplate.opsForValue().get(req.getBeforePhone());
         if (null != codeInRedis && codeInRedis.equals(req.getCode())) {
             logger.info("验证码正确");

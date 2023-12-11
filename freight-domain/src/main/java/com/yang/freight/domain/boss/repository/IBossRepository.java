@@ -1,9 +1,6 @@
 package com.yang.freight.domain.boss.repository;
 
-import com.yang.freight.domain.boss.model.req.InitBossReq;
 import com.yang.freight.domain.boss.model.vo.BossVO;
-import com.yang.freight.domain.driver.model.vo.CargoVO;
-import com.yang.freight.domain.order.model.vo.OrderVO;
 
 /**
  * @description: 老板仓储服务
@@ -34,12 +31,12 @@ public interface IBossRepository {
      */
     BossVO queryById(long bossId);
 
-    /**
-     * 新增货物信息
-     * @param cargoVO
-     * @return
-     */
-    boolean addCargo(CargoVO cargoVO);
+//    /**
+//     * 新增货物信息
+//     * @param cargoVO
+//     * @return
+//     */
+//    boolean addCargo(CargoVO cargoVO);
 
     /**
      * 更新姓名
@@ -54,4 +51,11 @@ public interface IBossRepository {
      * @return
      */
     boolean updatePassword(BossVO bossVO);
+
+    /**
+     * 更新手机号
+     * @param bossVO
+     * @return
+     */
+    boolean updatePhone(BossVO bossVO);
 }

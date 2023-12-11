@@ -21,7 +21,7 @@
         INSERT INTO cargo(CARGO_ID, BOSS_ID, CARGO_NAME, CARGO_WEIGHT, BEGIN_LOCATION, END_LOCATION,distance,VALUE, BEGIN_TIME, END_TIME, STOCK, INFO)
         VALUES (#{cargoId},#{bossId},#{cargoName},#{cargoWeight},#{beginLocation},#{endLocation},#{distance},#{value},#{beginTime},#{endTime},#{stock},#{info})
     </insert>
-    <update id="subStock" parameterType="com.yang.freight.domain.driver.model.req.SubCargoReq">
+    <update id="subStock" parameterType="com.yang.freight.domain.cargo.model.req.SubCargoReq">
         UPDATE cargo
         SET stock = stock - #{subStock}
         WHERE cargo_id = #{cargoId} AND stock >= #{subStock}
@@ -74,6 +74,11 @@
                 WHEN #{code} = -4 THEN stock
                 WHEN #{code} = -5 THEN distance
             END DESC
+    </select>
+    <select id="queryByBossId" resultType="com.yang.freight.infrastructure.po.Cargo">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        WHERE boss_id = #{bossId}
     </select>
 
 
