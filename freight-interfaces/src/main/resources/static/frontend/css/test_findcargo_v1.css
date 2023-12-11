@@ -364,7 +364,7 @@ a:hover{
     padding: 3px;
     box-sizing: border-box;
     color: #3262f4;
-    width: 28%;
+    width: 45%;
     white-space: nowrap; /* 防止文本换行 */
     overflow: hidden; /* 隐藏溢出的内容 */
     text-overflow: ellipsis; /* 显示省略号 */

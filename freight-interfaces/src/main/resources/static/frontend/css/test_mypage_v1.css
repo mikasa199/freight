@@ -19,7 +19,7 @@ a:hover{
 
 .container{
     background-color: #fff;
-    height: 2000vh;
+    height: 100vh;
 }
 
 /* 修改container的最大宽度为1280 根据设计稿的要求 */
@@ -108,15 +108,16 @@ a:hover{
     flex: 1;
     color: #fff;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
     padding-top: 1vh;
+    padding-left: 5%;
 }
 .user-container .user-info .number{
     flex: 1;
     color: #fff;
     font-weight: bold;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 
@@ -130,11 +131,38 @@ a:hover{
     text-align: end;
     padding-right: 5%;
     flex: 1;
+    display: none;
 }
 
 
 
 /* 用户资料区结束 */
+
+
+
+/* 内容详情区开始 */
+
+.content-container{
+    background-color: lightgrey;
+    height: 30vh;
+   
+}
+
+.content-container li{
+    width: 100%;
+    margin-bottom: 2vh;
+    padding-left: 5%;
+}
+
+.content-container li:nth-child(1){
+    padding-top: 2vh;
+}
+
+
+
+/* 内容详情区结束 */
+
+
 
 
 /* 用户确认栏开始 */
@@ -163,18 +191,6 @@ a:hover{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* 底部导航栏开始 */
 
 
@@ -184,7 +200,7 @@ a:hover{
     height: 10vh;
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 5vh;
     right: 0;
 }
 

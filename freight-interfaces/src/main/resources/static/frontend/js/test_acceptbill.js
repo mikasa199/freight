@@ -1,3 +1,9 @@
+// 导入配置文件
+
+import config from './config.js';
+
+
+
 // 从localstorage读取货单数据
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -25,15 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const cargoInfo = JSON.parse(localStorage.getItem('cargoInfo'));
+const userId = JSON.parse(localStorage.getItem('userId'));
 document.querySelector('.confirm-container .accept').addEventListener('click', (event) => {
     event.preventDefault();
     axios({
-        url: 'http://192.168.10.101:9999/driver/order',
+        url: config.acceptBillApi,
         method:'POST',
         data: {
             cargoId:cargoInfo.cargoId,
-            driverId:"1234523",
-            subStock:cargoInfo.cargo_weight
+            driverId:userId,
+            subStock:cargoInfo.cargo_weight   //确定下subStock是什么
         }
     }).then(result => {
         console.log(result);
