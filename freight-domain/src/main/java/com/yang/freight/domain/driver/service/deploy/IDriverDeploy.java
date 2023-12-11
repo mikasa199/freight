@@ -1,14 +1,10 @@
 package com.yang.freight.domain.driver.service.deploy;
 
-import com.yang.freight.common.Constants;
-import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.*;
-import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 /**
  * @description:
@@ -76,36 +72,36 @@ public interface IDriverDeploy {
      */
     DriverVO checkAndInit(String phone);
 
-    /**
-     * 根据货物名和页数、页面大小 获取货物数据
-     * @param page
-     * @param cargoName
-     * @return
-     */
-    Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName);
+//    /**
+//     * 根据货物名和页数、页面大小 获取货物数据
+//     * @param page
+//     * @param cargoName
+//     * @return
+//     */
+//    Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName);
+//
+//    /**
+//     * 按照条件排序查询
+//     * @param page
+//     * @param code
+//     * @return
+//     */
+//    Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
+//
+//
+//    /**
+//     * 货物数量统计
+//     * @return
+//     * @param cargoName
+//     */
+//    long cargoCount(String cargoName);
 
-    /**
-     * 按照条件排序查询
-     * @param page
-     * @param code
-     * @return
-     */
-    Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
-
-
-    /**
-     * 货物数量统计
-     * @return
-     * @param cargoName
-     */
-    long cargoCount(String cargoName);
-
-    /**
-     * 提交扣减库存的订单
-     * @param req
-     * @return
-     */
-    boolean submitOrder(SubmitOrderReq req);
+//    /**
+//     * 提交扣减库存的订单
+//     * @param req
+//     * @return
+//     */
+//    boolean submitOrder(SubmitOrderReq req);
 
     /**
      * 新增身份认证

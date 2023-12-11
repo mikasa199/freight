@@ -1,4 +1,4 @@
-package com.yang.freight.domain.boss.model.req;
+package com.yang.freight.domain.cargo.model.req;
 
 import lombok.Data;
 

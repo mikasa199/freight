@@ -2,15 +2,12 @@ package com.yang.freight.domain.driver.service.deploy.impl;
 
 import com.yang.freight.common.Constants;
 import com.yang.freight.common.HashedPassword;
-import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.AuthenticationVO;
-import com.yang.freight.domain.driver.model.vo.CargoVO;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.repository.IDriverRepository;
 import com.yang.freight.domain.driver.service.deploy.IDriverDeploy;
-import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.support.code.SMSUtils;
 import com.yang.freight.domain.support.code.ValidateCodeUtils;
 import com.yang.freight.domain.support.ids.IIdGenerator;
@@ -22,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,15 +74,25 @@ public class DriverDeployImpl implements IDriverDeploy {
 
         //1. 验证历史密码是否正确
         DriverVO driverVO = driverRepository.queryById(req.getDriverId());
+        if (null == driverVO) {
+            logger.info("无对应的司机用户driverId:{}",req.getDriverId());
+            return false;
+        }
         boolean result = encryption.verifyPassword(req.getBeforePassword(), new HashedPassword(driverVO.getHashedPassword(), driverVO.getSalt()));
         //2. 更新密码
         if (result) {
             HashedPassword hashedPassword = encryption.encryptPassword(req.getAfterPassword());
+            driverVO.setDriverId(req.getDriverId());
             driverVO.setHashedPassword(hashedPassword.getHashedPassword());
             driverVO.setSalt(hashedPassword.getSalt());
             boolean resultUpdatePassword = driverRepository.updatePassword(driverVO);
-            logger.info("密码更新成功");
-            return true;
+
+            if (resultUpdatePassword) {
+                logger.info("密码更新成功");
+            } else {
+                logger.error("密码更新失败");
+            }
+            return resultUpdatePassword;
         }
         logger.info("历史密码错误");
         return false;
@@ -162,34 +168,34 @@ public class DriverDeployImpl implements IDriverDeploy {
         return driverVO1;
     }
 
-    @Override
-    public Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName) {
-        return driverRepository.queryCargoList(page,cargoName);
-    }
+//    @Override
+//    public Return<Page<CargoVO>> queryCargoPages(Page<CargoVO> page, String cargoName) {
+//        return driverRepository.queryCargoList(page,cargoName);
+//    }
+//
+//    @Override
+//    public Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code) {
+//        return driverRepository.queryCargoListSort(page,code);
+//    }
+//
+//
+//    @Override
+//    public long cargoCount(String cargoName) {
+//        return driverRepository.cargoCount(cargoName);
+//    }
 
-    @Override
-    public Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code) {
-        return driverRepository.queryCargoListSort(page,code);
-    }
-
-
-    @Override
-    public long cargoCount(String cargoName) {
-        return driverRepository.cargoCount(cargoName);
-    }
-
-    @Override
-    public boolean submitOrder(SubmitOrderReq req) {
-
-
-        //1. 生成订单并设置订单状态
-        OrderVO order = driverRepository.createOrder(req);
-
-        //2. 扣减库存
-        boolean b = driverRepository.subStock(req, order.getOrderId());
-
-        return b;
-    }
+//    @Override
+//    public boolean submitOrder(SubmitOrderReq req) {
+//
+//
+//        //1. 生成订单并设置订单状态
+//        OrderVO order = driverRepository.createOrder(req);
+//
+//        //2. 扣减库存
+//        boolean b = driverRepository.subStock(req, order.getOrderId());
+//
+//        return b;
+//    }
 
     @Override
     public boolean addAuthentication(AddAuthenticationReq req) {

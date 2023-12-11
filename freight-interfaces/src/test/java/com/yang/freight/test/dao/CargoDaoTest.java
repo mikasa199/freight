@@ -1,7 +1,7 @@
 package com.yang.freight.test.dao;
 
 import com.yang.freight.common.Location;
-import com.yang.freight.domain.driver.model.req.SubCargoReq;
+import com.yang.freight.domain.cargo.model.req.SubCargoReq;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.po.Cargo;
 import org.junit.Test;
