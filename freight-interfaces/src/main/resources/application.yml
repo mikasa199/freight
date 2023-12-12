@@ -11,6 +11,7 @@ spring:
       minimum-idle: 5
       maximum-pool-size: 15
       connection-timeout: 30000
+      max-lifetime: 1000
 
   redis:
     host: 43.143.31.48 #124.222.253.96 #ip地址

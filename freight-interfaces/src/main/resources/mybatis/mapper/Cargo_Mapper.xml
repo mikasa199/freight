@@ -75,11 +75,17 @@
                 WHEN #{code} = -5 THEN distance
             END DESC
     </select>
-    <select id="queryByBossId" resultType="com.yang.freight.infrastructure.po.Cargo">
+
+    <select id="queryByBossId" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
         SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
         FROM cargo
         WHERE boss_id = #{bossId}
+        LIMIT #{page}, #{pageSize}
     </select>
-
+    <select id="countByBossId" resultType="java.lang.Integer">
+        SELECT COUNT(cargo_id)
+        FROM cargo
+        WHERE boss_id = #{bossId}
+    </select>
 
 </mapper>

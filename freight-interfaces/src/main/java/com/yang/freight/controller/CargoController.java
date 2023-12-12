@@ -64,6 +64,18 @@ public class CargoController {
         return pageReturn;
     }
 
+    @GetMapping("list/bossId")
+    public Return<Page<CargoVO>> queryCargoPagesByBossId(long page, long pageSize, long bossId) {
+        logger.info("page:{},pageSize:{},code:{}",page,pageSize,bossId);
+        Page<CargoVO> cargoVOPage = new Page<>();
+        cargoVOPage.setCurrent(page);
+        cargoVOPage.setSize(pageSize);
+        long cargoCount = cargoService.countByBossId(bossId);
+        cargoVOPage.setTotal(cargoCount);
+        Return<Page<CargoVO>> pageReturn = cargoService.queryCargoPagesByBossId(cargoVOPage, bossId);
+        return pageReturn;
+    }
+
 //    @PostMapping("/order")
 //    public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
 //

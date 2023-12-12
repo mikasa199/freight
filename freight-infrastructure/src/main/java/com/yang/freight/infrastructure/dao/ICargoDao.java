@@ -65,10 +65,13 @@ public interface ICargoDao {
 
     /**
      * 根据司机id查询货物信息
+     *
+     * @param page
+     * @param pageSize
      * @param bossId
      * @return
      */
-    List<Cargo> queryByBossId(@Param("bossId") long bossId);
+    List<Cargo> queryByBossId(@Param("page") long page, @Param("pageSize") long pageSize, @Param("bossId") long bossId);
 
     /**
      * 查询货物信息数量
@@ -76,4 +79,6 @@ public interface ICargoDao {
      * @return
      */
     int cargoCount(@Param("cargoName") String cargoName);
+
+    int countByBossId(@Param("bossId") long bossId);
 }

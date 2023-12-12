@@ -7,6 +7,7 @@ import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.repository.IBossRepository;
 import com.yang.freight.domain.boss.service.release.IBossService;
+import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
 import org.slf4j.Logger;
@@ -122,7 +123,18 @@ public class BossServiceImpl implements IBossService {
 
     @Override
     public BossVO checkAndInit(String phone) {
-        return null;
+
+        BossVO bossVO = bossRepository.queryByPhone(phone);
+
+        if (bossVO != null) {
+            return bossVO;
+        }
+
+        BossVO bossVO1 = new BossVO();
+        bossVO1.setPhone(phone);
+        bossVO1.setBossId(idGeneratorMap.get(Constants.Ids.SnowFlake).nextId());
+        boolean b = bossRepository.addBoss(bossVO);
+        return bossVO1;
     }
 
     @Override

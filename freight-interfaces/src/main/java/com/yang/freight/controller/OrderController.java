@@ -43,7 +43,6 @@ public class OrderController {
 
     @GetMapping("/list/cargoId")
     public Return<Page<OrderRes>> queryByCargoId(long page, long pageSize, long cargoId) {
-
         logger.info("page:{},pageSize:{},cargoId:{}",page,pageSize,cargoId);
         Page<OrderRes> pageRes = new Page<>();
         pageRes.setCurrent(page);
