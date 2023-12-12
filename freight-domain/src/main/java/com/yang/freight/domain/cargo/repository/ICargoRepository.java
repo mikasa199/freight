@@ -31,11 +31,26 @@ public interface ICargoRepository {
     public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, int code);
 
     /**
+     * 根据bossid查询对应的货物信息
+     * @param page
+     * @param bossId
+     * @return
+     */
+    public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, long  bossId);
+
+    /**
      * 查询货物数量
      * @param cargoName
      * @return
      */
     public long cargoCount(String cargoName);
+
+    /**
+     * 根据bossId查询该老板发布的货物数量
+     * @param bossId
+     * @return
+     */
+    public long countByBossId(long bossId);
 
     /**
      * 根据货物id查询货物信息

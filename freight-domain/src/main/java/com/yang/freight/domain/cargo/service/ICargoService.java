@@ -37,6 +37,14 @@ public interface ICargoService {
     Return<Page<CargoVO>> queryCargoPagesSort(Page<CargoVO> page, int code);
 
     /**
+     * 根据老板id查询该老板发布的货物信息
+     * @param page
+     * @param bossId
+     * @return
+     */
+    Return<Page<CargoVO>> queryCargoPagesByBossId(Page<CargoVO> page, long bossId);
+
+    /**
      * 根据id查询货物信息
      * @param cargoId
      * @return
@@ -50,4 +58,11 @@ public interface ICargoService {
      * @param cargoName
      */
     long cargoCount(String cargoName);
+
+    /**
+     * 根据bossId查询对应该老板发布的货物的数量
+     * @param bossId
+     * @return
+     */
+    long countByBossId(long bossId);
 }

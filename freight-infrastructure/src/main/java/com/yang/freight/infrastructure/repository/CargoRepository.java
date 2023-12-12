@@ -117,8 +117,44 @@ public class CargoRepository implements ICargoRepository {
     }
 
     @Override
+    public Return<Page<CargoVO>> queryCargoListSort(Page<CargoVO> page, long bossId) {
+        long count =  countByBossId(bossId);
+        // page.setTotal(count);
+
+        long current = page.getCurrent();
+        long size = page.getSize();
+
+        // 计算总页数
+        if (count % size == 0) {
+            page.setTotal(count / size);
+        }else {
+            page.setTotal(count / size + 1);
+        }
+
+        List<Cargo> cargoList = cargoDao.queryByBossId((current - 1) * size, size,bossId);
+
+        ArrayList<CargoVO> list = new ArrayList<>();
+        for (Cargo cargo : cargoList) {
+            CargoVO cargoVO = new CargoVO();
+            logger.info(cargoVO.toString());
+            BeanUtils.copyProperties(cargo,cargoVO);
+            //坐标转换为位置信息
+            cargoVO.setBeginLocation(LocationUtils.coordinateToAddress(cargo.getBeginLocation()));
+            cargoVO.setEndLocation(LocationUtils.coordinateToAddress(cargo.getEndLocation()));
+            list.add(cargoVO);
+        }
+        page.setRecords(list);
+        return Return.success(page);
+    }
+
+    @Override
     public long cargoCount(String cargoName) {
         return cargoDao.cargoCount(cargoName);
+    }
+
+    @Override
+    public long countByBossId(long bossId) {
+        return cargoDao.countByBossId(bossId);
     }
 
     @Override

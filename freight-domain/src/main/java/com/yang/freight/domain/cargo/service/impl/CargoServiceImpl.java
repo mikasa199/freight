@@ -50,6 +50,12 @@ public class CargoServiceImpl implements ICargoService {
     }
 
     @Override
+    public Return<Page<CargoVO>> queryCargoPagesByBossId(Page<CargoVO> page, long bossId) {
+        Return<Page<CargoVO>> pageReturn = cargoRepository.queryCargoListSort(page, bossId);
+        return pageReturn;
+    }
+
+    @Override
     public CargoVO queryById(long cargoId) {
         return cargoRepository.queryById(cargoId);
     }
@@ -57,5 +63,10 @@ public class CargoServiceImpl implements ICargoService {
     @Override
     public long cargoCount(String cargoName) {
         return cargoRepository.cargoCount(cargoName);
+    }
+
+    @Override
+    public long countByBossId(long bossId) {
+        return cargoRepository.countByBossId(bossId);
     }
 }

@@ -5,6 +5,7 @@ import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.service.release.IBossService;
 import com.yang.freight.domain.driver.model.req.InitDriverReq;
+import com.yang.freight.domain.driver.model.vo.DriverVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,43 @@ public class BossController {
     public Return<BossVO> logon(@RequestBody InitBossReq req,HttpSession session){
         logger.info("用户登录：手机号：{}，密码：{}",req.getPhone(),req.getPassword());
         return bossService.bossLogon(req);
+    }
+
+    /**
+     * 验证码登录
+     * @param map
+     * @param session
+     * @return
+     */
+    @PostMapping("/logon/code")
+    public Return<BossVO> loginByCode (@RequestBody Map map, HttpSession session) {
+
+        String phone = map.get("phone").toString();
+        String code = map.get("code").toString();
+
+        //1. 获取session中发送给用户的验证码
+        //Object codeInSession = session.getAttribute(phone);
+
+        //1.1 从redis中获取缓存的验证码
+        Object codeInRedis = redisTemplate.opsForValue().get(phone);
+
+
+        logger.info("登录信息 phone:{},code:{},codeInSession:{}",phone,code,codeInRedis);
+
+
+        //2. 检验验证码是否与发送的验证匹配
+        if (null != codeInRedis && codeInRedis.equals(code)) {
+            BossVO bossVO = bossService.checkAndInit(phone);
+
+            //将用户id存入session中，标识用户已登录
+            session.setAttribute("boss",bossVO.getBossId());
+            logger.info("登录成功bossId:{}",bossVO.getBossId());
+
+            //登陆成功后将redis中的验证码删除
+            redisTemplate.delete(phone);
+            return Return.success(bossVO);
+        }
+        return Return.error("验证码错误");
     }
 
 //    @PostMapping("/addCargo")
