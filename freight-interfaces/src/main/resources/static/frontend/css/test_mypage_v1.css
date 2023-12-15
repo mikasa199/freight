@@ -75,8 +75,8 @@ a:hover{
 
 /* 用户资料区开始 */
 .user-container{
-    background-color: lightblue;
-    height: 10vh;
+    /* background-color: lightblue; */
+    height: 12vh;
     display: flex;
 }
 
@@ -87,18 +87,24 @@ a:hover{
     
 }
 
+.user-container a{
+    padding: 0;
+}
+
 .user-container .user-icon .img{
     width: 100%;
-    background-color: pink;;
+    /* background-color: pink; */
     margin: 0 auto;
     height: 100%;
+    padding: 0;
     box-sizing: border-box;
-    background: url(../img/app_logo.png) no-repeat center center/contain;;
+    
+    background: url(../img/app_logo.png) no-repeat center center/cover;;
 }
 
 .user-container .user-info{
     flex: 4;
-    background-color: pink;
+    /* background-color: pink; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -106,18 +112,20 @@ a:hover{
 
 .user-container .user-info .name{
     flex: 1;
-    color: #fff;
+    color: black;
     font-weight: bold;
     text-align: start;
     padding-top: 1vh;
     padding-left: 5%;
+    /* border-bottom: 1px solid lightgrey; */
 }
 .user-container .user-info .number{
     flex: 1;
-    color: #fff;
+    color: black;
     font-weight: bold;
     display: flex;
     justify-content: center;
+    padding-top: 1vh;
 }
 
 
@@ -125,6 +133,7 @@ a:hover{
 .user-container .user-info .phone{
     padding-left: 5%;
     flex: 2;
+    /* text-align: center; */
 }
 
 .user-container .user-info .Id{
@@ -143,8 +152,8 @@ a:hover{
 /* 内容详情区开始 */
 
 .content-container{
-    background-color: lightgrey;
-    height: 30vh;
+    background-color: #fff;
+    height: 40vh;
    
 }
 
@@ -152,10 +161,17 @@ a:hover{
     width: 100%;
     margin-bottom: 2vh;
     padding-left: 5%;
+    padding-bottom: 2vh;
+    border-bottom: 1.5px solid lightgrey;
 }
 
 .content-container li:nth-child(1){
     padding-top: 2vh;
+}
+
+.content-container li a i{
+    font-size: 1.2em;
+    padding-right: 5%;
 }
 
 
@@ -170,8 +186,7 @@ a:hover{
 .confirm-container{
     width: 90%;
     margin: 0 auto;
-    margin-top: 10vh;
-    height: 10vh;
+    height: 20vh;
 }
 
 .confirm-container button{
@@ -185,6 +200,9 @@ a:hover{
    
 }
 
+.confirm-container button:nth-child(1){
+    margin-bottom: 5vh;
+}
 
 
 /* 用户确认栏结束 */

@@ -32,6 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-### JS config ###
-freight-interfaces/src/main/resources/static/frontend/js/config.js
+# ### JS config ###
+# freight-interfaces/src/main/resources/static/frontend/js/config.js
 

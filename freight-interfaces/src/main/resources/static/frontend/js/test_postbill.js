@@ -97,7 +97,7 @@ document.querySelector('.post').addEventListener('click', function(e) {
     var endAddress = document.querySelector('input[name="address-end"]').value;
 
     // 从localstorage获取老板ID
-    const bossId = JSON.parse(localStorage.getItem('userId'));
+    const bossId = JSON.parse(localStorage.getItem('userInfo')).userId;
     // 定义一个函数用于发送数据到服务器
     function sendData(startPoint, endPoint) {
         axios({

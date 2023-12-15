@@ -7,7 +7,7 @@
     <title>拉货APP_验证码登陆界面</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4342566_6zta98qkv6i.css">
+    <link rel="stylesheet" href="../css/icon-font.css">
     <link rel="stylesheet" href="../css/test_login_verificationcode.css">
 </head>
 
@@ -45,15 +45,22 @@
 
 
 
-
-
         <!-- 用户确认区 -->
         <div class="confirm-container">
             <button class="user-confirm">登录</button>
         </div>
+
+        <!-- 在 HTML 中添加蒙层元素 -->
+        <div id="overlay" style="display:none;">
+            <div class="overlay-content">错误信息</div>
+        </div>
+
+
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/test_login.js"></script>
+    <script type="module" src="../js/test_login.verificationcode.js"></script>
 </body>
 
 </html>

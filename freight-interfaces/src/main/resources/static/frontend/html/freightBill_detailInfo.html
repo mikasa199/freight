@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP_司机接受订单页面</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/icon-font.css">
+    <link rel="stylesheet" href="../css/freightBill_detailInfo.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 顶部标题栏 -->
+        <div class="top-container">
+            <div class="title">货物详细信息</div>
+        </div>
+
+
+        <!-- 用户输入栏 -->
+        <form action="" class="cargo-input">
+
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">货物名称</div>
+                    <input type="text" name="cargo-name" readonly>
+                </div>
+
+                <div class="right">
+                    <div class="text">货物总重量</div>
+                    <input type="text" name="cargo-weight" readonly>
+                </div>
+            </div>
+
+
+            <div class="items">
+                <div class="text">装货起点</div>
+                <textarea name="address-start" readonly></textarea>
+            </div>
+
+            <div class="items">
+                <div class="text">卸货终点</div>
+                <textarea name="address-end" readonly></textarea>
+            </div>
+
+            <div class="items">
+                <div class="text">开始时间</div>
+                <textarea name="date-start" readonly></textarea>
+            </div>
+
+            <div class="items">
+                <div class="text">结束时间</div>
+                <textarea name="date-end" readonly></textarea>
+            </div>
+
+            <div class="items">
+                <div class="text">货物剩余重量</div>
+                <textarea name="date-stock" readonly></textarea>
+            </div>
+
+
+
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/freightBill_detailInfo.js"></script>
+</body>
+
+</html>
