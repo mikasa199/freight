@@ -31,10 +31,15 @@ function translateOrderState(stateCode) {
 
 
 
-function axiosDriverDetailList(cargoId) {
+function axiosDriverDetailList(cargoId,clearList = false) {
     if (isLoading) return; // 如果正在加载，则直接返回
     isLoading = true; // 设置加载标志为true
 
+
+    const list = document.querySelector('.content-container ul');
+    if (clearList) {
+        list.innerHTML = ''; // 清空列表
+    }
 
     axios({
         url: config.cargo_list_driverInfo,
@@ -45,10 +50,12 @@ function axiosDriverDetailList(cargoId) {
             pageSize: 10,
         }
     }).then(result => {
-        const records = result.data.records;
+        console.log(result);
+        const records = result.data.data.records;
+        console.log(records);
         maxPage = Math.ceil(result.data.total / pageSize); // 计算最大页数
+        
         const list = document.querySelector('.content-container ul');
-
         // 渲染records里的元素
         records.forEach(record => {
             const li = document.createElement('li');
@@ -101,7 +108,7 @@ function axiosDriverDetailList(cargoId) {
 }
 
 // 初始化页面时加载第一页数据
-axiosDriverDetailList(getCargoIdFromUrl());
+axiosDriverDetailList(getCargoIdFromUrl(),true);
 
 // 滚动事件监听器
 window.addEventListener('scroll', () => {

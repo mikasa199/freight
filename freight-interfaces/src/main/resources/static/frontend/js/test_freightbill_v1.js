@@ -3,8 +3,8 @@ import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    // const userIdentity = userInfo && userInfo.userIdentity;
-    let userIdentity = 'boss'
+    const userIdentity = userInfo && userInfo.userIdentity;
+    // let userIdentity = 'boss'
     if (userIdentity === 'boss') {
         // 执行boss相关的逻辑
         loadPageForBoss();
@@ -211,15 +211,31 @@ axios({
         pageSize: pageSize,
     }
 }).then(result => {
+    console.log(result);
     // 假设返回的数据结构是 result.data.data.records
     if (result.data && result.data.data && result.data.data.records) {
-        renderOrderData(result.data.records);
+        renderOrderData(result.data.data.records);
     } else {
         console.log('没有找到订单数据');
     }
 }).catch(error => {
     console.error('请求错误:', error);
 });
+
+        
+// 订单状态转换函数
+function translateOrderState(stateCode) {
+    const stateMap = {
+        '-1': '库存未扣减',
+        '0': '已接单',
+        '1': '正在运输',
+        '2': '运输结束',
+        '3': '确认到货',
+        '4': '已付款'
+    };
+
+    return stateMap[stateCode] || '未知状态';
+}
 
         
 // 司机端渲染函数
@@ -238,9 +254,9 @@ function renderOrderData(orders,clear = true) {
                             <div class="title">货物名：</div>
                             <div class="text">${order.cargoName || '无数据'}</div>
                         </div>
-                        <div class="driver-phone">
-                            <div class="title">手机号：</div>
-                            <div class="text">${order.phone || '无数据'}</div>
+                        <div class="order-value">
+                            <div class="title">订单总价：</div>
+                            <div class="text">${order.value || '无数据'}</div>
                         </div>
                     </div>
                     <div class="middle-part">
@@ -280,7 +296,7 @@ function renderOrderData(orders,clear = true) {
                         </div>
                         <div class="state">
                             <div class="title">订单状态</div>
-                            <div class="text">${order.state || '无数据'}</div>
+                            <div class="text">${translateOrderState(order.state) || '无数据'}</div>
                         </div>
                     </div>
                     <div class="orderId">
@@ -318,7 +334,7 @@ function loadMoreOrders() {
         }
     }).then(result => {
         if (result.data && result.data.data && result.data.data.records) {
-            renderOrderData(result.data.records, false); // 设置append为false，以追加数据
+            renderOrderData(result.data.data.records, false); // 设置append为false，以追加数据
             currentPage++; // 增加页码
             maxPage = Math.ceil(result.data.data.total / pageSize); // 更新最大页数
         } else {
