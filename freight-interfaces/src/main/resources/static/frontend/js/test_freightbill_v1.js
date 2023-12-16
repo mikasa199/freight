@@ -3,8 +3,8 @@ import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const userIdentity = userInfo && userInfo.userIdentity;
-    // let userIdentity = 'driver'
+    // const userIdentity = userInfo && userInfo.userIdentity;
+    let userIdentity = 'boss'
     if (userIdentity === 'boss') {
         // 执行boss相关的逻辑
         loadPageForBoss();
@@ -58,19 +58,22 @@ document.querySelector('.cargo-information').addEventListener('click', function 
 document.querySelector('.cargo-information').addEventListener('click', function (event) {
     if (event.target && event.target.matches('.btn-driver')) {
         const cargoId = event.target.getAttribute('data-cargoid');
-        axios({
-            url: config.cargo_list_driverInfo,
-            method: 'GET',
-            params: {
-                cargoId: cargoId,
-                page: 1,
-                pageSize:10,
-            }
-        }).then(result => {
-            console.log(result);
-        }).catch(error => {
-            console.log(error);
-        })
+
+        window.location.href = `./driverDetailList.html?cargoId=${cargoId}`;
+
+        // axios({
+        //     url: config.cargo_list_driverInfo,
+        //     method: 'GET',
+        //     params: {
+        //         cargoId: cargoId,
+        //         page: 1,
+        //         pageSize:10,
+        //     }
+        // }).then(result => {
+        //     console.log(result);
+        // }).catch(error => {
+        //     console.log(error);
+        // })
         
     }
 });
@@ -186,8 +189,150 @@ loadMoreData(currentPage);
 
 
     } else if (userIdentity === 'driver') {
-        // 执行driver相关的逻辑
-        loadPageForDriver();
+        
+    loadPageForDriver();
+
+// 假设 currentPage, pageSize, 和 driverId 已经定义
+
+// 页面滚动加载更多数据
+let currentPage = 1;
+let isLoading = false; // 添加一个标志来检查是否正在加载数据
+let maxPage = 0; // 最大页数初始化
+let pageSize = 10;
+const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+let driverId = userInfo.userId; // 示例值，根据实际情况替换      
+        
+axios({
+    url: config.my_order_driver_searchApi,
+    method: 'GET',
+    params: {
+        driverId: driverId,
+        page: currentPage,
+        pageSize: pageSize,
+    }
+}).then(result => {
+    // 假设返回的数据结构是 result.data.data.records
+    if (result.data && result.data.data && result.data.data.records) {
+        renderOrderData(result.data.records);
+    } else {
+        console.log('没有找到订单数据');
+    }
+}).catch(error => {
+    console.error('请求错误:', error);
+});
+
+        
+// 司机端渲染函数
+function renderOrderData(orders,clear = true) {
+    const list = document.querySelector('.cargo-information');
+    if (clear) list.innerHTML = ''; // 仅当clear为true时清空列表
+
+    orders.forEach(order => {
+        const li = document.createElement('li');
+        
+        li.innerHTML = `
+            <div class="driver-perspective-information-container">
+                <div class="msg-container">
+                    <div class="top-part">
+                        <div class="driver-name">
+                            <div class="title">货物名：</div>
+                            <div class="text">${order.cargoName || '无数据'}</div>
+                        </div>
+                        <div class="driver-phone">
+                            <div class="title">手机号：</div>
+                            <div class="text">${order.phone || '无数据'}</div>
+                        </div>
+                    </div>
+                    <div class="middle-part">
+                        <div class="createdTime">
+                            <div class="title">接单创建时间:</div>
+                            <div class="text">${order.createdTime || '无数据'}</div>
+                        </div>
+                        <div class="updatedTime">
+                            <div class="title">接单更新时间：</div>
+                            <div class="text">${order.updatedTime || '无数据'}</div>
+                        </div>
+                    </div>
+                    <div class="bottom-part">
+                        <div class="beginTime">
+                            <div class="title">开始时间：</div>
+                            <div class="text">${order.beginTime || '无数据'}</div>
+                        </div>
+                        <div class="endTime">
+                            <div class="title">结束时间:</div>
+                            <div class="text">${order.endTime || '无数据'}</div>
+                        </div>
+                    </div>
+                    <div class="boter-part">
+                        <div class="beginLocation">
+                            <div class="title">接货地点：</div>
+                            <div class="text">${order.beginLocation || '无数据'}</div>
+                        </div>
+                        <div class="endLocation">
+                            <div class="title">卸货地点：</div>
+                            <div class="text">${order.endLocation || '无数据'}</div>
+                        </div>
+                    </div>
+                    <div class="boter2-part">
+                        <div class="stock">
+                            <div class="title">承接载货量：</div>
+                            <div class="text">${order.stock || '无数据'}</div>
+                        </div>
+                        <div class="state">
+                            <div class="title">订单状态</div>
+                            <div class="text">${order.state || '无数据'}</div>
+                        </div>
+                    </div>
+                    <div class="orderId">
+                        #${order.orderId || '无数据'}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        list.appendChild(li);
+    });
+}
+
+// 添加滚动事件监听器
+window.addEventListener('scroll', () => {
+    // 检查用户是否滚动到页面底部
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        // 加载更多数据
+        loadMoreOrders();
+    }
+});
+
+// 分页查询加载更多订单的函数
+function loadMoreOrders() {
+    if (isLoading || currentPage > maxPage) return; // 如果正在加载或已达到最大页数，则不执行
+    isLoading = true;
+
+    axios({
+        url: config.my_order_driver_searchApi,
+        method: 'GET',
+        params: {
+            driverId: driverId,
+            page: currentPage,
+            pageSize: pageSize,
+        }
+    }).then(result => {
+        if (result.data && result.data.data && result.data.data.records) {
+            renderOrderData(result.data.records, false); // 设置append为false，以追加数据
+            currentPage++; // 增加页码
+            maxPage = Math.ceil(result.data.data.total / pageSize); // 更新最大页数
+        } else {
+            console.log('没有更多订单数据');
+        }
+        isLoading = false;
+    }).catch(error => {
+        console.error('请求错误:', error);
+        isLoading = false;
+    });
+}
+
+
+
     }
 });
 
@@ -195,16 +340,17 @@ loadMoreData(currentPage);
 
 function loadPageForBoss() {
     // 显示boss视角的元素，隐藏driver视角的元素
-    document.querySelectorAll('.information-container').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.driver-perspective-information-container').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.boss-perspective-information-container').forEach(el => el.style.display = 'block');
     document.querySelector('.container').style.backgroundColor = '#fff';
 }
 
 function loadPageForDriver() {
     // 显示driver视角的元素，隐藏boss视角的元素
-    document.querySelectorAll('.information-container').forEach(el => el.style.display = 'block');
+    // document.querySelectorAll('.information-container').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.driver-perspective-information-container').forEach(el => el.style.display = 'block');
     document.querySelectorAll('.boss-perspective-information-container').forEach(el => el.style.display = 'none');
-    document.querySelector('.container').style.backgroundColor = 'lightgrey';
+    document.querySelector('.container').style.backgroundColor = '#fff';
 }
 
 

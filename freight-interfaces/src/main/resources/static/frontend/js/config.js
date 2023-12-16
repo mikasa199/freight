@@ -26,7 +26,7 @@ const config = {
     account_boss_update_nameApi: `${url}/boss/update/name`,    //修改老板用户名
     account_boss_update_passwordApi: `${url}/boss/update/password`,   //修改老板密码
     
-    my_order_driver_searchApi:`${url}/order/list/driverId`,    // 司机查看自己订单
+    my_order_driver_searchApi:`${url}/order/list/driverId`,    // 司机查看自己接的订单     params:{driverId, page , pageSize}
     my_cargo_boss_searchApi: `${url}/cargo/list/bossId`,    // 老板查看自己订单
     cargo_list_driverInfo: `${url}/order/list/cargoId`,   //老板查看司机的接单订单   params:{cargoId,page,pageSize}
     my_cargo_boss_searchDetailsApi: `${url}/cargo/cargoId`,    // 老板查看详细货物订单

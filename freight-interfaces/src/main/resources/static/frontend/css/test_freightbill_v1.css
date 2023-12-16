@@ -172,6 +172,253 @@ a:hover{
 /* 司机端货物详细信息栏开始 */
 
 
+.driver-perspective-information-container .msg-container{
+    background-color: rgb(239, 238, 238);
+    min-height: 30vh;
+    width: 90%;
+    margin: 0% auto;
+    border-radius: 5px;
+    padding-top: 1vh;
+    position: relative;
+    margin-bottom: 2vh;
+    padding-bottom: 2vh;
+}
+
+
+.driver-perspective-information-container .msg-container .orderId{
+    position: absolute;
+    left: 5%;
+    top: 1.5vh;
+    color: red ;
+}
+
+/* 顶部 */
+.top-part{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5vh;
+}
+
+/* 司机名 */
+.driver-perspective-information-container .msg-container .driver-name{
+    padding-left: 5%;
+    flex: 1;
+}
+
+.driver-perspective-information-container .msg-container .driver-name .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.driver-perspective-information-container .msg-container .driver-name .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+
+}
+
+/* 司机手机号 */
+.top-part .driver-phone{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.top-part .driver-phone .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.top-part .driver-phone .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+}
+
+/* 中部 */
+.middle-part {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vh;
+}
+
+
+/* 订单创建时间 */
+.middle-part .createdTime{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.middle-part .createdTime .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+
+}
+
+.middle-part .createdTime .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+    word-wrap: break-word; /* 允许长单词或URL在边界内断行 */
+    white-space: normal; /* 文本会换行 */
+
+}
+
+
+.middle-part .updatedTime{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.middle-part .updatedTime .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.middle-part .updatedTime .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+    word-wrap: break-word; /* 允许长单词或URL在边界内断行 */
+    white-space: normal; /* 文本会换行 */
+}
+
+/* 底部栏开始 */
+
+.bottom-part{
+    display: flex;
+    
+    justify-content: space-between;
+    margin-top: 1vh;
+}
+
+
+.bottom-part .beginTime{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.bottom-part .beginTime .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.bottom-part .beginTime .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+}
+
+
+.bottom-part .endTime{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.bottom-part .endTime .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.bottom-part .endTime .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+}
+
+/* 更底部 */
+.boter-part{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vh;
+}
+
+.boter-part .beginLocation,
+.boter-part .endLocation{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.boter-part .beginLocation .title,
+.boter-part .endLocation .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.boter-part .beginLocation .text,
+.boter-part .endLocation .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+    word-wrap: break-word; /* 允许长单词或URL在边界内断行 */
+    white-space: normal; /* 文本会换行 */
+}
+
+/* 更更底部*/
+
+.boter2-part{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vh;
+}
+
+.boter2-part .stock,
+.boter2-part .state{
+    flex: 1;
+    padding-left: 5%;
+}
+
+.boter2-part .stock .title,
+.boter2-part .state .title{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.boter2-part .stock .text,
+.boter2-part .state .text{
+    font-size: 1em;
+    color: #666;
+    padding-bottom: 1vh;
+    border-bottom: 1px dashed #000;
+    width: 80%;
+    word-wrap: break-word; /* 允许长单词或URL在边界内断行 */
+    white-space: normal; /* 文本会换行 */
+}
+
+
+
+
+
+
+
+
+
+
+/* 司机端货物详细信息栏开始 */
+
+/* 已舍去样式 */
+
 .information-container{
     background-color: #fff;
     width: 90%;
@@ -381,6 +628,10 @@ a:hover{
 /* 初始加载货物类型信息结束 */
 
 
+/* 已舍弃样式 */
+
+
+
 /* 老板端视角元素开始 */
 
 .boss-perspective-information-container{
@@ -391,7 +642,7 @@ a:hover{
     background-color: #fff;
     border-bottom: 1px solid lightgrey;
     /* margin-bottom: 1vh; */
-    /* display: none; */
+    display: none;
     
 }
 
