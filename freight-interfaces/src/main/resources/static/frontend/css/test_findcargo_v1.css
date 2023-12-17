@@ -50,6 +50,12 @@ a:hover{
 /* 通用样式结束 */
 
 
+
+
+
+
+
+
 /* 顶部标题栏开始 */
 .top-container{
     background-color: #3262f4;
@@ -225,6 +231,9 @@ a:hover{
 /* 顶部标题栏结束 */
 
 
+
+
+
 /* 在 .top-container 下方的第一个元素上添加顶部边距 */
 .content-container{
     margin-top: 25vh; 
@@ -238,7 +247,6 @@ a:hover{
 }
 
 
-
 .content-container .information-container{
     background-color: #fff;
     width: 90%;
@@ -247,12 +255,14 @@ a:hover{
     /* height: 30vh; */
     border-radius: 10px;
     position: relative;
+    
 }
 
 /* 地址信息 */
 
 .information-container .address{
-   
+    box-sizing: border-box;
+    padding-top: 1vh;
     width: 80%;
     height: 12vh;
     position: relative;
@@ -433,7 +443,7 @@ a:hover{
     height: 10vh;
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 5px;
     right: 0;
    
     

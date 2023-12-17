@@ -31,16 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const cargoInfo = JSON.parse(localStorage.getItem('cargoInfo'));
-const userId = JSON.parse(localStorage.getItem('userId'));
+const userId = JSON.parse(localStorage.getItem('userInfo')).userId;
+
+
 document.querySelector('.confirm-container .accept').addEventListener('click', (event) => {
     event.preventDefault();
+
+    const subStock = document.querySelector('.driver-input .items input[name="driver-cargo-weight"]').value 
+    console.log(userId);
+    console.log(subStock);
     axios({
         url: config.acceptBillApi,
         method:'POST',
         data: {
             cargoId:cargoInfo.cargoId,
             driverId:userId,
-            subStock:cargoInfo.cargo_weight   //确定下subStock是什么
+            subStock:subStock   //用户自己填的载货重量
         }
     }).then(result => {
         console.log(result);

@@ -14,7 +14,7 @@ document.querySelector('.top-container .list-items .list-title').addEventListene
     temp_conditionList.style.display = 'block'
 })
 
-temp_conditionList_ul.addEventListener('click', function (event) {
+temp_conditionList_ul.addEventListener('click', function (event){
     if (event.target.tagName === 'LI') {
         temp_conditionName.innerText = event.target.innerText
         // 选择完排序类型后关闭
@@ -89,12 +89,13 @@ function GetCargoInfo() {
 
                         <!-- 司机ID和货物ID -->
                         <div class="id-Info">
-                            <div class="driverId">${items.bossId}</div>
-                            <div class="cargoId">${items.cargoId}</div>
+                            <div class="driverId">${BigInt(items.bossId).toString()}</div>
+                            <div class="cargoId">${BigInt(items.cargoId).toString()}</div>
                         </div>
                     </div>
                 </li>
             `
+            
         }).join('')
 
         console.log(htmlStr);
@@ -215,7 +216,7 @@ document.querySelector('.content-container ul').addEventListener('click', functi
             start_date: listItem.querySelector('.goods .date .date_text').textContent,
             cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
             cargo_price: listItem.querySelector('.goods-kind .price').textContent,
-            cargo_weight: listItem.querySelector('.goods-kind .weight').textContent
+            // cargo_weight: listItem.querySelector('.goods-kind .weight').textContent
         };
 
         // 存储数据到 LocalStorage
@@ -331,9 +332,10 @@ function renderCargoInfo(cargoList) {
 
             <!-- 司机ID和货物ID -->
             <div class="id-Info">
-                <div class="driverId">${items.bossId}</div>
-                <div class="cargoId">${items.cargoId}</div>
+                <div class="driverId">${BigInt(items.bossId).toString()}</div>
+                <div class="cargoId">${BigInt(items.cargoId).toString()}</div>
             </div>
+            
         </div>
     </li>
         `;
@@ -386,15 +388,13 @@ function appendDataToPage(data) {
                 <div class="distance-info">总里程${items.distance}公里</div>
             </div>
 
-
-
             <!-- 接单链接 -->
             <a href="javascript:void(0)" class="accept-bill">接单</a>
 
             <!-- 司机ID和货物ID -->
             <div class="id-Info">
-                <div class="driverId">${items.bossId}</div>
-                <div class="cargoId">${items.cargoId}</div>
+                <div class="driverId">${BigInt(items.bossId).toString()}</div>
+                <div class="cargoId">${BigInt(items.cargoId).toString()}</div>
             </div>
         </div>
     </li>
