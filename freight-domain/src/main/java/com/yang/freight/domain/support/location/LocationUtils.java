@@ -185,6 +185,7 @@ public class LocationUtils {
     }
 
     public static boolean getStatus(String jsonString) {
+        logger.info("coordinateJson:{}",jsonString);
         JSONObject jsonObject = JSON.parseObject(jsonString);
         String status = jsonObject.getString("status");
         return "1".equals(status);

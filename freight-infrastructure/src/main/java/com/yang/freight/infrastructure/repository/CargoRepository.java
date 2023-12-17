@@ -160,8 +160,14 @@ public class CargoRepository implements ICargoRepository {
     @Override
     public CargoVO queryById(long cargoId) {
         Cargo cargo = cargoDao.queryById(cargoId);
+        if (null == cargo) {
+            return null;
+        }
         CargoVO cargoVO = new CargoVO();
         BeanUtils.copyProperties(cargo,cargoVO);
+        //坐标转换为位置信息
+        cargoVO.setBeginLocation(LocationUtils.coordinateToAddress(cargo.getBeginLocation()));
+        cargoVO.setEndLocation(LocationUtils.coordinateToAddress(cargo.getEndLocation()));
         return cargoVO;
     }
 }

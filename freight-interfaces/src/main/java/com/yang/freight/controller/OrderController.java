@@ -4,7 +4,6 @@ import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.order.model.req.SubmitOrderReq;
 import com.yang.freight.domain.order.model.res.OrderRes;
-import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.order.service.IOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,4 +59,5 @@ public class OrderController {
         Return<Page<OrderRes>> pageReturn = orderService.queryByDriverId(pageRes, driverId);
         return pageReturn;
     }
+
 }

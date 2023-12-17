@@ -9,6 +9,7 @@ import com.yang.freight.domain.order.model.res.OrderRes;
 import com.yang.freight.domain.order.model.vo.OrderVO;
 import com.yang.freight.domain.order.repository.IOrderRepository;
 import com.yang.freight.domain.support.ids.IIdGenerator;
+import com.yang.freight.domain.support.location.LocationUtils;
 import com.yang.freight.infrastructure.dao.ICargoDao;
 import com.yang.freight.infrastructure.dao.IOrderDao;
 import com.yang.freight.infrastructure.po.Cargo;
@@ -148,7 +149,13 @@ public class OrderRepository implements IOrderRepository {
 
         if (orderList.size() == 0) {
             logger.info("没有查询到对应司机的订单 driverId:{}",driverId);
-            return null;
+            return page;
+        }
+        for(OrderRes res : orderList) {
+            logger.info(res.getBeginLocation()+res.getEndLocation());
+            res.setBeginLocation(LocationUtils.coordinateToAddress(res.getBeginLocation()));
+            res.setEndLocation(LocationUtils.coordinateToAddress(res.getEndLocation()));
+            logger.info(res.getBeginLocation()+res.getEndLocation());
         }
         page.setRecords(orderList);
         return page;

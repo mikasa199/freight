@@ -73,4 +73,12 @@ public class OrderRes {
      * 订单状态 -1:库存未扣减 0:已接单 1:正在运输 2:运输结束 3:确认到货 4:已付款
      */
     private Integer state;
+
+    private Date createdTime;
+
+    private Date updatedTime;
+
+    private String driverName;
+
+    private String phone;
 }
