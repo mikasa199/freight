@@ -31,6 +31,10 @@
         <result column="cargo_weight" property="cargoWeight"/>
         <result column="value" property="value"/>
         <result column="state" property="state"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="driver_name" property="driverName"/>
+        <result column="phone" property="phone"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Order">
@@ -50,7 +54,8 @@
     <select id="queryByDriverId" resultType="com.yang.freight.domain.order.model.res.OrderRes" resultMap="OrderResMap">
         SELECT  o.order_id,o.cargo_id,c.cargo_name,c.begin_location,c.end_location,
                 c.distance,c.begin_time,c.end_time,c.stock,c.info,
-                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state
+                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state,
+                o.created_time,o.updated_time
         FROM `order` o
         INNER JOIN cargo c ON o.cargo_id = c.cargo_id
         WHERE o.driver_id = #{driverId}
@@ -59,9 +64,12 @@
     <select id="queryByCargoId" resultType="com.yang.freight.domain.order.model.res.OrderRes" resultMap="OrderResMap">
         SELECT  o.order_id,o.cargo_id,c.cargo_name,c.begin_location,c.end_location,
                 c.distance,c.begin_time,c.end_time,c.stock,c.info,
-                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state
+                o.boss_id,o.driver_id,o.cargo_weight,o.value,o.state,
+                o.created_time,o.updated_time,
+                d.driver_name,d.phone
         FROM `order` o
         INNER JOIN cargo c ON o.cargo_id = c.cargo_id
+        INNER JOIN driver d ON o.driver_id = d.driver_id
         WHERE o.cargo_id = #{cargoId}
         LIMIT #{page}, #{pageSize}
     </select>

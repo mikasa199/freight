@@ -39,7 +39,7 @@ public class CargoController {
         }
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
 
         logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
@@ -52,7 +52,7 @@ public class CargoController {
         return pageReturn;
     }
 
-    @GetMapping("list/sort")
+    @GetMapping("/list/sort")
     public Return<Page<CargoVO>> queryCargoPagesSort(long page, long pageSize, int code) {
         logger.info("page:{},pageSize:{},code:{}",page,pageSize,code);
         Page<CargoVO> cargoVOPage = new Page<>();
@@ -64,9 +64,9 @@ public class CargoController {
         return pageReturn;
     }
 
-    @GetMapping("list/bossId")
+    @GetMapping("/list/bossId")
     public Return<Page<CargoVO>> queryCargoPagesByBossId(long page, long pageSize, long bossId) {
-        logger.info("page:{},pageSize:{},code:{}",page,pageSize,bossId);
+        logger.info("page:{},pageSize:{},bossId:{}",page,pageSize,bossId);
         Page<CargoVO> cargoVOPage = new Page<>();
         cargoVOPage.setCurrent(page);
         cargoVOPage.setSize(pageSize);
@@ -76,6 +76,17 @@ public class CargoController {
         return pageReturn;
     }
 
+    @GetMapping("/cargoId")
+    public Return<CargoVO> queryCargoByCargoId(long cargoId) {
+        logger.info("cargoId:{}",cargoId);
+        CargoVO cargoVO = cargoService.queryById(cargoId);
+        if (null == cargoVO) {
+            logger.info("无对应货物信息 cargoId:{}",cargoId);
+            return Return.error("无对应货物信息");
+        }
+        logger.info(cargoVO.toString());
+        return Return.success(cargoVO);
+    }
 //    @PostMapping("/order")
 //    public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
 //

@@ -1,5 +1,7 @@
 package com.yang.freight.test.dao;
 
+import com.yang.freight.domain.order.model.res.OrderRes;
+import com.yang.freight.domain.order.repository.IOrderRepository;
 import com.yang.freight.infrastructure.dao.IOrderDao;
 import com.yang.freight.infrastructure.po.Order;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @description:
@@ -26,6 +29,8 @@ public class OrderDaoTest {
 
     @Resource
     private IOrderDao orderDao;
+
+    private IOrderRepository orderRepository;
 
 //    void insert(Order order);
 
@@ -46,4 +51,25 @@ public class OrderDaoTest {
         order.setInfo("订单备注信息");
         orderDao.insert(order);
     }
+
+    @Test
+    public void queryTest() {
+        List<OrderRes> orderRes = orderDao.queryByCargoId(0, 10, 1733889063930462208L);
+        List<OrderRes> orderRes1 = orderDao.queryByDriverId(0, 10, 1732419097892913152L);
+        if (orderRes.size() != 0) {
+            for (OrderRes res : orderRes) {
+                logger.info(res.toString());
+            }
+
+        }
+        if (orderRes1.size() != 0) {
+            for (OrderRes res : orderRes1) {
+                logger.info(res.toString());
+            }
+        }
+        int i = orderDao.countByDriverId(1732419097892913152L);
+        logger.info("size:{}",orderRes.size());
+        logger.info("size:{},count:{}",orderRes1.size(), i);
+    }
+
 }
