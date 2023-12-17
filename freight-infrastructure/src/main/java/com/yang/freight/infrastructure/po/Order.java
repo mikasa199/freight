@@ -3,6 +3,7 @@ package com.yang.freight.infrastructure.po;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -61,12 +62,14 @@ public class Order {
     /**
      * 订单创建时间
      */
-    private Date createTime;
+    //private Date createTime;
+    private LocalDateTime createTime;
+
 
     /**
      * 订单更新时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 
 }

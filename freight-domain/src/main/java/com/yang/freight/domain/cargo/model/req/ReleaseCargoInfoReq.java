@@ -3,6 +3,7 @@ package com.yang.freight.domain.cargo.model.req;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -26,9 +27,9 @@ public class ReleaseCargoInfoReq {
 
     private BigDecimal value;
 
-    private Date beginTime;
+    private LocalDateTime beginTime;
 
-    private Date endTime;
+    private LocalDateTime endTime;
 
     private String info;
 

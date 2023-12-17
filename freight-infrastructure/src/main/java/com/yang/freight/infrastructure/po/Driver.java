@@ -2,6 +2,7 @@ package com.yang.freight.infrastructure.po;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -46,11 +47,11 @@ public class Driver {
     /**
      * 注册日期
      */
-    private Date registerDate;
+    private LocalDateTime registerDate;
 
     /**
      * 更新日期
      */
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
 }

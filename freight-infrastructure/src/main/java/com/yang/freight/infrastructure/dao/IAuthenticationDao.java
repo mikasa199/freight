@@ -1,6 +1,5 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.driver.model.req.AuthenticationStatusUpdateReq;
 import com.yang.freight.infrastructure.po.Authentication;
 import org.apache.ibatis.annotations.Mapper;
 
