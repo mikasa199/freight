@@ -3,6 +3,7 @@ package com.yang.freight.domain.order.model.res;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -37,12 +38,12 @@ public class OrderRes {
     /**
      * 货物运输开始时间
      */
-    private Date beginTime;
+    private LocalDateTime beginTime;
 
     /**
      * 货物运输结束时间
      */
-    private Date endTime;
+    private LocalDateTime endTime;
 
     /**
      * 剩余货物库存
@@ -74,9 +75,9 @@ public class OrderRes {
      */
     private Integer state;
 
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
-    private Date updatedTime;
+    private LocalDateTime updatedTime;
 
     private String driverName;
 

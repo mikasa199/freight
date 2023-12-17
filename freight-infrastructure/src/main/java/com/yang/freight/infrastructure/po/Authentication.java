@@ -2,6 +2,7 @@ package com.yang.freight.infrastructure.po;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -40,12 +41,12 @@ public class Authentication {
     /**
      * 身份证有效期开始时间
      */
-    private Date idCardValidFrom;
+    private LocalDateTime idCardValidFrom;
 
     /**
      * 身份证有效期截至时间
      */
-    private Date idCardValidTo;
+    private LocalDateTime idCardValidTo;
 
     /**
      * 驾驶证
@@ -55,7 +56,7 @@ public class Authentication {
     /**
      * 驾驶证有效期截止日期
      */
-    private Date driverLicenseValidTo;
+    private LocalDateTime driverLicenseValidTo;
 
     /**
      * 从业资格证

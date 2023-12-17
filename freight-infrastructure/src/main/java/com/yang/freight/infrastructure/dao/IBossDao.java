@@ -1,9 +1,8 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq;
 import com.yang.freight.infrastructure.po.Boss;
 import org.apache.ibatis.annotations.Mapper;
-import sun.security.util.Password;
+
 
 /**
  * @description:
