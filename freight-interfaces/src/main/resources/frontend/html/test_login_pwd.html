@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>拉货APP_验证码登陆界面</title>
+    <title>拉货APP_登陆界面</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/icon-font.css">
-    <link rel="stylesheet" href="../css/test_login_verificationcode.css">
+    <link rel="stylesheet" href="../css/test_login_pwd.css">
 </head>
 
 <body>
@@ -29,38 +29,33 @@
 
 
         <!-- 用户输入栏 -->
+
         <form action="" class="user-input">
+
             <input type="tel" name="phone" class="user-phone" placeholder="请输入手机号">
-            <button class="get-code">获取验证码</button>
-            <input type="text" name="verification-code" class="verification-code" placeholder="请输入短信验证码">
-
-
+            <input type="password" name="pwd" class="user-password" placeholder="请输入8-12位登录密码">
 
         </form>
         <!-- 额外选项栏 -->
         <div class="tip-container">
-            <a href="./test_login_pwd.html" class="verification-code-login">密码登录</a>
+            <a href="../../static/test_login_verificationcode.html" class="verification-code-login">验证码登录</a>
             <a href="#" class="forget-pwd">忘记密码?</a>
         </div>
 
-
-
         <!-- 用户确认区 -->
         <div class="confirm-container">
-            <button class="user-confirm">登录</button>
+            <button class="user-confirm" disabled>登录</button>
         </div>
+
 
         <!-- 在 HTML 中添加蒙层元素 -->
         <div id="overlay" style="display:none;">
             <div class="overlay-content">错误信息</div>
         </div>
 
-
-
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="../js/test_login.verificationcode.js"></script>
+    <script type="module" src="../js/test_login_pwd.js"></script>
 </body>
 
 </html>
