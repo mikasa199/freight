@@ -1,0 +1,265 @@
+
+/* 通用样式开始 */
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    color:#666;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.container{
+    background-color: #fff;
+    height: 2000vh;
+}
+
+/* 修改container的最大宽度为1280 根据设计稿的要求 */
+@media screen and (min-width:768px){
+    .container,
+    .top-container,
+    .bottom-nav-container{
+        width: 720px;
+        margin: 0 auto;
+    }
+
+}
+
+
+
+
+/* 通用样式结束 */
+
+/* 顶部标题栏开始 */
+
+.top-container{
+    background-color: #3262f4;
+    height: 12vh;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 去除固定定位 */
+    line-height: 12vh;
+
+
+}
+
+.top-container .title{
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    
+}
+
+.top-container .logo{
+    position: absolute;
+    right: 5%;
+    top: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+
+
+/* 顶部标题栏结束 */
+
+/* 用户资料区开始 */
+.user-container{
+    /* background-color: lightblue; */
+    height: 12vh;
+    display: flex;
+}
+
+.user-container .user-icon{
+    flex: 1;
+    /* background-color: red; */
+    line-height: 10vh;
+    
+}
+
+.user-container a{
+    padding: 0;
+}
+
+.user-container .user-icon .img{
+    width: 100%;
+    /* background-color: pink; */
+    margin: 0 auto;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    
+    background: url(../img/app_logo.png) no-repeat center center/cover;;
+}
+
+.user-container .user-info{
+    flex: 4;
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.user-container .user-info .name{
+    flex: 1;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1vh;
+    padding-left: 5%;
+    /* border-bottom: 1px solid lightgrey; */
+}
+.user-container .user-info .number{
+    flex: 1;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1vh;
+}
+
+
+
+.user-container .user-info .phone{
+    padding-left: 5%;
+    flex: 2;
+    /* text-align: center; */
+}
+
+.user-container .user-info .Id{
+    text-align: end;
+    padding-right: 5%;
+    flex: 1;
+}
+
+
+
+/* 用户资料区结束 */
+
+
+
+/* 内容详情区开始 */
+
+.content-container{
+    background-color: #fff;
+    height: 40vh;
+   
+}
+
+.content-container li{
+    width: 100%;
+    margin-bottom: 2vh;
+    padding-left: 5%;
+    padding-bottom: 2vh;
+    border-bottom: 1.5px solid lightgrey;
+}
+
+.content-container li:nth-child(1){
+    padding-top: 2vh;
+}
+
+.content-container li a i{
+    font-size: 1.2em;
+    padding-right: 5%;
+}
+
+
+
+/* 内容详情区结束 */
+
+
+
+
+/* 用户确认栏开始 */
+
+.confirm-container{
+    width: 90%;
+    margin: 0 auto;
+    height: 20vh;
+}
+
+.confirm-container button{
+    background-color: #3262f4;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: 6vh;
+    border-radius: 10px;
+    color: #fff;
+   
+}
+
+.confirm-container button:nth-child(1){
+    margin-bottom: 5vh;
+}
+
+
+/* 用户确认栏结束 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 底部导航栏开始 */
+
+
+.bottom-nav-container{
+    display: flex;
+    background-color: #fff;
+    height: 10vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom-nav-container .nav-items{
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #9b9b9b;
+    
+    
+}
+
+.bottom-nav-container .nav-items.active{
+    color: #3262f4;
+}
+
+.bottom-nav-container .nav-items .logo{
+    flex: 1;
+    font-size:1.5em;
+}
+
+.bottom-nav-container .nav-items .text{
+    flex: 1;
+    font-size: 1em;
+    font-weight: bold;
+    
+}
+
+
+
+/* 底部导航栏结束 */

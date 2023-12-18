@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP_司机接受订单页面</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/icon-font.css">
+    <link rel="stylesheet" href="../css/test_acceptbill.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 顶部标题栏 -->
+        <div class="top-container">
+            <div class="title">承接运单</div>
+        </div>
+
+
+        <!-- 用户输入栏 -->
+        <form action="" class="cargo-input">
+
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">货物名称</div>
+                    <input type="text" name="cargo-name" readonly>
+                </div>
+
+                <div class="right">
+                    <div class="text">货物重量</div>
+                    <input type="text" name="cargo-weight" readonly>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="text">装货起点</div>
+                <input type="text" name="address-start" readonly>
+            </div>
+
+            <div class="items">
+                <div class="text">卸货终点</div>
+                <input type="text" name="address-end" readonly>
+            </div>
+
+            <!-- <div class="half-items">
+                <div class="left">
+                    <div class="text">装货起点</div>
+                    <input type="text" name="address-start">
+                </div>
+                <div class="right">
+                    <div class="text">卸货终点</div>
+                    <input type="text" name="address-end">
+                </div>
+
+            </div> -->
+
+            <div class="items">
+                <div class="text">开始时间</div>
+                <input type="text" name="date-start" readonly>
+            </div>
+
+            <!-- <div class="half-items">
+                <div class="left">
+                    <div class="text">开始时间</div>
+                    <input type="text" name="date-start">
+                </div>
+                <div class="right">
+                    <div class="text">结束时间</div>
+                    <input type="text" name="date-end">
+                </div>
+            </div> -->
+
+        </form>
+
+
+        <!-- 司机承接信息栏 -->
+        <form action="" class="driver-input">
+            <div class="desc">您的信息</div>
+
+            <div class="items">
+                <div class="text">您的承接重量</div>
+                <input type="text" name="driver-cargo-weight">
+            </div>
+
+            <div class="items">
+                <div class="text">您的承接时间</div>
+                <input type="text" name="driver-cargo-time">
+            </div>
+
+
+            <!-- 用户确认区 -->
+            <div class="confirm-container">
+                <button class="save">暂存</button>
+                <button class="accept">接单</button>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/test_acceptbill.js"></script>
+</body>
+
+</html>
