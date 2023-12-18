@@ -147,7 +147,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         showOverlay("登录成功");
 
         // 登录成功后跳转到 mypage 页面
-        window.location.href = './test_mypage_v1.html';
+        window.location.href = '../frontend/html/test_mypage_v1.html';
         
         
     }).catch(error => {

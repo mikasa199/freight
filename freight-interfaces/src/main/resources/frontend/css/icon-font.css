@@ -1,2 +1,6 @@
-/* icon-font.css */
-@import url("//at.alicdn.com/t/c/font_4342566_5f25suidlms.css");
+
+/* icon-font.css  远程字体图标资源
+@import url("//at.alicdn.com/t/c/font_4342566_5f25suidlms.css");   */
+
+@import url('../font/iconfont.css');
+
