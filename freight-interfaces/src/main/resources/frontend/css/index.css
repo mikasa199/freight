@@ -1,0 +1,298 @@
+@import "//at.alicdn.com/t/c/font_4298814_f1tl2f6o9bg.css";
+
+/* 页面通用样式开始 */
+
+
+body {
+    /* font: normal 16px/1.5 PingFangSC-regular, Tahoma, Lucida Grande, Verdana, Microsoft Yahei, STXihei, hei; */
+    font: normal 4vw PingFangSC-regular, Tahoma, Lucida Grande, Verdana, Microsoft Yahei, STXihei, hei;
+    background-color: #f4f4f4;
+    
+    /* min-width: 320px;  */
+    max-width: 100vw;
+    /* max-width: 540px; */
+    margin: 0 auto;
+    overflow-x: hidden;
+    color: #000;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+/* 页面通用样式结束 */
+
+
+
+/* 页面统一样式开始 */
+
+.section {
+    width: 100%;
+}
+
+
+
+/* 页面统一样式结束 */
+
+
+
+
+/* 标题栏开始 */
+
+
+/* 天气状态 */
+.title-container {
+    display: flex;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    justify-content: space-between;
+    /* height: 60px; */
+    height: 8.2vh;
+
+}
+
+
+.title-container .weather-item {
+    width: 20%;
+    /* margin-left: 10px; */
+    /* padding: 10px 5px; */
+    padding: 1vh 1vw;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    
+}
+
+
+.title-container .weather-item .temperature {
+    flex: 1;
+    padding: 5px 5px;
+    font-size: 5vw;
+    /* font-size: 1.3em; */
+}
+
+
+
+.title-container .weather-item .weather-texts {
+    flex: 1;
+    padding: 2px 2px;
+    /* font-size: 0.5em; */
+    font-size: 2vw;
+    background-color: lightcoral;
+    text-wrap: nowrap;
+    
+}
+
+
+
+/* APP标题 */
+.title-container .app-title {
+    flex: 1;
+    line-height: 60px;
+    /* font-size: 1.2rem; */
+    text-align: center;
+    font-size: 3.1vw;
+}
+
+
+/* 注册组件 */
+.title-container .register-item {
+    width: 30%;
+    margin-right: 10px;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.title-container .register-item .register-box {
+    background-color: #ff0000c2;
+    display: flex;
+    justify-content: space-between;
+    /* height: 30px; */
+    height: 4.1vh;
+    border-radius: 6px;
+    padding: 2px 5px;
+    text-wrap: nowrap;
+    line-height: 30px;
+    
+}
+
+.title-container .register-item .register-box .register-text {
+    flex: 1;
+    /* font-size: 15px; */
+    box-sizing: border-box;
+    padding: 0px 2px;
+    font-size: 3.4vw;
+}
+
+.title-container .register-item .register-box .register-logo {
+    flex: 1;
+    /* font-size: 1.5em; */
+    text-align: center;
+    font-size: 6.1vw;
+}
+
+/* 标题栏结束 */
+
+
+
+/* 广告栏开始 */
+
+.advertisement-container .advertisement-item {
+    /* height: 250px; */
+    height: 28vh;
+    position: relative;
+    background: url(../img/轮播图bg1.png) no-repeat center center/ cover;
+}
+
+
+.advertisement-container .advertisement-item .swtich-item {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    height: 20px;
+
+}
+
+.advertisement-container .advertisement-item .swtich-item .swtich-wrap1 {
+    height: 8px;
+    border-radius: 2px;
+    width: 20px;
+    background-color: #0086f6;
+    margin: 4px 4px;
+
+}
+
+.advertisement-container .advertisement-item .swtich-item .swtich-wrap2 {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: #88c8ee;
+    margin: 4px 4px;
+}
+
+
+
+/* 广告栏结束 */
+
+
+
+/* 功能栏开始 */
+
+.function-container{
+    background-color: lightgrey;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+}   
+
+.function-container ul{
+    flex: 1;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.function-container ul:nth-child(2){
+    margin-bottom: 8px;
+}
+
+
+.function-container ul li{
+    margin-left: 5px;
+    background-color: #fff;
+    flex: 1;
+    /* height: 170px; */
+    height: 25vh;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 20px 10px;
+}
+
+.function-container ul li a:active{
+    background-color: #ccc;
+}
+
+
+.function-container ul li:nth-child(2){
+    margin-right: 5px;
+}
+
+.function-container ul li .function-logo{
+    /* font-size: 3em; */
+    font-size: 12.3vw;
+    text-align: center;
+    color: #0086f6;
+}
+
+.function-container ul li .function-desc{
+    color: #000;
+    /* font-size: 1.3em; */
+    font-size: 5.3vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.function-container ul li .function-text{
+    color: #999;
+    text-align: center;
+    margin-top: 10px;
+    /* font-size: 0.9em; */
+    font-size: 3.7vw;
+}
+
+
+
+
+
+
+/* 功能栏结束 */
+
+
+/* 底部工具栏开始 */
+
+.tool-container{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    /* height: 63px; */
+    height: 8.6vh;
+    width: 100%;
+    justify-content: space-around;
+    color: grey;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+.tool-container a{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.tool-container a .tool-logo{
+    /* font-size: 1.5em; */
+    font-size: 6.1vw;
+    flex: 1;
+}
+
+.tool-container a .tool-text{
+    /* font-size: 0.8em; */
+    font-size: 3.3vw;
+    flex: 1;
+}
+
+
+
+
+
+/* 底部工具栏结束 */
