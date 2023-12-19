@@ -130,3 +130,51 @@ document.querySelector('.post').addEventListener('click', function(e) {
         });
     });
 });
+
+
+// 显示地图模态窗口
+function showMapModal(type) {
+    document.getElementById('mapModal').style.display = 'flex';
+    initMap(type); // 传递类型（起点或终点）
+}
+
+// 关闭地图模态窗口
+function closeMapModal() {
+    document.getElementById('mapModal').style.display = 'none';
+}
+
+// 初始化地图
+function initMap(type) {
+    var map = new BMap.Map("map-container");
+    var centerPoint = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(centerPoint, 15);
+
+    map.addEventListener("click", function(e) {
+        var point = new BMap.Point(e.point.lng, e.point.lat);
+
+        var geoc = new BMap.Geocoder();
+        geoc.getLocation(point, function(rs){
+            var addComp = rs.addressComponents;
+            var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+
+            if (type === 'start') {
+                document.querySelector('input[name="address-start"]').value = address;
+                document.getElementById('start-point').value = e.point.lng + "," + e.point.lat;
+            } else if (type === 'end') {
+                document.querySelector('input[name="address-end"]').value = address;
+                document.getElementById('end-point').value = e.point.lng + "," + e.point.lat;
+            }
+
+            closeMapModal();
+        });
+    });
+}
+
+// 绑定点击事件到起点和终点输入框
+document.querySelector('input[name="address-start"]').addEventListener('click', function() {
+    showMapModal('start');
+});
+
+document.querySelector('input[name="address-end"]').addEventListener('click', function() {
+    showMapModal('end');
+});
