@@ -1,8 +1,3 @@
-// 导入配置文件
-
-import config from './config.js';
-
-
 // 通用变量
 
 let identity = null; // 将 identity 声明在更广泛的作用域
@@ -105,7 +100,7 @@ document.querySelector('.user-input .get-code').addEventListener('click', (event
     },1000)
     
     axios({
-        url: config.sendMessageApi,
+        url: 'http://192.168.10.101:9999/driver/sendMsg',
         method: 'GET',
         params: {
             phone: phone,
@@ -177,7 +172,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
     
 
     // 根据选择的身份发送注册请求
-    const url = identity === 'boss' ? config.register_BossApi : config.register_DriverApi;
+    const url = identity === 'boss' ? 'http://192.168.10.101:9999/boss/login' : 'http://192.168.10.101:9999/driver/login';
 
     if (identity === null) {
         showModal('请选择身份后再进行注册！');
@@ -206,7 +201,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
             
             // 延迟跳转到其他页面
             setTimeout(() => {
-                window.location.href = './test_login_pwd.html'; // 替换为实际的页面URL
+                window.location.href = '#'; // 替换为实际的页面URL
             }, 2500);
         } else {
             // 显示注册失败的提示信息

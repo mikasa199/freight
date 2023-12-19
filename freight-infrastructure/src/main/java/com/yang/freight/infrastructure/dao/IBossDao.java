@@ -1,9 +1,8 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.boss.model.req.BossUpdatePasswordReq;
 import com.yang.freight.infrastructure.po.Boss;
 import org.apache.ibatis.annotations.Mapper;
-import sun.security.util.Password;
+
 
 /**
  * @description:
@@ -35,6 +34,20 @@ public interface IBossDao {
     int updatePassword(Boss boss);
 
     /**
+     * 更新姓名
+     * @param boss
+     * @return
+     */
+    int updateBossName(Boss boss);
+
+    /**
+     * 更新手机号
+     * @param boss
+     * @return
+     */
+    int updatePhone(Boss boss);
+
+    /**
      * 根据boosId删除信息
      * @param boosId
      * @return
@@ -47,4 +60,11 @@ public interface IBossDao {
      * @return
      */
     Boss queryById(long bossId);
+
+    /**
+     *
+     * @param phone
+     * @return
+     */
+    Boss queryByPhone(String phone);
 }

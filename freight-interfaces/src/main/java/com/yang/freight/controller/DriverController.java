@@ -1,22 +1,18 @@
 package com.yang.freight.controller;
 
-import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.vo.CargoVO;
+import com.yang.freight.domain.driver.model.req.*;
 import com.yang.freight.domain.driver.model.vo.DriverVO;
 import com.yang.freight.domain.driver.service.deploy.IDriverDeploy;
-import com.yang.freight.infrastructure.po.Driver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +24,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 @RequestMapping("/driver")
+@CrossOrigin(origins = "*")
 public class DriverController {
 
     private Logger logger = LoggerFactory.getLogger(DriverController.class);
@@ -44,8 +41,9 @@ public class DriverController {
         //TODO 需要添加逻辑（判断用户手机号是否已经注册过）
         //两种方案1.设置phone数据库唯一字段，但是插入失败会报错，需要对报错
 
-        boolean result = driverDeploy.createDriver(req);
-        if (result) {
+        DriverVO driver = driverDeploy.createDriver(req);
+
+        if (null != driver) {
             return Return.success("新增司机成功");
         }else {
             return Return.error("新增司机失败");
@@ -59,16 +57,15 @@ public class DriverController {
      * @param req
      * @return
      */
-    @PostMapping("/login")
-    public Return<String> login(@RequestBody InitDriverReq req) {
+    @PostMapping("/logon")
+    public Return<DriverVO> logon(@RequestBody InitDriverReq req, HttpSession session) {
 
         logger.info("phone:{},password:{}",req.getPhone(),req.getPassword());
         // 1. 从数据库中获取对应手机号的账户密码
 
         // 2. 如果查询到密码，则和用户输入的密码进行比较
 
-        Return<String> stringReturn = driverDeploy.driverLogin(req);
-        return stringReturn;
+        return driverDeploy.driverLogon(req);
     }
 
     /**
@@ -77,8 +74,8 @@ public class DriverController {
      * @return
      * @throws Exception
      */
-    @PostMapping("/sendMsg")
-    public Return<String> sendMsg (@RequestParam String phone) throws Exception {
+    @GetMapping("/sendMsg")
+    public Return<String> sendMsg (@RequestParam("phone") String phone) throws Exception {
         logger.info("给用户phone：{} 发送验证码",phone);
         if (null !=phone) {
             //实际发送验证码
@@ -106,7 +103,7 @@ public class DriverController {
      * @param session
      * @return
      */
-    @PostMapping("/login/code")
+    @PostMapping("/logon/code")
     public Return<DriverVO> loginByCode (@RequestBody Map map, HttpSession session) {
         String phone = map.get("phone").toString();
         String code = map.get("code").toString();
@@ -136,16 +133,131 @@ public class DriverController {
         return Return.error("验证码错误");
     }
 
-    @GetMapping("cargo/list")
-    public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
+    /**
+     * 注册
+     * @param map
+     * @param session
+     * @return
+     */
+    @PostMapping("/login")
+    public Return<DriverVO> login(@RequestBody Map map, HttpSession session) {
+        String phone = map.get("phone").toString();
+        String code = map.get("code").toString();
+        String password = map.get("password").toString();
 
-        logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
-        Page<CargoVO> cargoVOPage = new Page<>();
-        cargoVOPage.setCurrent(page);
-        cargoVOPage.setSize(pageSize);
-        long cargoCount = driverDeploy.cargoCount(cargoName);
-        cargoVOPage.setTotal(cargoCount);
-        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPages(cargoVOPage, cargoName);
-        return pageReturn;
+        Object codeInRedis = redisTemplate.opsForValue().get(phone);
+
+
+        logger.info("登录信息 phone:{},code:{},codeInRedis:{}",phone,code,codeInRedis);
+
+
+
+        if (null != codeInRedis && codeInRedis.equals(code)) {
+
+            DriverVO driverVO = driverDeploy.queryByPhone(phone);
+
+            if (null == driverVO) {
+                InitDriverReq initDriverReq = new InitDriverReq();
+                initDriverReq.setPhone(phone);
+                initDriverReq.setPassword(password);
+                DriverVO driver = driverDeploy.createDriver(initDriverReq);
+
+                logger.info("是否注册成功：{}",null != driver);
+                //将用户id存入session中，标识用户已登录
+                session.setAttribute("driver",driver.getDriverId());
+                logger.info("登录成功studentId:{}",driver.getDriverId());
+
+                //登陆成功后将redis中的验证码删除
+                redisTemplate.delete(phone);
+                return Return.success(driver);
+            }else {
+                logger.info(driverVO.toString());
+                return Return.error("该手机号已被注册过!");
+            }
+        }
+        return Return.error("验证码错误");
+    }
+
+//    /**
+//     * 分页查询货物信息
+//     * @param page
+//     * @param pageSize
+//     * @param cargoName
+//     * @return
+//     */
+//    @GetMapping("cargo/list")
+//    public Return<Page<CargoVO>> queryCargoPages(long page, long pageSize, String cargoName) {
+//
+//        logger.info("page:{},pageSize:{},cargoName:{}",page,pageSize,cargoName);
+//        Page<CargoVO> cargoVOPage = new Page<>();
+//        cargoVOPage.setCurrent(page);
+//        cargoVOPage.setSize(pageSize);
+//        long cargoCount = driverDeploy.cargoCount(cargoName);
+//        cargoVOPage.setTotal(cargoCount);
+//        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPages(cargoVOPage, cargoName);
+//        return pageReturn;
+//    }
+//
+//    @GetMapping("cargo/list/sort")
+//    public Return<Page<CargoVO>> queryCargoPagesSort(long page, long pageSize, int code) {
+//        logger.info("page:{},pageSize:{},code:{}",page,pageSize,code);
+//        Page<CargoVO> cargoVOPage = new Page<>();
+//        cargoVOPage.setCurrent(page);
+//        cargoVOPage.setSize(pageSize);
+//        long cargoCount = driverDeploy.cargoCount("");
+//        cargoVOPage.setTotal(cargoCount);
+//        Return<Page<CargoVO>> pageReturn = driverDeploy.queryCargoPagesSort(cargoVOPage, code);
+//        return pageReturn;
+//    }
+
+//    @PostMapping("/order")
+//    public Return<String> orderCargo(@RequestBody SubmitOrderReq req) {
+//
+//        logger.info("开始下单:{}",req.toString());
+//        boolean b = driverDeploy.submitOrder(req);
+//
+//        if (b) {
+//            return Return.success("下单成功");
+//        }else {
+//            return Return.error("下单失败");
+//        }
+//
+//    }
+
+    @PostMapping("/authentication")
+    public Return<String> addAuthentication(@RequestBody AddAuthenticationReq req) {
+        boolean result = driverDeploy.addAuthentication(req);
+        return result ? Return.success("上传验证信息成功") : Return.error("上传认证信息失败");
+    }
+
+
+    @PostMapping("/update/name")
+    public Return<String> updateName(@RequestBody UpdateNameReq req) {
+        logger.info(req.toString());
+        boolean result = driverDeploy.updateName(req);
+        return result ? Return.success("姓名更新成功") : Return.error("姓名更新失败");
+    }
+
+    @PostMapping("/update/password")
+    public Return<String> updatePassword(@RequestBody UpdatePasswordReq req) {
+        logger.info(req.toString());
+        try {
+            boolean b = driverDeploy.updatePassword(req);
+            return b ? Return.success("密码更新成功") : Return.error("历史密码输入错误");
+        } catch (NoSuchAlgorithmException e) {
+            return Return.error("密码更新失败，调用方法出错");
+        }
+    }
+
+    @PostMapping("/update/phone")
+    public Return<String> updatePhone(@RequestBody UpdatePhoneReq req) {
+        logger.info(req.toString());
+        Object codeInRedis = redisTemplate.opsForValue().get(req.getBeforePhone());
+        if (null != codeInRedis && codeInRedis.equals(req.getCode())) {
+            logger.info("验证码正确");
+            boolean b = driverDeploy.updatePhone(req);
+            return b ? Return.success("手机号修改成功") : Return.error("手机号修改失败，请重试");
+        }
+        return Return.error("验证码错误");
     }
 }
