@@ -1,6 +1,5 @@
 package com.yang.freight.infrastructure.dao;
 
-import com.yang.freight.domain.driver.model.req.AuthenticationStatusUpdateReq;
 import com.yang.freight.infrastructure.po.Authentication;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,7 +15,7 @@ public interface IAuthenticationDao {
      * 向数据库插入资格验证信息
      * @param authentication
      */
-    void insert(Authentication authentication);
+    int insert(Authentication authentication);
 
     /**
      * 根据司机id查询信息

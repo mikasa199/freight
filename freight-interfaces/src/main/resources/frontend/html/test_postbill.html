@@ -30,33 +30,27 @@
                 <input type="text" name="cargo-name">
             </div>
 
-            <!-- <div class="items">
+
+            <div class="items">
                 <div class="text">货物重量</div>
                 <input type="text" name="cargo-weight">
-            </div> -->
 
-            <div class="half-items">
-                <div class="left">
-                    <div class="text">货物重量</div>
-                    <input type="text" name="cargo-weight">
-                </div>
-
-                <div class="right">
-                    <div class="text">货物单价</div>
-                    <input type="text" name="cargo-value">
-                </div>
             </div>
 
             <div class="half-items">
                 <div class="left">
                     <div class="text">起点</div>
-                    <input type="text" name="address-start" value="">
+
+                    <input type="text" name="address-start" value="江苏省镇江市外国语学校">
+                    <button class="map-start iconfont icon-31dingwei"></button>
 
 
                 </div>
                 <div class="right">
                     <div class="text">终点</div>
-                    <input type="text" name="address-end" value="">
+
+                    <input type="text" name="address-end" value="浙江省湖州市湖州师范学院">
+                    <button class="map-end iconfont icon-31dingwei"></button>
 
                 </div>
 
@@ -91,11 +85,13 @@
         <div id="map-container"></div>
 
 
+
         <!-- 地图模态窗口 -->
         <div class="modal" id="mapModal" style="display:none;">
             <div class="map-container" id="map-container"></div>
             <button onclick="closeMapModal()">关闭</button>
         </div>
+
 
     </div>
 
@@ -103,7 +99,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript"
         src="https://api.map.baidu.com/api?v=3.0&ak=wcYbDR2bKB1VLYPPtoHxEEgcLbqPfCLS"></script>
+
     <script type="module" src="../js/test_postbill.js"></script>
+
 
 </body>
 

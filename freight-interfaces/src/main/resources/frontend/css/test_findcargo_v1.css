@@ -104,34 +104,7 @@ a:hover{
 }
 
 
-/* 扫一扫组件开始 */
 
-
-/* .top-container .search-items .scan{
-    flex: 2;
-    position: relative;
-    flex-direction: column;
-    height: 7vh;
-    color: #fff;
-    width: 10%;
-}
-
-.top-container .search-items .scan .scan-logo{
-    position: absolute;
-    left: 6%;
-    top: 0;
-    font-size: 4em;
-}
-
-.top-container .search-items .scan{
-    font-size: 0.5em;
-    padding-top: 5vh;
-    box-sizing: border-box;
-
-} */
-
-
-/* 扫一扫组件结束 */
 
 
 /* 搜索栏结束 */
@@ -152,6 +125,9 @@ a:hover{
 .nav-items .nav-title{
     font-weight: bold;
     color: #c3c2c2;
+
+    font-size: 1.3em;
+
 }
 
 
@@ -366,8 +342,9 @@ a:hover{
 }
 
 .information-container .goods .goods-kind .goods-info .kind,
-.information-container .goods .goods-kind .goods-info .price,
-.information-container .goods .goods-kind .goods-info .weight{
+.information-container .goods .goods-kind .goods-info .price{
+
+
     display: inline-block;
     border: 1.5px solid #3262f4;
     border-radius: 5px;

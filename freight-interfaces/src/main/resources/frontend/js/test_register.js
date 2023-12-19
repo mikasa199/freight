@@ -1,3 +1,4 @@
+
 // 导入配置文件
 
 import config from './config.js';
@@ -105,7 +106,9 @@ document.querySelector('.user-input .get-code').addEventListener('click', (event
     },1000)
     
     axios({
+
         url: config.sendMessageApi,
+
         method: 'GET',
         params: {
             phone: phone,
@@ -177,7 +180,9 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
     
 
     // 根据选择的身份发送注册请求
+
     const url = identity === 'boss' ? config.register_BossApi : config.register_DriverApi;
+
 
     if (identity === null) {
         showModal('请选择身份后再进行注册！');
@@ -206,7 +211,9 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
             
             // 延迟跳转到其他页面
             setTimeout(() => {
+
                 window.location.href = './test_login_pwd.html'; // 替换为实际的页面URL
+
             }, 2500);
         } else {
             // 显示注册失败的提示信息

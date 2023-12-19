@@ -1,7 +1,7 @@
+
 // 导入配置文件
 
 import config from './config.js';
-
 
 
 
@@ -31,7 +31,9 @@ temp_conditionList_ul.addEventListener('click', function (event){
 // 从服务器读取数据加载货物信息进行页面渲染
 function GetCargoInfo() {
     axios({
+
         url: config.cargoListApi,
+
         method:'GET',
          params: {
              page: 1,
@@ -105,7 +107,9 @@ function GetCargoInfo() {
 }
 
 
-// GetCargoInfo()
+
+// GetCargoInfo() 
+
 
 
 
@@ -154,6 +158,7 @@ function GetCargoInfo() {
 // }
 
 
+
 // 页面顶部搜索框逻辑
 
 // 获取搜索框的引用
@@ -188,13 +193,6 @@ function fetchCargoData(cargoName, page, pageSize) {
         // 处理错误情况
     });
 }
-
-
-
-
-
-
-
 
 // 实现点击的订单数据保存到localstorage，然后跳转的页面进行读取
 
@@ -252,7 +250,9 @@ function fetchSortedCargoInfo(sortCode) {
     isLoading = true; // 开始加载数据
 
     axios({
+
         url:config.cargoListSortApi,
+
         method: 'GET',
         params: {
             page: currentPage,
@@ -315,7 +315,9 @@ function renderCargoInfo(cargoList) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        
+
+                        <div class="weight">${items.cargoWeight}</div>
+
                     </div>
                 </div>
             </div>
@@ -378,7 +380,9 @@ function appendDataToPage(data) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        
+
+                        <div class="weight">${items.cargoWeight}</div>
+
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@
         <result column="cargo_weight" property="cargoWeight"/>
         <result column="begin_location" property="beginLocation"/>
         <result column="end_location" property="endLocation"/>
+        <result column="distance" property="distance"/>
         <result column="value" property="value"/>
         <result column="begin_time" property="beginTime"/>
         <result column="end_time" property="endTime"/>
@@ -17,20 +18,20 @@
     </resultMap>
 
     <insert id="insert" parameterType="com.yang.freight.infrastructure.po.Cargo">
-        INSERT INTO cargo(CARGO_ID, BOSS_ID, CARGO_NAME, CARGO_WEIGHT, BEGIN_LOCATION, END_LOCATION, VALUE, BEGIN_TIME, END_TIME, STOCK, INFO)
-        VALUES (#{cargoId},#{bossId},#{cargoName},#{cargoWeight},#{beginLocation},#{endLocation},#{value},#{beginTime},#{endTime},#{stock},#{info})
+        INSERT INTO cargo(CARGO_ID, BOSS_ID, CARGO_NAME, CARGO_WEIGHT, BEGIN_LOCATION, END_LOCATION,distance,VALUE, BEGIN_TIME, END_TIME, STOCK, INFO)
+        VALUES (#{cargoId},#{bossId},#{cargoName},#{cargoWeight},#{beginLocation},#{endLocation},#{distance},#{value},#{beginTime},#{endTime},#{stock},#{info})
     </insert>
-    <update id="subStock" parameterType="com.yang.freight.domain.driver.model.req.SubCargoReq">
+    <update id="subStock" parameterType="com.yang.freight.domain.cargo.model.req.SubCargoReq">
         UPDATE cargo
         SET stock = stock - #{subStock}
         WHERE cargo_id = #{cargoId} AND stock >= #{subStock}
     </update>
     <select id="queryList" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
-        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,value,begin_time,end_time,stock,info
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
         FROM cargo
         <where>
             <if test="cargoName != null and cargoName != '' ">
-                cargo_name LIKE #{cargoName}
+                cargo_name LIKE CONCAT('%', #{cargoName}, '%')
             </if>
         </where>
         LIMIT #{page}, #{pageSize}
@@ -44,6 +45,47 @@
             </if>
         </where>
     </select>
+    <select id="queryById" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        WHERE cargo_id = #{cargoId}
+    </select>
 
+    <select id="queryListSortUp" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        ORDER BY
+            CASE
+                WHEN #{code} = 1 THEN begin_time
+                WHEN #{code} = 2 THEN end_time
+                WHEN #{code} = 3 THEN value
+                WHEN #{code} = 4 THEN stock
+                WHEN #{code} = 5 THEN distance
+            END ASC
+    </select>
+    <select id="queryListSortDown" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        ORDER BY
+            CASE
+                WHEN #{code} = -1 THEN begin_time
+                WHEN #{code} = -2 THEN end_time
+                WHEN #{code} = -3 THEN value
+                WHEN #{code} = -4 THEN stock
+                WHEN #{code} = -5 THEN distance
+            END DESC
+    </select>
+
+    <select id="queryByBossId" resultType="com.yang.freight.infrastructure.po.Cargo" resultMap="CargoMap">
+        SELECT cargo_id,boss_id,cargo_name,cargo_weight,begin_location,end_location,distance,value,begin_time,end_time,stock,info
+        FROM cargo
+        WHERE boss_id = #{bossId}
+        LIMIT #{page}, #{pageSize}
+    </select>
+    <select id="countByBossId" resultType="java.lang.Integer">
+        SELECT COUNT(cargo_id)
+        FROM cargo
+        WHERE boss_id = #{bossId}
+    </select>
 
 </mapper>

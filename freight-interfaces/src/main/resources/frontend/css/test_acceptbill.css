@@ -96,6 +96,8 @@ textarea {
     padding-left: 5%;
 }
 
+
+=======
 .cargo-input .items textarea {
     width: 90%;
     border-radius: 10px;
@@ -106,6 +108,7 @@ textarea {
     resize: none; /* 禁止调整大小 */
     overflow: auto; /* 允许滚动条 */
 }
+
 
 
 .cargo-input .half-items{
@@ -141,12 +144,15 @@ input[readonly] {
     border: 1px solid #ddd; /* 浅色边框 */
 }
 
+
+=======
 textarea[readonly] {
     background-color: #f3f3f3; /* 浅灰色背景 */
     opacity: 0.75; /* 轻微透明效果 */
     cursor: default; /* 默认光标 */
     border: 1px solid #ddd; /* 浅色边框 */
 }
+
 
 
 /* 用户输入栏结束 */
