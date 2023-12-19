@@ -19,7 +19,7 @@ a:hover{
 
 .container{
     background-color: #fff;
-    height: 2000vh;
+    /* height: 100vh; */
 }
 
 /* 修改container的最大宽度为1280 根据设计稿的要求 */
@@ -114,7 +114,7 @@ a:hover{
     flex: 1;
     color: black;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
     padding-top: 1vh;
     padding-left: 5%;
     /* border-bottom: 1px solid lightgrey; */
@@ -152,7 +152,7 @@ a:hover{
 
 .content-container{
     background-color: #fff;
-    height: 40vh;
+    height: 37vh;
    
 }
 
@@ -185,7 +185,8 @@ a:hover{
 .confirm-container{
     width: 90%;
     margin: 0 auto;
-    height: 20vh;
+    margin-top: 2vh;
+    /* height: 10vh; */
 }
 
 .confirm-container button{
