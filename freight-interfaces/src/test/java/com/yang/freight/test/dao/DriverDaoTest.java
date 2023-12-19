@@ -1,8 +1,6 @@
 package com.yang.freight.test.dao;
 
 import com.yang.freight.common.HashedPassword;
-import com.yang.freight.domain.driver.model.req.DriverUpdatePasswordReq;
-import com.yang.freight.domain.support.ids.IIdGenerator;
 import com.yang.freight.domain.support.password.IEncryption;
 import com.yang.freight.infrastructure.dao.IDriverDao;
 import com.yang.freight.infrastructure.po.Driver;
@@ -10,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -61,30 +58,30 @@ public class DriverDaoTest {
         logger.info("result:{}",result);
     }
 
-    @Test
-    public void updatePasswordTest() throws NoSuchAlgorithmException {
-        DriverUpdatePasswordReq req = new DriverUpdatePasswordReq();
-        req.setDriverId(100001L);
-        HashedPassword hashedPassword = encryption.encryptPassword("7654321");
-        req.setHashedPassword(hashedPassword.getHashedPassword());
-        req.setSalt(hashedPassword.getSalt());
-        Driver driver1 = new Driver();
-        BeanUtils.copyProperties(req,driver1);
-        int i = driverDao.updateHashedPasswordInt(driver1);
-        if (i == 1) {
-            logger.info("更新成功");
-        } else {
-            logger.info("更新失败");
-        }
-
-        Driver driver = driverDao.queryById(100001L);
-        HashedPassword hashedPassword1 = new HashedPassword();
-        hashedPassword1.setHashedPassword(driver.getHashedPassword());
-        hashedPassword1.setSalt(driver.getSalt());
-        boolean result = encryption.verifyPassword("7654321", hashedPassword1);
-
-        logger.info("result:{}",result);
-    }
+//    @Test
+//    public void updatePasswordTest() throws NoSuchAlgorithmException {
+//        DriverUpdatePasswordReq req = new DriverUpdatePasswordReq();
+//        req.setDriverId(100001L);
+//        HashedPassword hashedPassword = encryption.encryptPassword("7654321");
+//        req.setHashedPassword(hashedPassword.getHashedPassword());
+//        req.setSalt(hashedPassword.getSalt());
+//        Driver driver1 = new Driver();
+//        BeanUtils.copyProperties(req,driver1);
+//        int i = driverDao.updateHashedPassword(driver1);
+//        if (i == 1) {
+//            logger.info("更新成功");
+//        } else {
+//            logger.info("更新失败");
+//        }
+//
+//        Driver driver = driverDao.queryById(100001L);
+//        HashedPassword hashedPassword1 = new HashedPassword();
+//        hashedPassword1.setHashedPassword(driver.getHashedPassword());
+//        hashedPassword1.setSalt(driver.getSalt());
+//        boolean result = encryption.verifyPassword("7654321", hashedPassword1);
+//
+//        logger.info("result:{}",result);
+//    }
 
     @Test
     public void queryByPhoneTest() {

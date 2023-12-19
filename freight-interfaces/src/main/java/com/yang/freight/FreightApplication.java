@@ -4,6 +4,7 @@ package com.yang.freight;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * @description:
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Copyright：
  */
 @SpringBootApplication
+@ServletComponentScan
 @Configurable
 public class FreightApplication {
     public static void main(String[] args) {
