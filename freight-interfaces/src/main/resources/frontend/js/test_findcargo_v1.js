@@ -1,4 +1,9 @@
 
+// 导入配置文件
+
+import config from './config.js';
+
+
 
 // 控制弹出菜单逻辑开始
 const temp_conditionList = document.querySelector('.condition-list')
@@ -26,7 +31,9 @@ temp_conditionList_ul.addEventListener('click', function (event){
 // 从服务器读取数据加载货物信息进行页面渲染
 function GetCargoInfo() {
     axios({
-        url: 'http://192.168.10.101:9999/driver/cargo/list',
+
+        url: config.cargoListApi,
+
         method:'GET',
          params: {
              page: 1,
@@ -100,7 +107,9 @@ function GetCargoInfo() {
 }
 
 
+
 // GetCargoInfo() 
+
 
 
 
@@ -149,6 +158,41 @@ function GetCargoInfo() {
 // }
 
 
+
+// 页面顶部搜索框逻辑
+
+// 获取搜索框的引用
+const searchInput = document.querySelector('.search-items .text input[type="text"]');
+
+// 为搜索框添加键盘事件监听器
+searchInput.addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) {
+        // 用户按下Enter键，执行搜索
+        const cargoName = searchInput.value.trim(); // 获取用户输入并去除前后空格
+        fetchCargoData(cargoName, 1, 10); // 调用函数执行搜索，假设每页10条数据，从第1页开始
+    }
+});
+
+// 获取数据的函数
+function fetchCargoData(cargoName, page, pageSize) {
+    axios({
+        url: config.cargoListApi, 
+        method: 'GET',
+        params: {
+            cargoName: cargoName, // 用户输入的货物名称
+            page: page,
+            pageSize: pageSize
+        }
+    }).then(response => {
+        console.log(response);
+        const cargoInfoList = response.data.data.records;
+        // 可以在这里调用渲染函数来显示搜索结果
+        renderCargoInfo(cargoInfoList);
+    }).catch(error => {
+        console.error(error);
+        // 处理错误情况
+    });
+}
 
 // 实现点击的订单数据保存到localstorage，然后跳转的页面进行读取
 
@@ -206,8 +250,9 @@ function fetchSortedCargoInfo(sortCode) {
     isLoading = true; // 开始加载数据
 
     axios({
-        // url: 'http://192.168.10.102:9999/driver/cargo/list',
-        url:'http://192.168.10.102:9999/driver/cargo/list/sort',
+
+        url:config.cargoListSortApi,
+
         method: 'GET',
         params: {
             page: currentPage,
@@ -270,7 +315,9 @@ function renderCargoInfo(cargoList) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
+
                         <div class="weight">${items.cargoWeight}</div>
+
                     </div>
                 </div>
             </div>
@@ -333,7 +380,9 @@ function appendDataToPage(data) {
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
+
                         <div class="weight">${items.cargoWeight}</div>
+
                     </div>
                 </div>
             </div>

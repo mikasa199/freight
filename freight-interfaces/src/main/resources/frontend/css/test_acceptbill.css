@@ -96,6 +96,21 @@ textarea {
     padding-left: 5%;
 }
 
+
+=======
+.cargo-input .items textarea {
+    width: 90%;
+    border-radius: 10px;
+    margin: 1vh auto;
+    height: 6vh; /* 增加高度 */
+    padding: 2%; /* 添加内边距 */
+    box-sizing: border-box;
+    resize: none; /* 禁止调整大小 */
+    overflow: auto; /* 允许滚动条 */
+}
+
+
+
 .cargo-input .half-items{
     display: flex;
     margin-bottom: 2vh;
@@ -123,6 +138,15 @@ textarea {
 
 /* 只读输入字段样式 */
 input[readonly] {
+    background-color: #f3f3f3; /* 浅灰色背景 */
+    opacity: 0.75; /* 轻微透明效果 */
+    cursor: default; /* 默认光标 */
+    border: 1px solid #ddd; /* 浅色边框 */
+}
+
+
+=======
+textarea[readonly] {
     background-color: #f3f3f3; /* 浅灰色背景 */
     opacity: 0.75; /* 轻微透明效果 */
     cursor: default; /* 默认光标 */

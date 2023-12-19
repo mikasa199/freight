@@ -131,7 +131,6 @@ document.querySelector('.post').addEventListener('click', function(e) {
     });
 });
 
-
 // 显示地图模态窗口
 function showMapModal(type) {
     document.getElementById('mapModal').style.display = 'flex';

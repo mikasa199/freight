@@ -1,0 +1,250 @@
+@import "//at.alicdn.com/t/c/font_4342566_26gga0fncd3.css";
+
+/* 通用样式开始 */
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    color:#666;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+html{
+    background-color: #fff;
+}
+
+.container{
+    /* background-color: lightblue; */
+    height: 100vh;
+}
+
+/* 修改container的最大宽度为1280 根据设计稿的要求 */
+@media screen and (min-width:768px){
+    .container{
+        width: 720px;
+        margin: 0 auto;
+    }
+
+    
+}
+
+
+
+/* 通用样式结束 */
+
+
+/* 顶部标题栏开始 */
+
+.container .title-container{
+    height: 20vh;
+    margin-top: 5vh;
+    width: 100%;
+    position: relative;
+    
+}
+
+.container .title-container .logo{
+    margin: 0 auto;
+    width: 30%;
+    height: 18vh;
+    border-radius: 10%;
+    background: url(../img/app_logo.png) no-repeat center center/contain;
+}
+
+
+.container .title-container .login-text{
+    margin-top: 3vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.container .title-container .user-register{
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    color: #3262f4;
+    border-radius: 3px;
+    border: 2px solid #3262f4;
+    padding: 1%;
+}
+
+
+/* 顶部标题栏结束 */
+
+
+/* 身份选择栏开始 */
+
+.identity-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 90%;
+    height: 10vh;
+    margin-top: 10vh;
+}
+
+.identity-container button{
+    flex: 1;
+    width: 40%;
+    background-color: #3262f4;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: .5; 
+}
+
+.identity-container button.active{
+    opacity: 1;
+}
+
+.identity-container button:nth-child(1){
+    margin-right: 10%;
+}
+
+
+
+
+/* 身份选择栏结束 */
+
+
+/* 用户输入栏开始 */
+
+
+.container .user-input{
+    
+    height: 20vh;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5vh;
+    position: relative;
+}
+
+
+.container .user-input .user-phone,
+.container .user-input .verification-code{
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    padding-left: 5%;
+    height: 4vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    font-size: 1em;
+    border-bottom: 1px solid lightgrey;
+    
+}
+
+
+
+.container .user-input .get-code{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3262f4;
+    color: #fff;
+    padding: 1%;
+    font-size: 0.8em;
+    border-radius: 5px;
+}
+
+.container .user-input .verification-code{
+    margin-top: 8vh;
+}
+
+.container .user-input .user-password{
+    margin-top: 8vh;
+}
+
+
+
+
+/* 用户输入栏结束 */
+
+
+
+/* 额外选项栏开始 */
+.tip-container{
+    margin: 0 auto;
+    height: 3vh;
+    width: 90%;
+    display: flex;
+    font-size: 0.8em;
+    
+}
+
+.tip-container .verification-code-login{
+    flex: 1;
+    color: #3262f4;
+    padding-left: 5%;
+}
+
+.tip-container .forget-pwd{
+    flex: 1;
+    text-align: end;
+   
+    color: #3262f4;
+}
+
+
+/* 额外选项栏结束 */
+
+
+
+/* 用户确认栏开始 */
+
+.confirm-container{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10vh;
+    
+    height: 10vh;
+}
+
+.confirm-container button{
+    background-color: #3262f4;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: 6vh;
+    border-radius: 10px;
+    color: #fff;
+}
+
+
+
+/* 用户确认栏结束 */
+
+
+/* 蒙层的 CSS 样式开始 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+/* 蒙层的样式结束 */

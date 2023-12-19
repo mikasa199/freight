@@ -106,6 +106,7 @@ a:hover{
 
 
 
+
 /* 搜索栏结束 */
 
 
@@ -124,7 +125,9 @@ a:hover{
 .nav-items .nav-title{
     font-weight: bold;
     color: #c3c2c2;
+
     font-size: 1.3em;
+
 }
 
 
@@ -340,6 +343,8 @@ a:hover{
 
 .information-container .goods .goods-kind .goods-info .kind,
 .information-container .goods .goods-kind .goods-info .price{
+
+
     display: inline-block;
     border: 1.5px solid #3262f4;
     border-radius: 5px;
