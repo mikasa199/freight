@@ -70,6 +70,7 @@ textarea {
     text-align: center;
     font-weight: bold;
     font-size: 1.2em;
+    
 }
 
 .top-container .return{
@@ -82,20 +83,45 @@ textarea {
 }
 
 
+
 /* 顶部标题栏结束 */
 
 
 /* 用户输入栏开始 */
+
 
 .user-input{
     height: 70vh;
     margin-top: 2vh;
 }
 
+.user-input .adjust-btn{
+    background-color: #3262f4;
+    margin: 1vh auto;
+    height: 5vh;
+    border-radius: 10px;
+    display: block;
+    padding: 2px;
+    font-size: 0.8em;
+    color: #fff;
+    width: 30%;
+}
+
 .user-input .items{
     padding-left: 5%;
-    font-weight: bold;
-    
+    font-weight: bold; 
+}
+
+.user-input .items .text{
+    margin-top: 1vh
+}
+
+.user-input .items.name-margin{
+    margin-top:2vh;
+}
+
+.user-input .items.pwd-margin{
+    margin-top: 2vh;
 }
 
 .user-input .items input{
@@ -136,12 +162,18 @@ textarea {
     width: 95%;
     border-radius: 10px;
     margin: 2vh auto;
-    height: 20vh;
+    height: 15vh;
     padding: 2vh 5%; /* 增加内边距 */
     background-color: #fff;
     box-sizing: border-box; /* 保证宽高包含内边距和边框 */
 }
 
+.user-input .items.readonly{
+    background-color: #f3f3f3; /* 浅灰色背景 */
+    opacity: 0.75; /* 轻微透明效果 */
+    cursor: default; /* 默认光标 */
+    border: 1px solid #ddd; /* 浅色边框 */
+}
 
 
 
@@ -172,7 +204,6 @@ textarea {
     border-radius: 10px;
     color: #fff;
     flex: 1;
-    
 }
 
 .confirm-container .save{
@@ -180,5 +211,42 @@ textarea {
 }
 
 
+.confirm-container .post{
+    opacity: 0.3;
+    
+}
+
+.confirm-container .post.active{
+    opacity: 1;
+}
+
+
+
+
 /* 用户确认栏结束 */
+
+
+/* 蒙层的 CSS 样式开始 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+/* 蒙层的样式结束 */
+
 

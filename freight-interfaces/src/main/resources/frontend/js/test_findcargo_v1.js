@@ -4,6 +4,9 @@
 import config from './config.js';
 
 
+// 导入时间转换函数
+
+import { goBack,dateFormat } from './utilityFunction.js';
 
 // 控制弹出菜单逻辑开始
 const temp_conditionList = document.querySelector('.condition-list')
@@ -285,7 +288,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 将数据渲染到页面上
 function renderCargoInfo(cargoList) {
+
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const userIndentity = userInfo ? userInfo.userIndentity : null;
+
+
     const htmlStr = cargoList.map(items => {
+
+        // 根据身份判断是否渲染接单按钮
+        const acceptBillButton = userIndentity === 'driver' ? `<a href="javascript:void(0)" class="accept-bill">接单</a>` : '';
         return `
         <li>
         <div class="information-container">
@@ -307,7 +318,7 @@ function renderCargoInfo(cargoList) {
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
                     <span>发货: </span>
-                    <div class="date_text">${items.beginTime}</div>
+                    <div class="date_text">${dateFormat(items.beginTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
@@ -329,7 +340,7 @@ function renderCargoInfo(cargoList) {
 
 
             <!-- 接单链接 -->
-            <a href="javascript:void(0)" class="accept-bill">接单</a>
+            ${acceptBillButton}
 
             <!-- 司机ID和货物ID -->
             <div class="id-Info">
@@ -351,6 +362,12 @@ function renderCargoInfo(cargoList) {
 // 添加新的数据到页面
 function appendDataToPage(data) {
     const htmlStr = data.map(items => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const userIndentity = userInfo ? userInfo.userIndentity : null;
+
+        // 根据身份判断是否渲染接单按钮
+        const acceptBillButton = userIndentity === 'driver' ? `<a href="javascript:void(0)" class="accept-bill">接单</a>` : '';
         return `
         <li>
         <div class="information-container">
@@ -372,7 +389,7 @@ function appendDataToPage(data) {
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
                     <span>发货: </span>
-                    <div class="date_text">${items.beginTime}</div>
+                    <div class="date_text">${dateFormat(items.beginTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
@@ -392,7 +409,7 @@ function appendDataToPage(data) {
             </div>
 
             <!-- 接单链接 -->
-            <a href="javascript:void(0)" class="accept-bill">接单</a>
+            ${acceptBillButton}
 
             <!-- 司机ID和货物ID -->
             <div class="id-Info">

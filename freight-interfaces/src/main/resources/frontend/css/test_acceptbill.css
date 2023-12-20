@@ -59,7 +59,7 @@ textarea {
     background-color: #3262f4;
     height: 12vh;
     line-height: 12vh;
-
+    position: relative;
 
 }
 
@@ -73,7 +73,7 @@ textarea {
 
 .top-container .return{
     position: absolute;
-    left: 3%;
+    left: 8%;
     top: 0;
     font-size: 1.5em;
     color: #fff;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../font/iconfont.css">
-    <link rel="stylesheet" href="../css/test_account.css">
+    <link rel="stylesheet" href="../css/adjustAccountPwd.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 
         <!-- 顶部标题栏 -->
         <div class="top-container">
-            <div class="title">用户名修改</div>
+            <div class="title">密码修改</div>
             <div class="return iconfont icon-fanhui"></div>
         </div>
 
@@ -27,7 +27,7 @@
         <!-- 用户输入栏 -->
         <form action="" class="user-input ">
             <!-- <button class="adjust-btn name">点击修改用户名</button> -->
-            <div class="items readonly name-margin">
+            <!-- <div class="items readonly name-margin">
                 <div class="text">原用户名</div>
                 <input type="text" name="name" readonly>
             </div>
@@ -35,25 +35,25 @@
             <div class="items ">
                 <div class="text">新的用户名</div>
                 <input type="text" name="adjust-name">
-            </div>
-
-
-            <!-- <button class="adjust-btn pwd">点击修改密码</button>
-            <div class="items pwd-margin readonly">
-                <div class="text">输入原密码</div>
-                <input type="text" name="password" readonly>
-            </div>
-
-            <div class="items readonly">
-                <div class="text">新密码</div>
-                <input type="text" name="adjust-password" readonly>
-            </div>
-
-
-            <div class="items readonly">
-                <div class="text">确认新密码</div>
-                <input type="text" name="confirm-adjust-password" readonly>
             </div> -->
+
+
+            <!-- <button class="adjust-btn pwd">点击修改密码</button> -->
+            <div class="items pwd-margin ">
+                <div class="text">输入原密码</div>
+                <input type="password" name="password">
+            </div>
+
+            <div class="items ">
+                <div class="text">新密码</div>
+                <input type="password" name="adjust-password">
+            </div>
+
+
+            <div class="items ">
+                <div class="text">确认新密码</div>
+                <input type="password" name="confirm-adjust-password">
+            </div>
 
 
 
@@ -63,7 +63,7 @@
         <!-- 用户确认区 -->
         <div class="confirm-container">
             <button class="save">暂存</button>
-            <button class="post submit">提交</button>
+            <button class="post submit disabled">提交</button>
         </div>
 
 
@@ -76,7 +76,7 @@
 
     <script src="../form-serialize/lib/form-serialize.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="../js/test_account.js"></script>
+    <script type="module" src="../js/adjustAccountPwd.js"></script>
 
 </body>
 

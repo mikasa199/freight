@@ -61,7 +61,7 @@ textarea {
     background-color: #3262f4;
     height: 12vh;
     line-height: 12vh;
-
+    position: relative;
 
 }
 
@@ -75,7 +75,7 @@ textarea {
 
 .top-container .return{
     position: absolute;
-    left: 3%;
+    left: 8%;
     top: 0;
     font-size: 1.5em;
     color: #fff;
@@ -209,6 +209,18 @@ textarea {
 .confirm-container .save{
     margin-right: 10%;
 }
+
+
+.confirm-container .post{
+    opacity: 0.3;
+    
+}
+
+.confirm-container .post.active{
+    opacity: 1;
+}
+
+
 
 
 /* 用户确认栏结束 */
