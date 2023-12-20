@@ -37,3 +37,6 @@ spring:
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   config-location: classpath:/mybatis/config/mybatis-config.xml
+
+natapp:
+  authtoken: b1e597c6ea5c0bae
