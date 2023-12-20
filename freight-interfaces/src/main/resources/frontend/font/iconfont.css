@@ -1,8 +1,11 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4342566 */
-  src: url('iconfont.woff2?t=1702872640382') format('woff2'),
-       url('iconfont.woff?t=1702872640382') format('woff'),
-       url('iconfont.ttf?t=1702872640382') format('truetype');
+  src: url('iconfont.eot?t=1702999110561'); /* IE9 */
+  src: url('iconfont.eot?t=1702999110561#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('iconfont.woff2?t=1702999110561') format('woff2'),
+       url('iconfont.woff?t=1702999110561') format('woff'),
+       url('iconfont.ttf?t=1702999110561') format('truetype'),
+       url('iconfont.svg?t=1702999110561#iconfont') format('svg');
 }
 
 .iconfont {

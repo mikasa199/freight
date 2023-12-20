@@ -33,7 +33,6 @@ function GetCargoInfo() {
     axios({
 
         url: config.cargoListApi,
-
         method:'GET',
          params: {
              page: 1,
