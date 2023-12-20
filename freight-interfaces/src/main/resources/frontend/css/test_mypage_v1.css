@@ -19,9 +19,9 @@ a:hover{
 
 .container{
     background-color: #fff;
-
     /* height: 100vh; */
-
+     overflow: auto;
+     overflow-x: hidden;
 }
 
 /* 修改container的最大宽度为1280 根据设计稿的要求 */
@@ -36,8 +36,6 @@ a:hover{
 }
 
 
-
-
 /* 通用样式结束 */
 
 /* 顶部标题栏开始 */
@@ -45,11 +43,11 @@ a:hover{
 .top-container{
     background-color: #3262f4;
     height: 12vh;
-    /* position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; 去除固定定位 */
+    z-index: 1000; 
     line-height: 12vh;
 
 
@@ -77,9 +75,12 @@ a:hover{
 
 /* 用户资料区开始 */
 .user-container{
-    /* background-color: lightblue; */
+    
     height: 12vh;
     display: flex;
+    margin-top: 12vh;
+    box-sizing: border-box;
+    
 }
 
 .user-container .user-icon{
@@ -159,8 +160,7 @@ a:hover{
 
 .content-container{
     background-color: #fff;
-
-    height: 37vh;
+    height: 40vh;
 
    
 }
@@ -194,9 +194,8 @@ a:hover{
 .confirm-container{
     width: 90%;
     margin: 0 auto;
-
     margin-top: 2vh;
-    /* height: 10vh; */
+    height: 20vh;
 
 
 }

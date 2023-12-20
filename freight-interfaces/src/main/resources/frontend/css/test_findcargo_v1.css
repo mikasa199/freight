@@ -50,12 +50,6 @@ a:hover{
 /* 通用样式结束 */
 
 
-
-
-
-
-
-
 /* 顶部标题栏开始 */
 .top-container{
     background-color: #3262f4;
@@ -84,7 +78,7 @@ a:hover{
     position: relative;
     margin: 0 auto;
     
- 
+
 }
 
 .top-container .search-items .text .search-logo{
