@@ -1,6 +1,9 @@
 // 导入配置文件
 import config from './config.js';
 
+// 导入时间转换函数
+import { dateFormat } from './utilityFunction.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const userIdentity = userInfo && userInfo.userIdentity;
@@ -222,25 +225,7 @@ axios({
     console.error('请求错误:', error);
 });
 
-        
        
-// 转换时间函数
-function formatDateTime(isoDateTime) {
-    const date = new Date(isoDateTime);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从 0 开始的
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-}
-       
-
-        
-        
-        
 // 订单状态转换函数
 function translateOrderState(stateCode) {
     const stateMap = {
@@ -280,21 +265,21 @@ function renderOrderData(orders,clear = true) {
                     <div class="middle-part">
                         <div class="createdTime">
                             <div class="title">接单创建时间:</div>
-                            <div class="text">${formatDateTime(order.createdTime) || '无数据'}</div>
+                            <div class="text">${dateFormat(order.createdTime) || '无数据'}</div>
                         </div>
                         <div class="updatedTime">
                             <div class="title">接单更新时间：</div>
-                            <div class="text">${formatDateTime(order.updatedTime) || '无数据'}</div>
+                            <div class="text">${dateFormat(order.updatedTime) || '无数据'}</div>
                         </div>
                     </div>
                     <div class="bottom-part">
                         <div class="beginTime">
                             <div class="title">开始时间：</div>
-                            <div class="text">${formatDateTime(order.beginTime) || '无数据'}</div>
+                            <div class="text">${dateFormat(order.beginTime) || '无数据'}</div>
                         </div>
                         <div class="endTime">
                             <div class="title">结束时间:</div>
-                            <div class="text">${formatDateTime(order.endTime) || '无数据'}</div>
+                            <div class="text">${dateFormat(order.endTime) || '无数据'}</div>
                         </div>
                     </div>
                     <div class="boter-part">
