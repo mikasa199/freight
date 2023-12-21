@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const userId = userInfo.userId;
-    const userIdentity = userInfo.userIdentity;
+    const preUserId = userInfo.userId;
+    const preUserIdentity = userInfo.userIdentity;
     // const userPhone = userInfo.userPhone;
     // const userName = userInfo.userName;
 
@@ -21,16 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 根据用户身份显示或隐藏发布订单按钮
     const userConfirmButton = document.querySelector('.confirm-container .user-confirm');
-    userConfirmButton.style.display = userIdentity === 'boss' ? 'block' : 'none';
+    userConfirmButton.style.display = preUserIdentity === 'boss' ? 'block' : 'none';
 
     // 定义要使用的API URL
-    const url = userIdentity === 'boss' ? config.bossAccount : config.driverAccount;
-    const data = userIdentity === 'boss' ? {bossId:userId} : {driverId:userId}
+    const url = preUserIdentity === 'boss' ? config.bossAccount: config.driverAccount;
+    console.log(preUserIdentity);
+    console.log(url);
+    const data = preUserIdentity === 'boss' ? {bossId:preUserId} : {driverId:preUserId}
     // 发送axios请求
     axios({
         url: url,
-        method: 'POST',
-        data: data
+        method: 'GET',
+        params: data,
     }).then(result => {
         console.log(result);
         // 在这里处理返回的结果
@@ -39,27 +41,34 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('userInfo');
         
         // 使用 BigInt 处理可能的超长整数
-        if (userIdentity === 'boss') {
+        if (preUserIdentity === 'boss') {
            const newUserInfo = {
-                userId: BigInt(result.data.data.bossId).toString(), // 将 BigInt 转换为字符串存储
+                // userId: BigInt(result.data.data.bossId).toString(), // 将 BigInt 转换为字符串存储
+                userId: preUserId,
                 userName: result.data.data.bossName,
-               userPhone: result.data.data.phone,
-               userIdentity: previousIdentity // 保留之前的身份信息
+                userPhone: result.data.data.phone,
+                userIdentity: preUserIdentity // 保留之前的身份信息
             }
             localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 存取新用户资料
-        } else if(userIdentity === 'driver'){
+        } else if(preUserIdentity === 'driver'){
             const newUserInfo = {
-                userId: BigInt(result.data.data.driverId).toString(), // 将 BigInt 转换为字符串存储
+                // userId: BigInt(result.data.data.driverId).toString(), // 将 BigInt 转换为字符串存储
+                userId: preUserId,
                 userName: result.data.data.driverName,
                 userPhone: result.data.data.phone,
-                userIdentity: previousIdentity // 保留之前的身份信息
+                userIdentity: preUserIdentity // 保留之前的身份信息
             }
             localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 存取新用户资料
 
-        // 更新页面上的用户信息
-        document.querySelector('.user-info .name').textContent = `用户名：${newUserInfo.userName}`;
-        document.querySelector('.user-info .phone').textContent = `手机号：${newUserInfo.userPhone}`;
+        
         }
+
+        // 更新页面上的用户信息
+        const newUserInfo = JSON.parse(localStorage.getItem('userInfo'));
+        document.querySelector('.user-info .name').textContent = `用户名：${newUserInfo.userName}`;
+        console.log(newUserInfo.userName);
+        document.querySelector('.user-info .phone').textContent = `手机号：${newUserInfo.userPhone}`;
+        console.log(newUserInfo.userPhone);
 
 
     }).catch(error => {

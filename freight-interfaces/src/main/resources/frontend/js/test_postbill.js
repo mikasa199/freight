@@ -78,6 +78,8 @@ $(document).ready(function() {
         
         // 定义一个函数用于发送数据到服务器
         function sendData(startPoint, endPoint) {
+            console.log(startPoint);
+            console.log(endPoint);
             axios({
                 url: config.postBIllApi,
                 method: 'POST',
