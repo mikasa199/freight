@@ -80,5 +80,11 @@ public interface IBossService {
     Return<BossVO> bossLogon(InitBossReq req);
 
 
+    /**
+     * 根据老板id获取对应的信息
+     * @param bossId
+     * @return
+     */
+    Return<BossVO> queryById(long bossId);
 
 }

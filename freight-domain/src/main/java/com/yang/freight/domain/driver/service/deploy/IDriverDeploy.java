@@ -29,6 +29,13 @@ public interface IDriverDeploy {
     DriverVO queryByPhone(String phone);
 
     /**
+     * 根据id查询
+     * @param driverId
+     * @return
+     */
+    DriverVO queryById(long driverId);
+
+    /**
      * 更新密码
      * @param req
      * @return

@@ -1,11 +1,9 @@
-package com.yang.freight.controller;
+package com.yang.freight.http;
 
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.boss.model.req.*;
 import com.yang.freight.domain.boss.model.vo.BossVO;
 import com.yang.freight.domain.boss.service.release.IBossService;
-import com.yang.freight.domain.driver.model.req.InitDriverReq;
-import com.yang.freight.domain.driver.model.vo.DriverVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,4 +146,9 @@ public class BossController {
         return b ? Return.success("手机号更换成功") : Return.error("手机号更新失败");
     }
 
+
+    @GetMapping("/bossId")
+    public Return<BossVO> queryById(Long bossId) {
+        return bossService.queryById(bossId);
+    }
 }
