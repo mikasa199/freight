@@ -95,14 +95,16 @@
         <!-- 用户确认区 -->
         <div class="confirm-container">
             <button class="save">暂存</button>
-            <button class="post">发布</button>
+            <button class="post" disabled>发布</button>
         </div>
 
 
 
 
-
-
+        <!-- 在 HTML 中添加蒙层元素 -->
+        <div id="overlay" style="display:none;">
+            <div class="overlay-content">错误信息</div>
+        </div>
 
 
 
