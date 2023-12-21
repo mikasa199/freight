@@ -42,15 +42,21 @@
             <div class="items pwd-margin ">
                 <div class="text">输入原密码</div>
                 <input type="password" name="password">
+                <!-- <div class="pwdDisplay iconfont icon-yanjing"></div> -->
             </div>
 
             <div class="items ">
                 <div class="text">新密码</div>
+                <div class="pwd-tips">
+                    <i class="tips-icon iconfont icon-tishi"></i>
+                    密码必须是8-12位字符，可以包含数字、大小写字母和特殊符号
+                </div>
                 <input type="password" name="adjust-password">
+
             </div>
 
 
-            <div class="items ">
+            <div class="items">
                 <div class="text">确认新密码</div>
                 <input type="password" name="confirm-adjust-password">
             </div>
@@ -63,7 +69,7 @@
         <!-- 用户确认区 -->
         <div class="confirm-container">
             <button class="save">暂存</button>
-            <button class="post submit disabled">提交</button>
+            <button class="post submit" disabled>提交</button>
         </div>
 
 

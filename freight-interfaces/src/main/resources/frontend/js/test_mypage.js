@@ -16,18 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.user-info .name').textContent = `用户名：${userName}`;
     document.querySelector('.user-info .phone').textContent = `手机号：${userPhone}`;
-    // 显示用户ID（如果存在）
-    if (userId) {
-        document.querySelector('.number .Id').textContent = `ID: ${userId}`;
-    } else {
-        console.log("用户未登录");
-    }
+    // // 显示用户ID（如果存在）
+    // if (userId) {
+    //     document.querySelector('.number .Id').textContent = `ID: ${userId}`;
+    // } else {
+    //     console.log("用户未登录");
+    // }
 
     // 根据用户身份显示或隐藏发布订单按钮
     const userConfirmButton = document.querySelector('.confirm-container .user-confirm');
     if (userIdentity === 'boss') {
+        console.log('成功判断老板身份');
         userConfirmButton.style.display = 'block';
     } else {
+        console.log('成功判断司机身份');
         userConfirmButton.style.display = 'none';
     }
 });

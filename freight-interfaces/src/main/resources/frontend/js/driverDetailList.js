@@ -97,10 +97,10 @@ function axiosDriverDetailList(cargoId,clearList = false) {
                         <div class="title">订单状态</div>
                         <div class="text">${translateOrderState(record.state)}</div>
                     </div>
-                </div>
-                <div class="orderId">
-                    #${record.orderId}
                 </div>`;
+                // <div class="orderId">
+                //     #${record.orderId}
+                // </div>;
             list.appendChild(li);
         });
 

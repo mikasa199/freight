@@ -1,11 +1,11 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4342566 */
-  src: url('iconfont.eot?t=1703054313507'); /* IE9 */
-  src: url('iconfont.eot?t=1703054313507#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('iconfont.woff2?t=1703054313507') format('woff2'),
-       url('iconfont.woff?t=1703054313507') format('woff'),
-       url('iconfont.ttf?t=1703054313507') format('truetype'),
-       url('iconfont.svg?t=1703054313507#iconfont') format('svg');
+  src: url('iconfont.eot?t=1703138563895'); /* IE9 */
+  src: url('iconfont.eot?t=1703138563895#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('iconfont.woff2?t=1703138563895') format('woff2'),
+       url('iconfont.woff?t=1703138563895') format('woff'),
+       url('iconfont.ttf?t=1703138563895') format('truetype'),
+       url('iconfont.svg?t=1703138563895#iconfont') format('svg');
 }
 
 .iconfont {
@@ -14,6 +14,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yanjing:before {
+  content: "\e661";
+}
+
+.icon-mimaxianshi:before {
+  content: "\e704";
+}
+
+.icon-xiugaimima:before {
+  content: "\e63e";
 }
 
 .icon-fanhui:before {

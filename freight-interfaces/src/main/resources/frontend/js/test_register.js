@@ -3,7 +3,10 @@
 
 import config from './config.js';
 
+import { goBack } from './utilityFunction.js';
 
+// 绑定返回元素点击事件
+document.querySelector('.top-container .return').addEventListener('click', goBack)
 // 通用变量
 
 let identity = null; // 将 identity 声明在更广泛的作用域

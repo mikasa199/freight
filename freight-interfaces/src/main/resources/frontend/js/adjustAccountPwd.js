@@ -5,6 +5,11 @@ import config from './config.js';
 // 导入返回函数
 import { goBack } from './utilityFunction.js'
 
+
+// 绑定返回元素点击事件
+document.querySelector('.top-container .return').addEventListener('click', goBack)
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const originalPasswordInput = document.querySelector('input[name="password"]');
     const newPasswordInput = document.querySelector('input[name="adjust-password"]');
@@ -20,19 +25,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     function checkInputs() {
-        console.log("checkInputs called"); // 确认函数被调用
+        // console.log("checkInputs called"); // 确认函数被调用
         const originalPassword = originalPasswordInput.value.trim();
         const newPassword = newPasswordInput.value.trim();
         const confirmPassword = confirmPasswordInput.value.trim();
 
-        console.log("Original:", originalPassword, "New:", newPassword, "Confirm:", confirmPassword); // 输出当前值
+        // console.log("Original:", originalPassword, "New:", newPassword, "Confirm:", confirmPassword); // 输出当前值
         if (originalPassword && newPassword && confirmPassword && validatePassword(newPassword)) {
-            console.log("All conditions met, enabling submit button"); // 确认所有条件满足
+            // console.log("All conditions met, enabling submit button"); // 确认所有条件满足
             submitButton.disabled = false;
             submitButton.classList.add('active');
         } else {
-            console.log("Conditions not met, disabling submit button"); // 条件不满足
-            submitButton.disabled = true;
+            // console.log("Conditions not met, disabling submit button"); // 条件不满足
             submitButton.disabled = true;
             submitButton.classList.remove('active');
         }
@@ -76,7 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             data: dataForPassword
         }).then(result => {
-            showOverlay('密码更新成功');
+            if (result.code === 0) {
+                showOverlay(result.message)
+            } else {
+                showOverlay('密码更新成功');
+            }
         }).catch(error => {
             showOverlay('更新密码出错: ' + error.message);
         });

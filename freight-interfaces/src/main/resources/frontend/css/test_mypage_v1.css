@@ -216,6 +216,7 @@ a:hover{
 }
 
 
+
 /* 用户确认栏结束 */
 
 
@@ -230,9 +231,7 @@ a:hover{
     height: 10vh;
     position: fixed;
     left: 0;
-
     bottom: 0;
-
     right: 0;
 }
 

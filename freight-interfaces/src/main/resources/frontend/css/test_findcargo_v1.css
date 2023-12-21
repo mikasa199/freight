@@ -53,7 +53,7 @@ a:hover{
 /* 顶部标题栏开始 */
 .top-container{
     background-color: #3262f4;
-    height: 22vh;
+    height: 18vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -105,12 +105,12 @@ a:hover{
 
 
 /* 导航标题栏开始 */
-.nav-items {
-    /* background-color: pink; */
+/* .nav-items {
+    
     width: 90%;
     height: 5vh;
     margin: 0 auto;
-    margin-top: 3vh;
+    margin-top: 1vh;
     display: flex;
     justify-content: space-around;
     line-height: 5vh;
@@ -128,13 +128,12 @@ a:hover{
 
 .nav-items .nav-title.active{
     color: #f7fcff;
-}
+} */
 
 
 /* 导航标题栏结束 */
 
 /* 列表栏开始 */
-
 
 
 .list-items{
@@ -144,6 +143,7 @@ a:hover{
     display: flex;
     justify-content: flex-start;
     line-height: 4vh;
+    margin-top: 6vh;
 }
 
 
@@ -222,6 +222,7 @@ a:hover{
     width: 90%;
     margin: 0 auto;
     margin-bottom: 1vh;
+    
     /* height: 30vh; */
     border-radius: 10px;
     position: relative;
@@ -408,13 +409,14 @@ a:hover{
 /* 底部导航栏开始 */
 
 
+
 .bottom-nav-container{
     display: flex;
     background-color: #fff;
     height: 10vh;
     position: fixed;
     left: 0;
-    bottom: 5px;
+    bottom: 0;
     right: 0;
    
     
@@ -423,11 +425,11 @@ a:hover{
 
 .bottom-nav-container .nav-items{
     flex: 1;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: #9b9b9b;
-    text-align: center;
 }
 
 .bottom-nav-container .nav-items.active{
@@ -442,7 +444,6 @@ a:hover{
 
 .bottom-nav-container .nav-items .text{
     flex: 1;
-    
     font-size: 1em;
     font-weight: bold;
 }

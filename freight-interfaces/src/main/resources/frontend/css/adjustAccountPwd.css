@@ -110,7 +110,16 @@ textarea {
 .user-input .items{
     padding-left: 5%;
     font-weight: bold; 
+    position: relative;
 }
+
+/* 控制小眼睛的字体图标
+.user-input .items .pwdDisplay{
+    position: absolute;
+    right: 7%;
+    top: 5vh;
+} */
+
 
 .user-input .items .text{
     margin-top: 1vh
@@ -176,6 +185,18 @@ textarea {
 }
 
 
+.container .user-input .pwd-tips{
+    width: 90%;
+    display: block;
+    font-size: .5em;
+    line-height: 1.2;
+    margin-top: 1vh;
+    font-weight: 500;
+}
+
+.container .user-input .pwd-tips .tips-icon{
+    color: red;
+}
 
 
 
