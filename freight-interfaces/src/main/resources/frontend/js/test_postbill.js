@@ -3,10 +3,28 @@
 import config from './config.js';
 
 // 导入返回函数
-import goBack from './utilityFunction.js'
+import { goBack } from './utilityFunction.js'
 
 // 绑定返回元素点击事件
 document.querySelector('.top-container .return').addEventListener('click', goBack)
+
+
+
+// 初始化pickadate时间选择
+
+$(document).ready(function() {
+    // 初始化日期选择器
+    $('input[name="date-start"], input[name="date-end"]').pickadate({
+        format: 'yyyy-mm-dd', // 或您想要的任何格式
+    });
+
+    // 初始化时间选择器
+    $('input[name="time-start"], input[name="time-end"]').pickatime({
+        format: 'HH:i', // 24小时制
+    });
+});
+
+
 
 
 // 确保在引入百度地图API和Axios之后调用此脚本
@@ -31,15 +49,27 @@ document.querySelector('.post').addEventListener('click', function(e) {
     var cargoName = document.querySelector('input[name="cargo-name"]').value;
     var cargoWeight = document.querySelector('input[name="cargo-weight"]').value;
     var cargoValue  = document.querySelector('input[name="cargo-value"]').value
+    
+    // 获取日期和时间，并拼接
     var startDate = document.querySelector('input[name="date-start"]').value;
+    var startTime = document.querySelector('input[name="time-start"]').value;
     var endDate = document.querySelector('input[name="date-end"]').value;
+    var endTime = document.querySelector('input[name="time-end"]').value;
+
+    var beginDateTime = startDate + ' ' + startTime;
+    var endDateTime = endDate + ' ' + endTime;
+    console.log(beginDateTime);
+    console.log(endDateTime);
+
     var cargoInfo = document.querySelector('textarea[name="cargo-Info"]').value
+    
     // 获取用户输入的地址
     var startAddress = document.querySelector('input[name="address-start"]').value;
     var endAddress = document.querySelector('input[name="address-end"]').value;
 
     // 从localstorage获取老板ID
     const bossId = JSON.parse(localStorage.getItem('userInfo')).userId;
+    
     // 定义一个函数用于发送数据到服务器
     function sendData(startPoint, endPoint) {
         axios({
@@ -48,13 +78,14 @@ document.querySelector('.post').addEventListener('click', function(e) {
             data: {
                 cargoName: cargoName,
                 cargoWeight: cargoWeight,
-                beginTime: startDate,
-                endTime: endDate,
+                beginTime: beginDateTime,
+                endTime: endDateTime,
                 beginLocation: startPoint,
                 endLocation: endPoint,
                 value: cargoValue,
                 info: cargoInfo,
-                bossId:bossId
+                bossId: bossId,
+                cargoValue:cargoValue
             }
         }).then(result => {
             console.log(result);
@@ -73,49 +104,4 @@ document.querySelector('.post').addEventListener('click', function(e) {
     });
 });
 
-// 显示地图模态窗口
-function showMapModal(type) {
-    document.getElementById('mapModal').style.display = 'flex';
-    initMap(type); // 传递类型（起点或终点）
-}
 
-// 关闭地图模态窗口
-function closeMapModal() {
-    document.getElementById('mapModal').style.display = 'none';
-}
-
-// 初始化地图
-function initMap(type) {
-    var map = new BMap.Map("map-container");
-    var centerPoint = new BMap.Point(116.404, 39.915);
-    map.centerAndZoom(centerPoint, 15);
-
-    map.addEventListener("click", function(e) {
-        var point = new BMap.Point(e.point.lng, e.point.lat);
-
-        var geoc = new BMap.Geocoder();
-        geoc.getLocation(point, function(rs){
-            var addComp = rs.addressComponents;
-            var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
-
-            if (type === 'start') {
-                document.querySelector('input[name="address-start"]').value = address;
-                document.getElementById('start-point').value = e.point.lng + "," + e.point.lat;
-            } else if (type === 'end') {
-                document.querySelector('input[name="address-end"]').value = address;
-                document.getElementById('end-point').value = e.point.lng + "," + e.point.lat;
-            }
-
-            closeMapModal();
-        });
-    });
-}
-
-// 绑定点击事件到起点和终点输入框
-document.querySelector('input[name="address-start"]').addEventListener('click', function() {
-    showMapModal('start');
-});
-
-document.querySelector('input[name="address-end"]').addEventListener('click', function() {
-    showMapModal('end');
-});

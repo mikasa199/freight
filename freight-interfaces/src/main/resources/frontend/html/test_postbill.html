@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../font/iconfont.css">
     <link rel="stylesheet" href="../css/test_postbill.css">
+    <link rel="stylesheet" href="../pickadate.js-3.6.2/lib/themes/default.css">
+    <link rel="stylesheet" href="../pickadate.js-3.6.2/lib/themes/default.date.css">
+    <link rel="stylesheet" href="../pickadate.js-3.6.2/lib/themes/default.time.css">
 </head>
 
 <body>
@@ -32,40 +35,54 @@
             </div>
 
 
-            <div class="items">
-                <div class="text">货物重量</div>
-                <input type="text" name="cargo-weight">
-
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">货物重量</div>
+                    <input type="text" name="cargo-weight">
+                </div>
+                <div class="right">
+                    <div class="text">货物单价</div>
+                    <input type="text" name="cargo-value">
+                </div>
             </div>
+
 
             <div class="half-items">
                 <div class="left">
                     <div class="text">起点</div>
-
-                    <input type="text" name="address-start" value="江苏省镇江市外国语学校">
-
-
-
+                    <input type="text" name="address-start">
                 </div>
+
                 <div class="right">
                     <div class="text">终点</div>
-
-                    <input type="text" name="address-end" value="浙江省湖州市湖州师范学院">
-
+                    <input type="text" name="address-end">
                 </div>
 
             </div>
 
             <div class="half-items">
                 <div class="left">
-                    <div class="text">开始时间</div>
+                    <div class="text">运单开始（日期）</div>
                     <input type="text" name="date-start">
                 </div>
                 <div class="right">
-                    <div class="text">结束时间</div>
-                    <input type="text" name="date-end">
+                    <div class="text">运单开始（时间）</div>
+                    <input type="text" name="time-start">
                 </div>
             </div>
+
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">运单结束（日期）</div>
+                    <input type="text" name="date-end">
+                </div>
+                <div class="right">
+                    <div class="text">运单结束（时间）</div>
+                    <input type="text" name="time-end">
+                </div>
+            </div>
+
+
 
             <div class="items">
                 <div class="text">备注信息</div>
@@ -82,15 +99,11 @@
         </div>
 
 
-        <div id="map-container"></div>
 
 
 
-        <!-- 地图模态窗口 -->
-        <div class="modal" id="mapModal" style="display:none;">
-            <div class="map-container" id="map-container"></div>
-            <button onclick="closeMapModal()">关闭</button>
-        </div>
+
+
 
 
     </div>
@@ -99,6 +112,15 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript"
         src="https://api.map.baidu.com/api?v=3.0&ak=wcYbDR2bKB1VLYPPtoHxEEgcLbqPfCLS"></script>
+
+    <!-- 引入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 引入Pickadate -->
+    <script src="../pickadate.js-3.6.2/lib/picker.js"></script>
+    <script src="../pickadate.js-3.6.2/lib/picker.date.js"></script>
+    <script src="../pickadate.js-3.6.2/lib/picker.time.js"></script>
+    <script src="../pickadate.js-3.6.2/lib/translations/zh_CN.js"></script>
+
 
     <script type="module" src="../js/test_postbill.js"></script>
 
