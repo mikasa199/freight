@@ -1,4 +1,4 @@
-package com.yang.freight.controller;
+package com.yang.freight.http;
 
 import com.yang.freight.common.Return;
 import com.yang.freight.domain.driver.model.req.*;
@@ -259,5 +259,11 @@ public class DriverController {
             return b ? Return.success("手机号修改成功") : Return.error("手机号修改失败，请重试");
         }
         return Return.error("验证码错误");
+    }
+
+    @GetMapping("/driverId")
+    public Return<DriverVO> queryById(Long driverId) {
+        DriverVO driverVO = driverDeploy.queryById(driverId);
+        return null == driverVO ? Return.error("查询失败，没有对应Id的driver信息") : Return.success(driverVO);
     }
 }

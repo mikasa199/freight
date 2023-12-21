@@ -1,4 +1,4 @@
-package com.yang.freight.controller;
+package com.yang.freight.http;
 
 import com.yang.freight.common.Page;
 import com.yang.freight.common.Return;
