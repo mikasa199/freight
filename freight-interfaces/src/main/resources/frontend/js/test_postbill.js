@@ -66,8 +66,8 @@ $(document).ready(function() {
         var endDate = document.querySelector('input[name="date-end"]').value;
         var endTime = document.querySelector('input[name="time-end"]').value;
 
-        var beginDateTime = startDate + ' ' + startTime;
-        var endDateTime = endDate + ' ' + endTime;
+        var beginDateTime = startDate + 'T' + startTime + ':00';
+        var endDateTime = endDate + 'T' + endTime + ':00';
 
         var cargoInfo = document.querySelector('textarea[name="cargo-Info"]').value;
         
