@@ -11,7 +11,7 @@ document.querySelector('.top-container .return').addEventListener('click', goBac
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const newUserNameInput = document.querySelector('input[name="adjust-name"]');
+    const newUserNameInput = document.querySelector('.user-input input[name="adjust-name"]');
     const submitButton = document.querySelector('.submit');
     const overlay = document.getElementById('overlay');
     const overlayContent = overlay.querySelector('.overlay-content');
@@ -38,11 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const { userId, userIdentity, userName } = userInfo;
     UserNameInput.value = userName
 
-    const newUserName = newUserNameInput.value.trim();
-    console.log(newUserName);
+    
     // 提交按钮点击事件
-submitButton.addEventListener('click', function (event) {
+    submitButton.addEventListener('click', function (event) {
         event.preventDefault(); // 阻止表单默认提交行为
+
+        const newUserName = newUserNameInput.value.trim();
+        console.log(newUserName);
+
+
 
         // 根据用户身份构建要发送的数据
     let dataForName;
