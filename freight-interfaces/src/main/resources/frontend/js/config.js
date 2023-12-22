@@ -4,7 +4,11 @@
 
 
 
+
+// const url = 'http://localhost:9999'
 const url = 'http://192.168.10.101:9999'
+
+
 
 const config = {
     
@@ -31,6 +35,11 @@ const config = {
     cargo_list_driverInfo: `${url}/order/list/cargoId`,   //老板查看司机的接单订单   params:{cargoId,page,pageSize}
     my_cargo_boss_searchDetailsApi: `${url}/cargo/cargoId`,    // 老板查看详细货物订单
     
+    bossAccount: `${url}/boss/bossId`,   // 老板端mypage页面的加载   参数：bossId
+    driverAccount: `${url}/driver/driverId`,   // 司机端mypage页面的加载   参数：driverId
+    
+
+
 }
 
 // config.js

@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/icon-font.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
     <link rel="stylesheet" href="../css/test_mypage_v1.css">
 </head>
 
@@ -34,9 +34,11 @@
 
                 <div class="number">
                     <div class="phone">
-                        用户名:15605170380
+                        用户名:
                     </div>
-                    <div class="Id">ID:21311</div>
+
+                    <!-- <div class="Id">ID:21311</div> -->
+
                 </div>
             </div>
         </div>
@@ -46,21 +48,21 @@
             <ul>
                 <li>
 
-                    <a href="./test_account.html">
+                    <a href="./adjustAccountName.html">
                         <i class="iconfont icon-zhanghaoguanli"></i>
-                        账号管理
+                        修改用户名
                     </a>
                 </li>
                 <li>
-                    <a href="./test_account.html">
+                    <a href="./adjustAccountPwd.html">
+                        <i class="iconfont icon-xiugaimima"></i>
+                        修改密码
+                    </a>
+                </li>
+                <li>
+                    <a href="./test_freightbill_v1.html">
                         <i class="iconfont icon-tuihuodan"></i>
-                        我的货单
-                    </a>
-                </li>
-                <li>
-                    <a href="./test_account.html">
-                        <i class="iconfont icon-shoucang"></i>
-                        收藏中心
+                        我的运单
                     </a>
                 </li>
                 <li>
@@ -117,6 +119,10 @@
         <!-- 底部导航栏结束 -->
 
 
+        <!-- 在 HTML 中添加蒙层元素 -->
+        <div id="overlay" style="display:none;">
+            <div class="overlay-content">错误信息</div>
+        </div>
 
     </div>
 

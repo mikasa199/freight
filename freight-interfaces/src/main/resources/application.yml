@@ -7,11 +7,18 @@ spring:
     password: yc1234
     url: jdbc:mysql://124.222.253.96:3306/freight?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 15
-      connection-timeout: 30000
-      max-lifetime: 30000
+    initialSize: 5      #连接池启动时创建的初始化连接数量。
+    minIdle: 5        # 连接池中最小的空闲连接数。
+    maxActive: 20     #连接池中最大的活动连接数。
+    maxWait: 60000    #当没有可用连接时，连接池等待连接被归还的最大时间(以毫秒为单位)。
+    timeBetweenEvictionRunsMillis: 60000  # 后台线程检测连接的间隔时间，如果设置为负数则不运行检测线程。
+    validationQuery: SELECT 1 #用来检测连接是否有效的SQL查询语句。
+    testWhileIdle: true       #是否在连接空闲一段时间后检测其可用性。
+    testOnBorrow: false       #在从连接池获取连接时是否检测其可用性。
+    testOnReturn: false       #在连接归还连接池时是否检测其可用性。
+    poolPreparedStatements: true  #是否缓存PreparedStatement，即预编译SQL语句。
+    maxPoolPreparedStatementPerConnectionSize: 20 #每个连接最大的PreparedStatement缓存数量。
+    filters: stat      # 配置的过滤器，"stat"表示使用Druid的内置统计功能。
 
   redis:
     host: 43.143.31.48 #124.222.253.96 #ip地址
@@ -26,6 +33,11 @@ spring:
         min-idle: 2 #最小空闲连接，默认为0
   mvc:
     dispatch-options-request: true
+    contentnegotiation:
+      media-types:
+        woff: application/font-woff
+        woff2: application/font-woff2
+        ttf: application/x-font-ttf
   webmvc:
     cors:
       allowed-origins: "*"
@@ -33,7 +45,20 @@ spring:
       allowed-headers: "*"
       max-age: 3600
 
+alipay:
+  enabled: true
+  app_id: 9021000133604965
+  merchant_private_key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDWJgj7qpOj+HMk2FR4FDZYrkIEVY6UokTcbwKUxb0jqLn5JoGCwivu71xWhWne9423IqFEf5GA8Oylkl3SnFXAVmXlO5209cKhUAOu5Em0bYzDWEuAS/qpLXRQbJ8dLFSl1oeJc4qJ65geMJQ1r92q+yzGe9oNwy/rul4TMu7PXMr9Pio96GX+JhXD0sfJhN7nta0FiDU2VPUa61hj9R6nCYSqn0+nZgxE3g+AdVmn4syZT+bG6oA2cCmZtOhOn0N34mUlprJycmW9og8Pjx42FiqvRcLg4gMDmVcgcQoVnC6If7MXz2BFFzG4VcGqxhxSfCYsfIe9mCXhIWt8FeE5AgMBAAECggEAWH8RWUctiiZjFwfbKGBZ8R3aJEZjDKNeR6YMcASjW/gfGopCHRI265+5DfxGOyEcTGEgOdlp/NoTQX0SDrYSbdCGfUu8qYqiKt2RGBY5KznWYOe9E8DSTlV9arroqjqmpH3aNwArcUGN9HPo26LYvQ7dewy1mNhflk/HDrIOpFwXZclAS8qL1l+EUayb94qSMCPpJCx+aJaiheii1GWdmiaCw8Bsolvm0HvvDpuwNyFwjLARcIwgdFqLgsjZzyTMMBWqQzuxJsdwv4tYnSTp3ZkV+sFyfTe8SPFVeTu+toZFJCNkbxr7QPFjVXAuXgZc7KDtRAa/EfsFtlSlj5yl/QKBgQD8r9O6tfsGyq4bqVqTL3Q0hQj1P+7AWOCvKtjW215JhkIzbSwAZmYgYhmYayaNdYMSlZ5qjAoa0etL76G6z/3jcC/qUUZvFtmdd3fMqIGAW3+II6gGm3s7+6QnFwOzxGvN6Fm+sVxHMKZvbmMOGHsCdddERWOe6+s1LHET0wWL/wKBgQDY9NmRKYvYZC7f9MiN8dg8tjIDZmEROe1FynWnqhDCZUKk2CDLtOGf8P7nhi59rVzYvji6ttIh4P97535L4l3acxP/RyXVhCRhU++1pr0XYPvCztji6nBM/m7uUXZCwe2ePfhoUeyphea7ZlHBwfIRsfB+TY+8JkOwv1QxF5HyxwKBgGbSdWnIm3lMCEUhSMYTzUmByP9jIJgMkoE1Aj+LzHZGt7GNfxY6lNwgjyHCmFF/u/JYB7p7ebEoMoMX48vMzxc5k4XZxLt3pN26u3kAKJI+qUqQl9L4edESuN1fNBZ2mxeSsNI0AcTGOzOky5H0zDlYElypj7wfa/qbNvhGKj+pAoGBAK4nBYonvnDqIlJ1zJNcgcZiPg1KnjpUtGjkVsNKmX9iBzgJoXHDdaWMryEsLZ+GjNQTBbijTlQRpyNPtKq3P709yNyOwQj+tLFHzlCTUpA0soMyxRiJNbIoPuWgkHyP7OysM/2RXZbKvGbLgG82/thDbJgGLI3MbWOwgaWSlP47AoGBAJeQn0U7KNlVnP1PHleqnudsyCtD1Ic3B6tTh3RZCDvZ4XQKUXipWgFZtTIbEr8igzf1eOCmxYMdTo530OL2uavHkjy0XS67VulXJhIDqX99vw+BN134MXNmcgcc0ukDqTo+VQYrCPByVesriPDGhrIhygSv65w1yZN2kvc1qX1O
+  alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1iYI+6qTo/hzJNhUeBQ2WK5CBFWOlKJE3G8ClMW9I6i5+SaBgsIr7u9cVoVp3veNtyKhRH+RgPDspZJd0pxVwFZl5TudtPXCoVADruRJtG2Mw1hLgEv6qS10UGyfHSxUpdaHiXOKieuYHjCUNa/dqvssxnvaDcMv67peEzLuz1zK/T4qPehl/iYVw9LHyYTe57WtBYg1NlT1GutYY/UepwmEqp9Pp2YMRN4PgHVZp+LMmU/mxuqANnApmbToTp9Dd+JlJaaycnJlvaIPD48eNhYqr0XC4OIDA5lXIHEKFZwuiH+zF89gRRcxuFXBqsYcUnwmLHyHvZgl4SFrfBXhOQIDAQAB
+  notify_url: http://69w6hj.natappfree.cc/api/v1/alipay/alipay_notify_url
+  return_url: 123  #「沙箱环境」页面跳转同步通知页面路径 需http://格式的完整路径，必须外网可以正常访问，才会同步跳转
+  gatewayUrl: l = https://openapi-sandbox.dl.alipaydev.com/gateway.do
+
+
 
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   config-location: classpath:/mybatis/config/mybatis-config.xml
+
+natapp:
+  authtoken: b1e597c6ea5c0bae

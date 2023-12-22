@@ -69,6 +69,15 @@ a:hover{
     color: #fff;
 }
 
+.top-container .return{
+    position: absolute;
+    left: 8%;
+    top: 0;
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+}
+
 
 
 /* 顶部栏结束 */

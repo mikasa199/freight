@@ -1,6 +1,8 @@
+
 // 导入配置文件
 
 import config from './config.js';
+
 
 
 
@@ -57,10 +59,12 @@ document.querySelectorAll('.identity-container button').forEach(button => {
         // 更新登录按钮状态
         updateLoginButtonState();
 
+
         // 存储用户身份到 localStorage
         const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
         userInfo.userIdentity = selectedIdentity === '我是老板' ? 'boss' : 'driver';
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
     });
 });
 
@@ -83,6 +87,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
     const previousIdentity = userInfo.userIdentity;
 
+
     axios({
         url: url,
         method: 'POST',
@@ -97,8 +102,6 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         localStorage.removeItem('userInfo');
         
         // 使用 BigInt 处理可能的超长整数
-        
-
         if (selectedIdentity === '我是老板') {
            const newUserInfo = {
                 userId: BigInt(result.data.data.bossId).toString(), // 将 BigInt 转换为字符串存储
@@ -109,14 +112,12 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
             localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 登录时存取用户资料
         } else if(selectedIdentity === '我是司机'){
            
-
             const newUserInfo = {
                 userId: BigInt(result.data.data.driverId).toString(), // 将 BigInt 转换为字符串存储
                 userName: result.data.data.driverName,
                 userPhone: result.data.data.phone,
                 userIdentity: previousIdentity // 保留之前的身份信息
             }
-
             localStorage.setItem('userInfo', JSON.stringify(newUserInfo)); // 登录时存取用户资料
         }
         
@@ -126,6 +127,7 @@ document.querySelector('.confirm-container .user-confirm').addEventListener('cli
         // 登录成功的处理逻辑
     }).catch(error => {
         console.log(error);
+
         // 登录失败的处理逻辑
         showOverlay("登录失败：" + error.message); // 显示错误信息
     });

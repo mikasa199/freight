@@ -164,4 +164,9 @@ public class BossServiceImpl implements IBossService {
         return Return.error("登录失败，未知错误，请重试~");
     }
 
+    @Override
+    public Return<BossVO> queryById(long bossId) {
+        BossVO bossVO = bossRepository.queryById(bossId);
+        return null == bossVO ? Return.error("查询失败，没有对应id的boss信息") : Return.success(bossVO);
+    }
 }

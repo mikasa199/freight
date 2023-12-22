@@ -70,6 +70,11 @@ public class DriverDeployImpl implements IDriverDeploy {
     }
 
     @Override
+    public DriverVO queryById(long driverId) {
+        return driverRepository.queryById(driverId);
+    }
+
+    @Override
     public boolean updatePassword(UpdatePasswordReq req) throws NoSuchAlgorithmException {
 
         //1. 验证历史密码是否正确

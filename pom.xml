@@ -92,13 +92,32 @@
                 <version>1.18.22</version>
             </dependency>
 
-
         </dependencies>
     </dependencyManagement>
 
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>frontend/front/*.woff</exclude>
+                    <exclude>frontend/front/*.woff2</exclude>
+                    <exclude>frontend/front/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>frontend/front/*.woff</include>
+                    <include>frontend/front/*.woff2</include>
+                    <include>frontend/front/*.ttf</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -2,6 +2,14 @@
 import config from './config.js';
 
 
+// 导入时间转换函数
+
+import { goBack,dateFormat } from './utilityFunction.js';
+
+// 绑定返回元素点击事件
+document.querySelector('.top-container .return').addEventListener('click', goBack)
+
+
 // 页面滚动加载更多数据
 let currentPage = 1;
 let isLoading = false; // 添加一个标志来检查是否正在加载数据
@@ -28,19 +36,6 @@ function translateOrderState(stateCode) {
     return stateMap[stateCode] || '未知状态';
 }
 
-
-// 转换时间函数
-function formatDateTime(isoDateTime) {
-    const date = new Date(isoDateTime);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从 0 开始的
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-}
 
 
 function axiosDriverDetailList(cargoId,clearList = false) {
@@ -86,11 +81,11 @@ function axiosDriverDetailList(cargoId,clearList = false) {
                 <div class="middle-part">
                     <div class="createdTime">
                         <div class="title">订单创建时间:</div>
-                        <div class="text">${formatDateTime(record.createdTime)}</div>
+                        <div class="text">${dateFormat(record.createdTime)}</div>
                     </div>
                     <div class="updatedTime">
                         <div class="title">订单更新时间：</div>
-                        <div class="text">${formatDateTime(record.updatedTime)}</div>
+                        <div class="text">${dateFormat(record.updatedTime)}</div>
                     </div>
                 </div>
                 <div class="bottom-part">
@@ -102,10 +97,10 @@ function axiosDriverDetailList(cargoId,clearList = false) {
                         <div class="title">订单状态</div>
                         <div class="text">${translateOrderState(record.state)}</div>
                     </div>
-                </div>
-                <div class="orderId">
-                    #${record.orderId}
                 </div>`;
+                // <div class="orderId">
+                //     #${record.orderId}
+                // </div>;
             list.appendChild(li);
         });
 

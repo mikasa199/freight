@@ -50,16 +50,10 @@ a:hover{
 /* 通用样式结束 */
 
 
-
-
-
-
-
-
 /* 顶部标题栏开始 */
 .top-container{
     background-color: #3262f4;
-    height: 22vh;
+    height: 18vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -84,7 +78,7 @@ a:hover{
     position: relative;
     margin: 0 auto;
     
- 
+
 }
 
 .top-container .search-items .text .search-logo{
@@ -104,46 +98,19 @@ a:hover{
 }
 
 
-/* 扫一扫组件开始 */
 
-
-/* .top-container .search-items .scan{
-    flex: 2;
-    position: relative;
-    flex-direction: column;
-    height: 7vh;
-    color: #fff;
-    width: 10%;
-}
-
-.top-container .search-items .scan .scan-logo{
-    position: absolute;
-    left: 6%;
-    top: 0;
-    font-size: 4em;
-}
-
-.top-container .search-items .scan{
-    font-size: 0.5em;
-    padding-top: 5vh;
-    box-sizing: border-box;
-
-} */
-
-
-/* 扫一扫组件结束 */
 
 
 /* 搜索栏结束 */
 
 
 /* 导航标题栏开始 */
-.nav-items {
-    /* background-color: pink; */
+/* .nav-items {
+    
     width: 90%;
     height: 5vh;
     margin: 0 auto;
-    margin-top: 3vh;
+    margin-top: 1vh;
     display: flex;
     justify-content: space-around;
     line-height: 5vh;
@@ -152,19 +119,21 @@ a:hover{
 .nav-items .nav-title{
     font-weight: bold;
     color: #c3c2c2;
+
+    font-size: 1.3em;
+
 }
 
 
 
 .nav-items .nav-title.active{
     color: #f7fcff;
-}
+} */
 
 
 /* 导航标题栏结束 */
 
 /* 列表栏开始 */
-
 
 
 .list-items{
@@ -174,6 +143,7 @@ a:hover{
     display: flex;
     justify-content: flex-start;
     line-height: 4vh;
+    margin-top: 6vh;
 }
 
 
@@ -252,6 +222,7 @@ a:hover{
     width: 90%;
     margin: 0 auto;
     margin-bottom: 1vh;
+    
     /* height: 30vh; */
     border-radius: 10px;
     position: relative;
@@ -366,8 +337,9 @@ a:hover{
 }
 
 .information-container .goods .goods-kind .goods-info .kind,
-.information-container .goods .goods-kind .goods-info .price,
-.information-container .goods .goods-kind .goods-info .weight{
+.information-container .goods .goods-kind .goods-info .price{
+
+
     display: inline-block;
     border: 1.5px solid #3262f4;
     border-radius: 5px;
@@ -437,13 +409,14 @@ a:hover{
 /* 底部导航栏开始 */
 
 
+
 .bottom-nav-container{
     display: flex;
     background-color: #fff;
     height: 10vh;
     position: fixed;
     left: 0;
-    bottom: 5px;
+    bottom: 0;
     right: 0;
    
     
@@ -452,11 +425,11 @@ a:hover{
 
 .bottom-nav-container .nav-items{
     flex: 1;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: #9b9b9b;
-    text-align: center;
 }
 
 .bottom-nav-container .nav-items.active{
@@ -471,7 +444,6 @@ a:hover{
 
 .bottom-nav-container .nav-items .text{
     flex: 1;
-    
     font-size: 1em;
     font-weight: bold;
 }

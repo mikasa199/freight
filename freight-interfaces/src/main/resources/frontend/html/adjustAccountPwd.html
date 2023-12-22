@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拉货APP_下单页面</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/adjustAccountPwd.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- 顶部标题栏 -->
+        <div class="top-container">
+            <div class="title">密码修改</div>
+            <div class="return iconfont icon-fanhui"></div>
+        </div>
+
+
+        <!-- 用户输入栏 -->
+        <form action="" class="user-input ">
+            <!-- <button class="adjust-btn name">点击修改用户名</button> -->
+            <!-- <div class="items readonly name-margin">
+                <div class="text">原用户名</div>
+                <input type="text" name="name" readonly>
+            </div>
+
+            <div class="items ">
+                <div class="text">新的用户名</div>
+                <input type="text" name="adjust-name">
+            </div> -->
+
+
+            <!-- <button class="adjust-btn pwd">点击修改密码</button> -->
+            <div class="items pwd-margin ">
+                <div class="text">输入原密码</div>
+                <input type="password" name="password">
+                <!-- <div class="pwdDisplay iconfont icon-yanjing"></div> -->
+            </div>
+
+            <div class="items ">
+                <div class="text">新密码</div>
+                <div class="pwd-tips">
+                    <i class="tips-icon iconfont icon-tishi"></i>
+                    密码必须是8-12位字符，可以包含数字、大小写字母和特殊符号
+                </div>
+                <input type="password" name="adjust-password">
+
+            </div>
+
+
+            <div class="items">
+                <div class="text">确认新密码</div>
+                <input type="password" name="confirm-adjust-password">
+            </div>
+
+
+
+        </form>
+
+
+        <!-- 用户确认区 -->
+        <div class="confirm-container">
+            <button class="save">暂存</button>
+            <button class="post submit" disabled>提交</button>
+        </div>
+
+
+        <!-- 在 HTML 中添加蒙层元素 -->
+        <div id="overlay" style="display:none;">
+            <div class="overlay-content">错误信息</div>
+        </div>
+
+    </div>
+
+    <script src="../form-serialize/lib/form-serialize.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../js/adjustAccountPwd.js"></script>
+
+</body>
+
+</html>

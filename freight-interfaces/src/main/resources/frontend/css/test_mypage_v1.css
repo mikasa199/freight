@@ -19,7 +19,9 @@ a:hover{
 
 .container{
     background-color: #fff;
-    height: 100vh;
+    /* height: 100vh; */
+     overflow: auto;
+     overflow-x: hidden;
 }
 
 /* 修改container的最大宽度为1280 根据设计稿的要求 */
@@ -34,8 +36,6 @@ a:hover{
 }
 
 
-
-
 /* 通用样式结束 */
 
 /* 顶部标题栏开始 */
@@ -43,11 +43,11 @@ a:hover{
 .top-container{
     background-color: #3262f4;
     height: 12vh;
-    /* position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; 去除固定定位 */
+    z-index: 1000; 
     line-height: 12vh;
 
 
@@ -75,9 +75,12 @@ a:hover{
 
 /* 用户资料区开始 */
 .user-container{
-    /* background-color: lightblue; */
+    
     height: 12vh;
     display: flex;
+    margin-top: 12vh;
+    box-sizing: border-box;
+    
 }
 
 .user-container .user-icon{
@@ -124,7 +127,9 @@ a:hover{
     color: black;
     font-weight: bold;
     display: flex;
-    justify-content: center;
+
+    justify-content: space-between;
+
     padding-top: 1vh;
 }
 
@@ -140,7 +145,9 @@ a:hover{
     text-align: end;
     padding-right: 5%;
     flex: 1;
+
     display: none;
+
 }
 
 
@@ -154,6 +161,7 @@ a:hover{
 .content-container{
     background-color: #fff;
     height: 40vh;
+
    
 }
 
@@ -186,7 +194,10 @@ a:hover{
 .confirm-container{
     width: 90%;
     margin: 0 auto;
+    margin-top: 2vh;
     height: 20vh;
+
+
 }
 
 .confirm-container button{
@@ -205,7 +216,9 @@ a:hover{
 }
 
 
+
 /* 用户确认栏结束 */
+
 
 
 
@@ -218,7 +231,7 @@ a:hover{
     height: 10vh;
     position: fixed;
     left: 0;
-    bottom: 5vh;
+    bottom: 0;
     right: 0;
 }
 
@@ -252,3 +265,27 @@ a:hover{
 
 
 /* 底部导航栏结束 */
+
+
+/* 蒙层的 CSS 样式开始 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+/* 蒙层的样式结束 */

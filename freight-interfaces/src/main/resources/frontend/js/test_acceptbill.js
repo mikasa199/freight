@@ -2,7 +2,12 @@
 
 import config from './config.js';
 
+// 导入返回函数
+import goBack from './utilityFunction.js'
 
+
+// 绑定返回元素点击事件
+document.querySelector('.top-container .return').addEventListener('click', goBack)
 
 // 从localstorage读取货单数据
 
