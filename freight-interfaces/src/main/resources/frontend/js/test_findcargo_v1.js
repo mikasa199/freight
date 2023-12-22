@@ -290,7 +290,7 @@ function renderCargoInfo(cargoList) {
     
     // 读取身份
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const userIdentity = userInfo ? userInfo.userIndentity : null;
+    const userIdentity = userInfo ? userInfo.userIdentity : null;
 
 
     const htmlStr = cargoList.map(items => {
@@ -364,7 +364,7 @@ function appendDataToPage(data) {
 
         // 读取身份
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        const userIdentity = userInfo ? userInfo.userIndentity : null;
+        const userIdentity = userInfo ? userInfo.userIdentity : null;
 
         // 根据身份判断是否渲染接单按钮
         const acceptBillButton = userIdentity === 'driver' ? `<a href="./test_acceptbill.html" class="accept-bill">接单</a>` : '';
