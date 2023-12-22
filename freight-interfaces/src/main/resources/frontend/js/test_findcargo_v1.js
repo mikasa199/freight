@@ -337,8 +337,6 @@ function renderCargoInfo(cargoList) {
                 <div class="distance-info">总里程${items.distance}公里</div>
             </div>
 
-
-
             <!-- 接单链接 -->
             ${acceptBillButton}
 
