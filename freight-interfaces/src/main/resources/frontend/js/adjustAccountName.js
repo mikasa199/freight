@@ -66,14 +66,21 @@ submitButton.addEventListener('click', function (event) {
         method: 'POST',
         data: dataForName
     }).then(response => {
-        showOverlay('用户名更新成功');
+        if (response.code === 1) {
+            showOverlay(response.msg);
+            window.location.href = './test_mypage_v1.html'
+        } else {
+            showOverlay(response.msg);
+        }
+           
+        
     }).catch(error => {
-        showOverlay('更新用户名出错: ' + error.message);
+        showOverlay('更新用户名出错: ' + error.msg);
     });
 });
 
     // 显示带消息的蒙层函数
-    function showOverlay(message) {
+function showOverlay(message) {
         overlayContent.textContent = message;
         overlay.style.display = 'flex';
         setTimeout(() => {

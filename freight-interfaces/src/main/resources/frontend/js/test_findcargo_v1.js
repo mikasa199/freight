@@ -29,8 +29,6 @@ temp_conditionList_ul.addEventListener('click', function (event){
 
 
 
-
-
 // 从服务器读取数据加载货物信息进行页面渲染
 function GetCargoInfo() {
     axios({
@@ -76,7 +74,7 @@ function GetCargoInfo() {
                                 <div class="goods-info">
                                     <div class="kind">${items.cargoName}</div>
                                     <div class="price">${items.value}元/吨</div>
-                                    <div class="weight">${items.cargoWeight}</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -289,14 +287,18 @@ document.addEventListener('DOMContentLoaded', function() {
 // 将数据渲染到页面上
 function renderCargoInfo(cargoList) {
 
+    
+    // 读取身份
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const userIndentity = userInfo ? userInfo.userIndentity : null;
+    const userIdentity = userInfo ? userInfo.userIndentity : null;
 
 
     const htmlStr = cargoList.map(items => {
 
         // 根据身份判断是否渲染接单按钮
-        const acceptBillButton = userIndentity === 'driver' ? `<a href="javascript:void(0)" class="accept-bill">接单</a>` : '';
+        const acceptBillButton = userIdentity === 'driver' ? `<a href="./test_acceptbill.html" class="accept-bill">接单</a>` : '';
+        console.log(userIdentity);
+        console.log(acceptBillButton);
         return `
         <li>
         <div class="information-container">
@@ -317,16 +319,15 @@ function renderCargoInfo(cargoList) {
             <div class="goods">
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
-                    <span>发货: </span>
-                    <div class="date_text">${dateFormat(items.beginTime)}</div>
+                    <span>结束时间: </span>
+                    <div class="date_text">${dateFormat(items.endTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-
-                        <div class="weight">${items.cargoWeight}</div>
+                        
 
                     </div>
                 </div>
@@ -361,11 +362,14 @@ function renderCargoInfo(cargoList) {
 function appendDataToPage(data) {
     const htmlStr = data.map(items => {
 
+        // 读取身份
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        const userIndentity = userInfo ? userInfo.userIndentity : null;
+        const userIdentity = userInfo ? userInfo.userIndentity : null;
 
         // 根据身份判断是否渲染接单按钮
-        const acceptBillButton = userIndentity === 'driver' ? `<a href="javascript:void(0)" class="accept-bill">接单</a>` : '';
+        const acceptBillButton = userIdentity === 'driver' ? `<a href="./test_acceptbill.html" class="accept-bill">接单</a>` : '';
+        console.log(userIdentity);
+        console.log(acceptBillButton);
         return `
         <li>
         <div class="information-container">
@@ -386,16 +390,15 @@ function appendDataToPage(data) {
             <div class="goods">
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
-                    <span>发货: </span>
-                    <div class="date_text">${dateFormat(items.beginTime)}</div>
+                    <span>结束时间: </span>
+                    <div class="date_text">${dateFormat(items.endTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-
-                        <div class="weight">${items.cargoWeight}</div>
+                        
 
                     </div>
                 </div>

@@ -5,7 +5,7 @@ export function goBack() {
     window.history.back();
 }
 
-export function dateFormat() {
+export function dateFormat(isoDateTime) {
     const date = new Date(isoDateTime);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从 0 开始的
