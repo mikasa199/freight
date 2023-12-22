@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     UserNameInput.value = userName
 
     const newUserName = newUserNameInput.value.trim();
+    console.log(newUserName);
     // 提交按钮点击事件
 submitButton.addEventListener('click', function (event) {
         event.preventDefault(); // 阻止表单默认提交行为
@@ -66,16 +67,19 @@ submitButton.addEventListener('click', function (event) {
         method: 'POST',
         data: dataForName
     }).then(response => {
-        if (response.code === 1) {
-            showOverlay(response.msg);
+        console.log(response);
+        if (response.data.code == 1) {
+            showOverlay(response.data.data);
+            console.log(response.data.data);
             window.location.href = './test_mypage_v1.html'
         } else {
-            showOverlay(response.msg);
+            showOverlay(response.data.msg);
+            console.log(response.data.msg);
         }
            
         
     }).catch(error => {
-        showOverlay('更新用户名出错: ' + error.msg);
+        showOverlay('更新用户名出错: ' + error.message);
     });
 });
 
