@@ -360,6 +360,7 @@ function renderCargoInfo(cargoList) {
 
 // 添加新的数据到页面
 function appendDataToPage(data) {
+    
     const htmlStr = data.map(items => {
 
         // 读取身份
