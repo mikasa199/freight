@@ -25,6 +25,17 @@ function updateSubmitButtonState() {
     }
 }
 
+    // 显示带消息的蒙层函数
+function showOverlay(message) {
+        overlayContent.textContent = message;
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 3000); // 3秒后隐藏蒙层
+}
+
+
+
 
 
 $(document).ready(function() {
@@ -96,6 +107,13 @@ $(document).ready(function() {
                 }
             }).then(result => {
                 console.log(result);
+                if (result.code === 1) {
+                    showOverlay(result.data);
+                    window.location.href = './test_mypage_v1.html';
+                } else{
+                    showOverlay(result.data);
+                }
+                
             }).catch(error => {
                 console.log(error);
             });

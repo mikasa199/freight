@@ -11,7 +11,7 @@ document.querySelector('.top-container .return').addEventListener('click', goBac
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const newUserNameInput = document.querySelector('input[name="adjust-name"]');
+    const newUserNameInput = document.querySelector('.user-input input[name="adjust-name"]');
     const submitButton = document.querySelector('.submit');
     const overlay = document.getElementById('overlay');
     const overlayContent = overlay.querySelector('.overlay-content');
@@ -38,10 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const { userId, userIdentity, userName } = userInfo;
     UserNameInput.value = userName
 
-    const newUserName = newUserNameInput.value.trim();
+    
     // 提交按钮点击事件
-submitButton.addEventListener('click', function (event) {
+    submitButton.addEventListener('click', function (event) {
         event.preventDefault(); // 阻止表单默认提交行为
+
+        const newUserName = newUserNameInput.value.trim();
+        console.log(newUserName);
+
+
 
         // 根据用户身份构建要发送的数据
     let dataForName;
@@ -66,14 +71,24 @@ submitButton.addEventListener('click', function (event) {
         method: 'POST',
         data: dataForName
     }).then(response => {
-        showOverlay('用户名更新成功');
+        console.log(response);
+        if (response.data.code == 1) {
+            showOverlay(response.data.data);
+            console.log(response.data.data);
+            window.location.href = './test_mypage_v1.html'
+        } else {
+            showOverlay(response.data.msg);
+            console.log(response.data.msg);
+        }
+           
+        
     }).catch(error => {
         showOverlay('更新用户名出错: ' + error.message);
     });
 });
 
     // 显示带消息的蒙层函数
-    function showOverlay(message) {
+function showOverlay(message) {
         overlayContent.textContent = message;
         overlay.style.display = 'flex';
         setTimeout(() => {

@@ -80,10 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             data: dataForPassword
         }).then(result => {
-            if (result.code === 0) {
-                showOverlay(result.message)
+            if (result.data.code === 1) {
+                showOverlay(result.data.data)
+                window.location.href = './test_mypage_v1.html'
             } else {
-                showOverlay('密码更新成功');
+                showOverlay(result.data.msg);
             }
         }).catch(error => {
             showOverlay('更新密码出错: ' + error.message);

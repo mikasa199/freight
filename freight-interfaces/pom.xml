@@ -89,6 +89,12 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>4.34.0.ALL</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.8</version>  <!-- 请将此处的版本号改为你的实际 Jackson 库版本号 -->
+        </dependency>
+
     </dependencies>
 
 
