@@ -3,7 +3,7 @@
 import config from './config.js';
 
 // 导入返回函数
-import goBack from './utilityFunction.js'
+import { goBack }  from './utilityFunction.js'
 
 
 // 绑定返回元素点击事件
@@ -20,10 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cargoInfo) {
             // 填充表单数据
             document.querySelector('.cargo-input [name="cargo-name"]').value = cargoInfo.cargo_kind;
-            
             // 如果有重量信息，应该更新对应的输入框
             document.querySelector('.cargo-input [name="cargo-weight"]').value = cargoInfo.cargo_weight; 
-
             document.querySelector('.cargo-input [name="address-start"]').value = cargoInfo.start_address;
             document.querySelector('.cargo-input [name="address-end"]').value = cargoInfo.end_address;
             document.querySelector('.cargo-input [name="date-start"]').value = cargoInfo.start_date;

@@ -321,8 +321,13 @@ a:hover{
 }
 
 
-.information-container .goods .date .date_text{
+.information-container .goods .date .date_end{
     display: inline;
+}
+
+/* 控制运单开始时间隐藏 */
+.information-container .goods .date .date_start{
+    display: none;
 }
 .information-container .goods .goods-kind{
     padding-left: 5%;
@@ -351,6 +356,11 @@ a:hover{
     overflow: hidden; /* 隐藏溢出的内容 */
     text-overflow: ellipsis; /* 显示省略号 */
    
+}
+
+/* 控制货物重量隐藏 */
+.information-container .goods .goods-kind .goods-info .stock{
+    display: none;
 }
 
 /* 距离信息 */

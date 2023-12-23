@@ -14,7 +14,12 @@ const temp_conditionList_ul = document.querySelector('.condition-list ul')
 const temp_conditionName = document.querySelector('.list-items .list-title .text')
 
 document.querySelector('.top-container .list-items .list-title').addEventListener('click', () => {
-    temp_conditionList.style.display = 'block'
+    // 切换条件列表的显示状态
+    if (temp_conditionList.style.display === 'block') {
+        temp_conditionList.style.display = 'none';
+    } else {
+        temp_conditionList.style.display = 'block';
+    }
 })
 
 temp_conditionList_ul.addEventListener('click', function (event){
@@ -211,10 +216,11 @@ document.querySelector('.content-container ul').addEventListener('click', functi
             cargoId: listItem.querySelector('.cargoId').textContent,
             start_address: listItem.querySelector('.address .text_start').innerText,
             end_address: listItem.querySelector('.address .text_end').innerText,
-            start_date: listItem.querySelector('.goods .date .date_text').textContent,
+            start_date: listItem.querySelector('.goods .date .date_start').textContent,
+            end_date: listItem.querySelector('.goods .date .date_end').textContent,
             cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
             cargo_price: listItem.querySelector('.goods-kind .price').textContent,
-            // cargo_weight: listItem.querySelector('.goods-kind .weight').textContent
+            cargo_stock: listItem.querySelector('.goods-kind .stock').textContent
         };
 
         // 存储数据到 LocalStorage
@@ -320,14 +326,15 @@ function renderCargoInfo(cargoList) {
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
                     <span>结束时间: </span>
-                    <div class="date_text">${dateFormat(items.endTime)}</div>
+                    <div class="date_end">${dateFormat(items.endTime)}</div>
+                    <div class="date_start">${dateFormat(items.beginTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        
+                        <div class="stock">${items.stock}</div>
 
                     </div>
                 </div>
@@ -360,7 +367,7 @@ function renderCargoInfo(cargoList) {
 
 // 添加新的数据到页面
 function appendDataToPage(data) {
-    
+
     const htmlStr = data.map(items => {
 
         // 读取身份
