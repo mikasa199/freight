@@ -203,19 +203,21 @@ function fetchCargoData(cargoName, page, pageSize) {
 
 // 绑定点击事件到包含所有 li 的 ul 元素
 document.querySelector('.content-container ul').addEventListener('click', function(event) {
+
+    // 获取当前按钮所在的 li 元素
+    const listItem = event.target.closest('li');
+
     // 检查被点击的元素是否是接单按钮或其子元素
     if (event.target.closest('.accept-bill')) {
         // 清空LocalStorage中之前的cargoInfo
         localStorage.removeItem('cargoInfo');
 
-        // 获取当前按钮所在的 li 元素
-        const listItem = event.target.closest('li');
-
+        
         const cargoInfo = {
             driverId: listItem.querySelector('.driverId').textContent,
             cargoId: listItem.querySelector('.cargoId').textContent,
-            start_address: listItem.querySelector('.address .text_start').innerText,
-            end_address: listItem.querySelector('.address .text_end').innerText,
+            start_address: listItem.querySelector('.address .text_start').textContent,
+            end_address: listItem.querySelector('.address .text_end').textContent,
             start_date: listItem.querySelector('.goods .date .date_start').textContent,
             end_date: listItem.querySelector('.goods .date .date_end').textContent,
             cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
@@ -228,6 +230,30 @@ document.querySelector('.content-container ul').addEventListener('click', functi
 
         // 数据存储后进行页面跳转
         window.location.href = './test_acceptbill.html';
+
+
+    } else if (listItem) {
+        // 清空LocalStorage中之前的cargoInfo
+        localStorage.removeItem('cargoInfo');
+
+        const cargoInfo = {
+            driverId: listItem.querySelector('.driverId').textContent,
+            cargoId: listItem.querySelector('.cargoId').textContent,
+            start_address: listItem.querySelector('.address .text_start').textContent,
+            end_address: listItem.querySelector('.address .text_end').textContent,
+            start_date: listItem.querySelector('.goods .date .date_start').textContent,
+            end_date: listItem.querySelector('.goods .date .date_end').textContent,
+            cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
+            cargo_price: listItem.querySelector('.goods-kind .price').textContent,
+            cargo_stock: listItem.querySelector('.goods-kind .stock').textContent
+        };
+
+        // 存储数据到 LocalStorage
+        localStorage.setItem('cargoInfo', JSON.stringify(cargoInfo));
+
+        // 数据存储后进行页面跳转到运单详情页面
+        window.location.href = './findCargoDetail.html';
+    
     }
 });
 

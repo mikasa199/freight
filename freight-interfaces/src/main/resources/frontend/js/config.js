@@ -5,8 +5,8 @@
 
 
 
-// const url = 'http://localhost:9999'
-const url = 'http://192.168.10.101:9999'
+const url = 'http://127.0.0.1:9999'
+// const url = 'http://192.168.201.60:9999'
 
 
 

@@ -9,6 +9,21 @@ import { goBack }  from './utilityFunction.js'
 // 绑定返回元素点击事件
 document.querySelector('.top-container .return').addEventListener('click', goBack)
 
+
+
+
+// 显示蒙层的函数
+function showOverlay(message) {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'flex';
+    overlay.querySelector('.overlay-content').textContent = message;
+
+    // 可以添加关闭蒙层的逻辑
+    setTimeout(() => { overlay.style.display = 'none'; }, 3000); // 3秒后自动关闭
+}
+
+
+
 // 从localstorage读取货单数据
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -22,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.cargo-input [name="cargo-name"]').value = cargoInfo.cargo_kind;
             // 如果有重量信息，应该更新对应的输入框
             document.querySelector('.cargo-input [name="cargo-stock"]').value = cargoInfo.cargo_stock; 
-            document.querySelector('.cargo-input [name="address-start"]').value = cargoInfo.start_address;
-            document.querySelector('.cargo-input [name="address-end"]').value = cargoInfo.end_address;
+            document.querySelector('.cargo-input [name="address-start"]').value = cargoInfo.start_address.trim();
+            document.querySelector('.cargo-input [name="address-end"]').value = cargoInfo.end_address.trim();
             document.querySelector('.cargo-input [name="date-start"]').value = cargoInfo.start_date;
             document.querySelector('.cargo-input [name="date-end"]').value = cargoInfo.end_date;
              
@@ -67,6 +82,9 @@ function updateAcceptButtonStatus() {
 
 
 
+
+
+
 const cargoInfo = JSON.parse(localStorage.getItem('cargoInfo'));
 const userId = JSON.parse(localStorage.getItem('userInfo')).userId;
 
@@ -93,11 +111,11 @@ document.querySelector('.confirm-container .accept').addEventListener('click', (
         }
     }).then(result => {
         console.log(result);
-                if (result.code === 1) {
-                    showOverlay(result.data);
+                if (result.data.code === 1) {
+                    showOverlay(result.data.data);
                     window.location.href = './test_freightbill_v1.html';
                 } else{
-                    showOverlay(result.data);
+                    showOverlay(result.data.data);
                 }
                 
         
