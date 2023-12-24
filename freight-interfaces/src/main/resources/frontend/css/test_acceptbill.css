@@ -124,7 +124,7 @@ textarea {
 .cargo-input .half-items{
     display: flex;
     margin-bottom: 2vh;
-
+    
 }
 
 .cargo-input .half-items .left,
@@ -143,11 +143,11 @@ textarea {
     height: 4vh;
     padding-left: 5%;
     box-sizing: border-box;
-    width: 90%;
+    width: 95%;
 }
 
 /* 只读输入字段样式 */
-input[readonly] {
+.cargo-input input[readonly] {
     background-color: #f3f3f3; /* 浅灰色背景 */
     opacity: 0.75; /* 轻微透明效果 */
     cursor: default; /* 默认光标 */
@@ -156,7 +156,7 @@ input[readonly] {
 
 
 
-textarea[readonly] {
+.cargo-input textarea[readonly] {
     background-color: #f3f3f3; /* 浅灰色背景 */
     opacity: 0.75; /* 轻微透明效果 */
     cursor: default; /* 默认光标 */
@@ -174,6 +174,7 @@ textarea[readonly] {
     height: 42vh;
     margin: 0 auto;
     padding-top: 2vh;
+    /* margin-top: 10vh; */
 }
 
 
@@ -222,6 +223,32 @@ textarea[readonly] {
 }
 
 
+
+.driver-input .half-items{
+    display: flex;
+    margin-bottom: 2vh;
+    
+}
+
+.driver-input .half-items .left,
+.driver-input .half-items .right{
+    padding-left: 5%;
+    font-weight: bold;
+    flex: 1;
+}
+
+
+
+.driver-input .half-items .left input,
+.driver-input .half-items .right input{
+    margin-top: 2vh;
+    border-radius: 10px;
+    height: 4vh;
+    padding-left: 5%;
+    box-sizing: border-box;
+    width: 95%;
+}
+
 /* 司机承接信息栏结束 */
 
 /* 用户确认栏开始 */
@@ -252,5 +279,38 @@ textarea[readonly] {
     margin-right: 10%;
 }
 
+.confirm-container .accept{
+    opacity: 0.3;
+    
+}
+
+.confirm-container .accept.active{
+    opacity: 1;
+}
+
 
 /* 用户确认栏结束 */
+
+
+/* 蒙层的 CSS 样式开始 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+/* 蒙层的样式结束 */

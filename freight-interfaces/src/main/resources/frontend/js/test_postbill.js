@@ -116,6 +116,7 @@ $(document).ready(function() {
                 
             }).catch(error => {
                 console.log(error);
+                showOverlay(error.message)
             });
         }
 
