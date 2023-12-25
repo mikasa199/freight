@@ -106,7 +106,7 @@ textarea {
 }
 
 .cargo-input .items textarea {
-    width: 90%;
+    width: 95%;
     border-radius: 10px;
     margin: 1vh auto;
     height: 6vh; /* 增加高度 */

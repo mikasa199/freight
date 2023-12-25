@@ -31,6 +31,7 @@ function axiosCargoDetail(cargoId) {
         // 更新页面元素
         document.querySelector('input[name="cargo-name"]').value = data.cargoName;
         document.querySelector('input[name="cargo-weight"]').value = data.cargoWeight;
+        document.querySelector('input[name="cargo-value"]').value = data.value;
         document.querySelector('textarea[name="address-start"]').value = data.beginLocation;
         document.querySelector('textarea[name="address-end"]').value = data.endLocation;
         document.querySelector('textarea[name="date-start"]').value = dateFormat(data.beginTime);
