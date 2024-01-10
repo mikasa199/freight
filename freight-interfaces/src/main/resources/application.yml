@@ -7,18 +7,18 @@ spring:
     password: yc1234
     url: jdbc:mysql://124.222.253.96:3306/freight?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    initialSize: 5      #连接池启动时创建的初始化连接数量。
-    minIdle: 5        # 连接池中最小的空闲连接数。
-    maxActive: 20     #连接池中最大的活动连接数。
-    maxWait: 60000    #当没有可用连接时，连接池等待连接被归还的最大时间(以毫秒为单位)。
-    timeBetweenEvictionRunsMillis: 60000  # 后台线程检测连接的间隔时间，如果设置为负数则不运行检测线程。
-    validationQuery: SELECT 1 #用来检测连接是否有效的SQL查询语句。
-    testWhileIdle: true       #是否在连接空闲一段时间后检测其可用性。
-    testOnBorrow: false       #在从连接池获取连接时是否检测其可用性。
-    testOnReturn: false       #在连接归还连接池时是否检测其可用性。
-    poolPreparedStatements: true  #是否缓存PreparedStatement，即预编译SQL语句。
-    maxPoolPreparedStatementPerConnectionSize: 20 #每个连接最大的PreparedStatement缓存数量。
-    filters: stat      # 配置的过滤器，"stat"表示使用Druid的内置统计功能。
+#    initialSize: 5      #连接池启动时创建的初始化连接数量。
+#    minIdle: 5        # 连接池中最小的空闲连接数。
+#    maxActive: 20     #连接池中最大的活动连接数。
+#    maxWait: 60000    #当没有可用连接时，连接池等待连接被归还的最大时间(以毫秒为单位)。
+#    timeBetweenEvictionRunsMillis: 60000  # 后台线程检测连接的间隔时间，如果设置为负数则不运行检测线程。
+#    validationQuery: SELECT 1 #用来检测连接是否有效的SQL查询语句。
+#    testWhileIdle: true       #是否在连接空闲一段时间后检测其可用性。
+#    testOnBorrow: false       #在从连接池获取连接时是否检测其可用性。
+#    testOnReturn: false       #在连接归还连接池时是否检测其可用性。
+#    poolPreparedStatements: true  #是否缓存PreparedStatement，即预编译SQL语句。
+#    maxPoolPreparedStatementPerConnectionSize: 20 #每个连接最大的PreparedStatement缓存数量。
+#    filters: stat      # 配置的过滤器，"stat"表示使用Druid的内置统计功能。
 
   redis:
     host: 43.143.31.48 #124.222.253.96 #ip地址

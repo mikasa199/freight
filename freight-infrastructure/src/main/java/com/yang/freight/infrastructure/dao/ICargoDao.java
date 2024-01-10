@@ -38,6 +38,7 @@ public interface ICargoDao {
      */
     List<Cargo> queryList(@Param("page") long page, @Param("pageSize") long pageSize, @Param("cargoName") String cargoName);
 
+    // TODO 分页查询中，数据类型为 decimal 无法一块排序查询，需要单独写sql语句
     /**
      * 按照条件升序查询
      * @param page
@@ -46,6 +47,7 @@ public interface ICargoDao {
      */
     List<Cargo> queryListSortUp(@Param("page") long page, @Param("pageSize") long pageSize, @Param("code") int code);
 
+    // TODO 分页查询中，数据类型为 decimal 无法一块排序查询，需要单独写sql语句
     /**
      * 按照条件降序查询
      * @param page

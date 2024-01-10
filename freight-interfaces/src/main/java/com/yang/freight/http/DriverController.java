@@ -65,7 +65,15 @@ public class DriverController {
 
         // 2. 如果查询到密码，则和用户输入的密码进行比较
 
-        return driverDeploy.driverLogon(req);
+        Return<DriverVO> driverVOReturn = driverDeploy.driverLogon(req);
+        if (1 == driverVOReturn.getCode()) {
+            //将用户id存入session中，标识用户已登录
+            session.setAttribute("driver",driverVOReturn.getData().getDriverId());
+            logger.info("登录成功driverId:{}",driverVOReturn.getData().getDriverId());
+        }else{
+            logger.info("登录失败：{}",driverVOReturn.getMsg());
+        }
+        return driverVOReturn;
     }
 
     /**

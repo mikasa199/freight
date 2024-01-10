@@ -54,7 +54,7 @@ public class BossController {
                 logger.info("是否注册成功：{}",null != boss);
                 session.setAttribute("boss",boss.getBossId());
 
-                logger.info("登陆成功，bossId：{}",boss.getBossId());
+                logger.info("登录成功，bossId：{}",boss.getBossId());
                 redisTemplate.delete(phone);
                 return Return.success(boss);
             }else {
@@ -68,7 +68,13 @@ public class BossController {
     @PostMapping("/logon")
     public Return<BossVO> logon(@RequestBody InitBossReq req,HttpSession session){
         logger.info("用户登录：手机号：{}，密码：{}",req.getPhone(),req.getPassword());
-        return bossService.bossLogon(req);
+        Return<BossVO> bossVOReturn = bossService.bossLogon(req);
+        if (1 == bossVOReturn.getCode()) {
+            session.setAttribute("boss",bossVOReturn.getData().getBossId());
+
+            logger.info("登录成功，bossId：{}",bossVOReturn.getData().getBossId());
+        }
+        return bossVOReturn;
     }
 
     /**

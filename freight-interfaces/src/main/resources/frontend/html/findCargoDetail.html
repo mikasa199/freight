@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/findCargoDetail.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- 顶部标题栏 -->
+        <div class="top-container">
+            <div class="title">货单详细信息</div>
+            <div class="return iconfont icon-fanhui"></div>
+        </div>
+
+
+        <!-- 用户输入栏 -->
+        <form action="" class="cargo-input">
+
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">货物名称</div>
+                    <input type="text" name="cargo-name" readonly>
+                </div>
+
+                <div class="right">
+                    <div class="text">货物剩余库存量 (吨)</div>
+                    <input type="text" name="cargo-stock" readonly>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="text">单价</div>
+                <input type="text" name="cargo-price" readonly>
+            </div>
+
+
+            <div class="items">
+                <div class="text">装货起点</div>
+                <input type="text" name="address-start" readonly>
+            </div>
+
+            <div class="items">
+                <div class="text">卸货终点</div>
+                <input type="text" name="address-end" readonly>
+            </div>
+
+
+            <div class="half-items">
+                <div class="left">
+                    <div class="text">订单开始时间</div>
+                    <input type="text" name="date-start" readonly>
+                </div>
+
+                <div class="right">
+                    <div class="text">订单结束时间</div>
+                    <input type="text" name="date-end" readonly>
+                </div>
+            </div>
+
+
+
+        </form>
+
+
+        <script src="../form-serialize/lib/form-serialize.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="module" src="../js/findCargoDetail.js"></script>
+</body>
+
+</html>

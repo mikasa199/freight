@@ -14,7 +14,12 @@ const temp_conditionList_ul = document.querySelector('.condition-list ul')
 const temp_conditionName = document.querySelector('.list-items .list-title .text')
 
 document.querySelector('.top-container .list-items .list-title').addEventListener('click', () => {
-    temp_conditionList.style.display = 'block'
+    // 切换条件列表的显示状态
+    if (temp_conditionList.style.display === 'block') {
+        temp_conditionList.style.display = 'none';
+    } else {
+        temp_conditionList.style.display = 'block';
+    }
 })
 
 temp_conditionList_ul.addEventListener('click', function (event){
@@ -198,23 +203,26 @@ function fetchCargoData(cargoName, page, pageSize) {
 
 // 绑定点击事件到包含所有 li 的 ul 元素
 document.querySelector('.content-container ul').addEventListener('click', function(event) {
+
+    // 获取当前按钮所在的 li 元素
+    const listItem = event.target.closest('li');
+
     // 检查被点击的元素是否是接单按钮或其子元素
     if (event.target.closest('.accept-bill')) {
         // 清空LocalStorage中之前的cargoInfo
         localStorage.removeItem('cargoInfo');
 
-        // 获取当前按钮所在的 li 元素
-        const listItem = event.target.closest('li');
-
+        
         const cargoInfo = {
             driverId: listItem.querySelector('.driverId').textContent,
             cargoId: listItem.querySelector('.cargoId').textContent,
-            start_address: listItem.querySelector('.address .text_start').innerText,
-            end_address: listItem.querySelector('.address .text_end').innerText,
-            start_date: listItem.querySelector('.goods .date .date_text').textContent,
+            start_address: listItem.querySelector('.address .text_start').textContent,
+            end_address: listItem.querySelector('.address .text_end').textContent,
+            start_date: listItem.querySelector('.goods .date .date_start').textContent,
+            end_date: listItem.querySelector('.goods .date .date_end').textContent,
             cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
             cargo_price: listItem.querySelector('.goods-kind .price').textContent,
-            // cargo_weight: listItem.querySelector('.goods-kind .weight').textContent
+            cargo_stock: listItem.querySelector('.goods-kind .stock').textContent
         };
 
         // 存储数据到 LocalStorage
@@ -222,6 +230,30 @@ document.querySelector('.content-container ul').addEventListener('click', functi
 
         // 数据存储后进行页面跳转
         window.location.href = './test_acceptbill.html';
+
+
+    } else if (listItem) {
+        // 清空LocalStorage中之前的cargoInfo
+        localStorage.removeItem('cargoInfo');
+
+        const cargoInfo = {
+            driverId: listItem.querySelector('.driverId').textContent,
+            cargoId: listItem.querySelector('.cargoId').textContent,
+            start_address: listItem.querySelector('.address .text_start').textContent,
+            end_address: listItem.querySelector('.address .text_end').textContent,
+            start_date: listItem.querySelector('.goods .date .date_start').textContent,
+            end_date: listItem.querySelector('.goods .date .date_end').textContent,
+            cargo_kind: listItem.querySelector('.goods-kind .kind').textContent,
+            cargo_price: listItem.querySelector('.goods-kind .price').textContent,
+            cargo_stock: listItem.querySelector('.goods-kind .stock').textContent
+        };
+
+        // 存储数据到 LocalStorage
+        localStorage.setItem('cargoInfo', JSON.stringify(cargoInfo));
+
+        // 数据存储后进行页面跳转到运单详情页面
+        window.location.href = './findCargoDetail.html';
+    
     }
 });
 
@@ -320,14 +352,15 @@ function renderCargoInfo(cargoList) {
                 <div class="date">
                     <i class="iconfont icon-shijian"></i>
                     <span>结束时间: </span>
-                    <div class="date_text">${dateFormat(items.endTime)}</div>
+                    <div class="date_end">${dateFormat(items.endTime)}</div>
+                    <div class="date_start">${dateFormat(items.beginTime)}</div>
                 </div>
                 <div class="goods-kind">
                     <i class="iconfont icon-huowudui"></i>
                     <div class="goods-info">
                         <div class="kind">${items.cargoName}</div>
                         <div class="price">${items.value}元/吨</div>
-                        
+                        <div class="stock">${items.stock}</div>
 
                     </div>
                 </div>
@@ -360,7 +393,7 @@ function renderCargoInfo(cargoList) {
 
 // 添加新的数据到页面
 function appendDataToPage(data) {
-    
+
     const htmlStr = data.map(items => {
 
         // 读取身份

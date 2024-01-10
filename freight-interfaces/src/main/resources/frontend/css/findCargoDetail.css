@@ -103,14 +103,10 @@ textarea {
     border-radius: 10px;
     margin: 2vh auto;
     height: 4vh;
-    padding-left: 5%;
-    
+    padding-left: 2%;
+   
 }
 
-.cargo-input .items input[name='address-start'],
-.cargo-input .items input[name='address-end']{
-    padding-left: 2%;
-}
 
 
 .cargo-input .items textarea {
@@ -131,6 +127,7 @@ textarea {
     margin-bottom: 2vh;
     
 }
+
 
 .cargo-input .half-items .left,
 .cargo-input .half-items .right{
@@ -171,151 +168,3 @@ textarea {
 
 
 /* 用户输入栏结束 */
-
-/* 司机承接信息栏开始 */
-
-.driver-input{
-    background-color: rgb(239, 238, 238);
-    height: 42vh;
-    margin: 0 auto;
-    padding-top: 2vh;
-    /* margin-top: 10vh; */
-}
-
-
-.driver-input .desc{
-    font-weight: bold;
-    font-size: 1.3em;
-    border-radius: 5px;
-    border: 2px solid #3262f4;
-    padding: 2px;
-    margin-left: 5%;
-    display: inline;
-    box-sizing: border-box;
-    color: red;
-    
-}
-
-.driver-input .items{
-    padding-left: 5%;
-    
-}
-
-.driver-input .items textarea {
-    width: 95%;
-    border-radius: 10px;
-    margin: 2vh auto;
-    height: 20vh;
-    padding: 2vh 5%; /* 增加内边距 */
-    background-color: #fff;
-    box-sizing: border-box; /* 保证宽高包含内边距和边框 */
-}
-
-
-.driver-input .items{
-    padding-left: 5%;
-    font-weight: bold;
-    margin-top: 2vh;
-    
-}
-
-.driver-input .items input{
-    width: 90%;
-    border-radius: 10px;
-    margin: 2vh auto;
-    height: 4vh;
-    padding-left: 5%;
-}
-
-
-
-.driver-input .half-items{
-    display: flex;
-    margin-bottom: 2vh;
-    
-}
-
-.driver-input .half-items .left,
-.driver-input .half-items .right{
-    padding-left: 5%;
-    font-weight: bold;
-    flex: 1;
-}
-
-
-
-.driver-input .half-items .left input,
-.driver-input .half-items .right input{
-    margin-top: 2vh;
-    border-radius: 10px;
-    height: 4vh;
-    padding-left: 5%;
-    box-sizing: border-box;
-    width: 95%;
-}
-
-/* 司机承接信息栏结束 */
-
-/* 用户确认栏开始 */
-
-
-
-
-.confirm-container{
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 3vh;
-    height: 10vh;
-    display: flex;
-    justify-content: space-around;
-}
-
-.confirm-container button{
-    background-color: #3262f4;
-    margin: 0 auto;
-    height: 6vh;
-    border-radius: 10px;
-    color: #fff;
-    flex: 1;
-    
-}
-
-.confirm-container .save{
-    margin-right: 10%;
-}
-
-.confirm-container .accept{
-    opacity: 0.3;
-    
-}
-
-.confirm-container .accept.active{
-    opacity: 1;
-}
-
-
-/* 用户确认栏结束 */
-
-
-/* 蒙层的 CSS 样式开始 */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.overlay-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-
-/* 蒙层的样式结束 */

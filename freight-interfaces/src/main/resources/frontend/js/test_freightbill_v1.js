@@ -264,11 +264,11 @@ function renderOrderData(orders,clear = true) {
                     </div>
                     <div class="middle-part">
                         <div class="createdTime">
-                            <div class="title">接单创建时间:</div>
+                            <div class="title">订单创建时间:</div>
                             <div class="text">${dateFormat(order.createdTime) || '无数据'}</div>
                         </div>
                         <div class="updatedTime">
-                            <div class="title">接单更新时间：</div>
+                            <div class="title">订单更新时间：</div>
                             <div class="text">${dateFormat(order.updatedTime) || '无数据'}</div>
                         </div>
                     </div>
@@ -295,7 +295,7 @@ function renderOrderData(orders,clear = true) {
                     <div class="boter2-part">
                         <div class="stock">
                             <div class="title">承接载货量：</div>
-                            <div class="text">${order.stock || '无数据'}</div>
+                            <div class="text">${order.cargoWeight || '无数据'}</div>
                         </div>
                         <div class="state">
                             <div class="title">订单状态</div>
@@ -303,7 +303,7 @@ function renderOrderData(orders,clear = true) {
                         </div>
                     </div>
                     <div class="orderId">
-                        #${order.orderId || '无数据'}
+                        #订单号：${order.orderId || '无数据'}
                     </div>
                 </div>
             </div>

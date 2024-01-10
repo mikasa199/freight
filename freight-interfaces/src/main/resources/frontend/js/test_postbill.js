@@ -25,15 +25,16 @@ function updateSubmitButtonState() {
     }
 }
 
-    // 显示带消息的蒙层函数
-function showOverlay(message) {
-        overlayContent.textContent = message;
-        overlay.style.display = 'flex';
-        setTimeout(() => {
-            overlay.style.display = 'none';
-        }, 3000); // 3秒后隐藏蒙层
-}
 
+// 显示蒙层的函数
+function showOverlay(message) {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'flex';
+    overlay.querySelector('.overlay-content').textContent = message;
+
+    // 可以添加关闭蒙层的逻辑
+    setTimeout(() => { overlay.style.display = 'none'; }, 3000); // 3秒后自动关闭
+}
 
 
 
@@ -107,15 +108,16 @@ $(document).ready(function() {
                 }
             }).then(result => {
                 console.log(result);
-                if (result.code === 1) {
-                    showOverlay(result.data);
-                    window.location.href = './test_mypage_v1.html';
+                if (result.data.code === 1) {
+                    showOverlay(result.data.data);
+                    window.location.href = './test_freightbill_v1.html';
                 } else{
-                    showOverlay(result.data);
+                    showOverlay(result.data.data);
                 }
                 
             }).catch(error => {
                 console.log(error);
+                showOverlay(error.message)
             });
         }
 
