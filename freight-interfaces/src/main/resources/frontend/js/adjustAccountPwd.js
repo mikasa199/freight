@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showOverlay(result.data.msg);
             }
         }).catch(error => {
+            console.log(error.message);
             showOverlay('更新密码出错: ' + error.message);
         });
     });
